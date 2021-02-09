@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Marked in the browser</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+    <h1>Ajax 测试页面</h1>
+
+    <form>
+        <label for="verse-choose">Choose a term</label>
+        <select id="verse-choose" name="verse-choose">
+            <option>requirement.md</option>
+            <option>Verse 1.txt</option>
+            <option>Verse 2.txt</option>
+            <option>Verse 3.txt</option>
+            <option>Verse 4.txt</option>
+        </select>
+    </form>
+
+    <h2>AJAX显示页面如下</h2>
+
+    <script>
+        const verseChoose = document.querySelector('select');
+        const poemDisplay = document.querySelector('pre');
+
+        verseChoose.onchange = function () {
+            const verse = verseChoose.value;
+            updateDisplay(verse);
+        };
+        function updateDisplay(verse) {
+            verse = verse.replace(" ", "");
+            verse = verse.toLowerCase();
+            let url = verse;
+
+
+            let request = new XMLHttpRequest();
+            request.open('GET', url);
+            request.responseType = 'text';
+            request.onload = function () {
+
+                document.getElementById("content").innerHTML = marked(request.responseText)
+
+            };
+
+            request.send();
+        }
+        updateDisplay('Requirement.md');
+        verseChoose.value = 'requirement.md';
+    </script>
+
+
+    <div id="content"></div>
+</body>
+</body>
+
+</html>
