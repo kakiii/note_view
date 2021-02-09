@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-// import reportWebVitals from './reportWebVitals';
+import Alerts from './Alerts';
 
 ReactDOM.render(
   <React.StrictMode>
+    <Alerts/>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
