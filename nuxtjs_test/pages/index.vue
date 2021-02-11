@@ -10,7 +10,7 @@
     </div>
     <div class="container">
       <hr>
-      <p>下面的链接提供了通向编辑器的路由功能</p>
+      <p>左边的链接提供了通向编辑器的路由功能</p>
       <p>当前只注册了一个链接路由</p>
 
       <NuxtLink to="/editor">

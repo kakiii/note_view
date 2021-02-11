@@ -5,10 +5,27 @@
     <NuxtLink to="/">
       Home page
     </NuxtLink>
+    <vue-simplemde ref="markdownEditor" v-model="content" />
   </div>
 </template>
 
 <script>
+import VueSimplemde from 'vue-simplemde'
+
 export default {
+  components: {
+    VueSimplemde
+  },
+  data () {
+    return {
+      configs: {
+        toolbar: ['italic', 'heading', '|']
+      }
+    }
+  }
 }
 </script>
+
+<style>
+@import 'simplemde/dist/simplemde.min.css';
+</style>
