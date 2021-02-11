@@ -5,8 +5,10 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>|
 <!--      在这里的router-link能够直接通向指定的URL地址，但如果没有实现注册对应的组件，也只能显示空白-->
-      <router-link to="/call">CALL</router-link>|
-      <router-link to="/call/test">test</router-link>
+      <router-link to="/editor">EDITOR</router-link>|
+      <router-link to="/discussion">Discussion Board</router-link>|
+      <router-link to="/404">通向404界面</router-link>
+
 
 
       <p>向上是不变的路由区</p>
