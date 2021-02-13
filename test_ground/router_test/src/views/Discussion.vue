@@ -1,18 +1,16 @@
 <template>
-<div>
-  <p>
-    This is Discussion Board.
-  </p>
-  <font size="20">🤐</font>
-</div>
+  <div>
+    <p>
+      This is Discussion Board.
+    </p>
+    <font size="20">🤐</font>
+  </div>
 </template>
 
 <script>
 export default {
-name: "Discussion"
-}
+  name: "Discussion",
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

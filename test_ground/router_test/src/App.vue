@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-        <el-main>
-          <el-row :gutter="20">
             <el-button>
               <router-link to="/">Home</router-link>
             </el-button>
@@ -19,7 +17,6 @@
               <router-link to="/404">通向404界面</router-link>
             </el-button>
             <el-button type="primary" icon="el-icon-search">Search</el-button>
-          </el-row>
           <p>向上是不变的路由区</p>
           <p>这里的内容在App.vue文件中定义</p>
           <p>下方是Router-View的区域</p>
@@ -30,9 +27,7 @@
               style="filter: alpha(opacity=100,finishOpacity=0,style=3)">
           <p>上面是Router-View的区域</p>
           <p>下面也是不变的路由区</p>
-          <br><br><br><br>
           <p>需要现在router/index.js里面注册</p>
-        </el-main>
   </div>
 
 </template>
