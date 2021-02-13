@@ -1,3 +1,6 @@
-# NUXT.JS TEST
+# COMP 208作业仓库
 
-这里用于测试Nuxt.js在路由和编辑器功能方面的特性，以及验证Nuxt.js的开发效率。
+1. 使用`npm install`安装模组
+
+2. 使用`npm start`激活开发状态
+3. 使用`yarn build`进行构建
