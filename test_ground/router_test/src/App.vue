@@ -1,3 +1,6 @@
+// 这是根组件,所有的其他组件都在它之上构建
+
+// 下面的tempalte内容就是HTML内容,使用的语言也是HTML
 <template>
   <div id="app">
             <el-button>
@@ -20,6 +23,7 @@
           <p>向上是不变的路由区</p>
           <p>这里的内容在App.vue文件中定义</p>
           <p>下方是Router-View的区域</p>
+          <img src="./assets/logo.jpg" alt="No picture">
           <hr align="center" width="80%" color="#987cb9" size="3"
               style="filter: alpha(opacity=100,finishOpacity=0,style=3)">
           <router-view></router-view>
@@ -32,6 +36,7 @@
 
 </template>
 
+// 下面的style部分就是CSS内容,使用的语言就是CSS
 <style>
 @import "~element-ui/lib/theme-chalk/index.css";
 
