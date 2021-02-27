@@ -2,11 +2,11 @@
 // 下面的import语句用于引入需要的"核心"组件,下一级的组件无需在此注册.
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from "@/views/Home";
-import About from "@/views/About.vue"
-import page_404 from "@/views/404.vue"
-import Editor from "@/views/Editor";
-import Discussion from "@/views/Discussion";
+import Home from "@/components/Home";
+import About from "@/components/About.vue"
+import page_404 from "@/components/404.vue"
+import Editor from "@/components/Editor";
+import Discussion from "@/components/Discussion";
 Vue.use(VueRouter)
 
 const routes = [
