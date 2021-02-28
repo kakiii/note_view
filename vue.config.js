@@ -1,3 +1,14 @@
 module.exports = {
-    assetsDir:"static"
+    assetsDir:"static",
+
+    pluginOptions: {
+      quasar: {
+        importStrategy: 'kebab',
+        rtlSupport: false
+      }
+    },
+
+    transpileDependencies: [
+      'quasar'
+    ]
 }
