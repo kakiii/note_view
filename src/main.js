@@ -5,8 +5,11 @@ import router from './router'
 import Vuex from 'vuex'
 import {Button,Container} from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 Vue.config.productionTip = true
 Vue.use(Button)
+Vue.use(mavonEditor)
 Vue.use(Container)
 Vue.use(Vuex)
 new Vue({

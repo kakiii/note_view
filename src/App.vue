@@ -19,7 +19,6 @@
       <router-link to="/404">通向404界面</router-link>
     </el-button>
     <el-button type="primary" icon="el-icon-search">Search</el-button>
-    <img src="./assets/logo.jpg" alt="No picture" />
     <hr
       align="center"
       width="80%"
@@ -35,16 +34,13 @@
       size="3"
       style="filter: alpha(opacity=100,finishOpacity=0,style=3)"
     />
-    <Weather />
   </div>
 </template>
 
 <script>
-import Weather from "./components/weather.vue";
 export default {
   name: "app",
   components: {
-    Weather,
   },
 };
 </script>
