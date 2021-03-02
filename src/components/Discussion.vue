@@ -3,7 +3,7 @@
     <p>
       This is Discussion Board.
     </p>
-    <font size="20">🤐</font>
+    <h3>Place all kinds of components here for tests</h3>
   </div>
 </template>
 

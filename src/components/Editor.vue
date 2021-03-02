@@ -1,6 +1,7 @@
 <template>
   <div>
-    <mavon-editor placeholder="Please Enter your notes" language="en"/>
+    <mavon-editor
+        language="en" placeholder="Please Enter your notes"/>
   </div>
 </template>
 
