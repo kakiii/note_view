@@ -37,7 +37,6 @@ export default {
 </script>
 // 下面的style部分就是CSS内容,使用的语言就是CSS
 <style>
-@import "~element-ui/lib/theme-chalk/index.css";
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
