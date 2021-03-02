@@ -1,17 +1,27 @@
 <template>
-  <div id="app">
-    <the-header/>
-    <router-view></router-view>
-    <the-footer/>
+  <v-app>
 
-  </div>
+    <v-main>
+      <TheHeader v-if="$route.name !== `login`"/>
+      <router-view></router-view>
+      <TheFooter/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
+import TheFooter from "@/components/TheFooter";
+import TheHeader from "@/components/TheHeader";
+
 export default {
-  name: "app",
-  components: {TheHeader, TheFooter},
+  name: 'App',
+
+  components: {
+    TheFooter,TheHeader
+  },
+
+  data: () => ({
+    //
+  }),
 };
-import TheFooter from './components/TheFooter.vue'
-import TheHeader from './components/TheHeader.vue';
 </script>
