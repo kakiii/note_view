@@ -5,7 +5,7 @@ import VueRouter from 'vue-router'
 import Home from "@/components/Home";
 import About from "@/components/About.vue"
 import page_404 from "@/components/404.vue"
-import Editor from "@/components/Editor";
+// import Editor from "@/components/Editor";
 import Discussion from "@/components/Discussion";
 Vue.use(VueRouter)
 
@@ -17,11 +17,6 @@ const routes = [
     name: 'Index',
     // Component表示挂载在这个URL下的Vue组件名称,只能填入一个.
     component:Home
-  },
-  {
-    path:'/editor',
-    name:'editor',
-    component: Editor
   },{
   path:'/discussion',
     name:'discussion',
