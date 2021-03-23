@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form action="/auth/register" method="post" @submit="checkForm">
+    <form action="/auth/register" method="get">
       <h2>Register</h2>
       <div class="form-group">
         <label for="username">Username</label>
@@ -9,6 +9,10 @@
       <div class="form-group">
         <label for="password">Password</label>
         <input id="password" v-model="password" name="password" required type="password">
+      </div>
+      <div class="form-group">
+        <label for="">Confirm Password</label>
+        <input type="password" id="confirm" name="confirm" v-model="confirm" required>
       </div>
       <div class="form-footer">
         <button class="btn" name="submit" type="submit">Submit</button>
@@ -27,8 +31,7 @@ export default {
       password: "",
       remember: false
     }
-  },
-  methods: {},
+  }
 }
 </script>
 

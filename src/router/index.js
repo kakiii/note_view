@@ -8,6 +8,7 @@ import Editor from "@/components/Editor";
 import Discussion from "@/components/Discussion";
 import Login from "@/components/Login.vue";
 import Register from "@/components/Register";
+import FindArticle from "@/components/FindArticle";
 Vue.use(VueRouter)
 
 const routes = [
@@ -41,6 +42,11 @@ const routes = [
   path: '/register',
     name:'register',
     component: Register
+  },
+  {
+  path:'/find',
+    name:'find',
+    component: FindArticle
   }
 
 ]

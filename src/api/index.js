@@ -17,6 +17,9 @@ export default{
     register({username, password}) {
         return api.post('/auth/register', {username, password}).then(response => response.data)
     },
+    getArticle(id){
+        return api.get('/article',id).then(response => response.data)
+    }
     // getSession() {
     //     return api.get('/auth/session').then(response => response.data)
     // }

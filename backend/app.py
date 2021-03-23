@@ -34,7 +34,6 @@ def login():
         # 有用户
         print("Found one")
         if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password']) == login_user['password']:
-        # if request.form['password'] == login_user['password']:
             session['username'] = request.form['username']
             print("Check complete")
             return redirect(url_for('index'))
@@ -61,7 +60,23 @@ def register():
             return redirect(url_for("index"))
 
 
+@app.route('/articles')
+def articles():
+    return "<h1>hoho</h1>"
+
+
+@app.route('/articles/<int:article_id>', methods=['GET'])
+def return_article(article_id):
+    print(article_id)
+    articles = mongo.db.articles
+    match_article = articles.find_one({'id': article_id})
+    if match_article:
+        return jsonify({'ID': article_id, 'Content': match_article['content']})
+    else:
+        return jsonify(({'ID': article_id, 'Content': 'NOT FOUND'}))
+
+
 if __name__ == "__main__":
     # 确保传输安全的密钥，可以随意更换
     app.secret_key = 'testing'
-    app.run()
+    app.run(debug=True)
