@@ -13,3 +13,6 @@ def weather():
     with open("../dist/weather.json") as f:
         jsonStr = json.load(f)
         return json.dumps(jsonStr)
+
+if __name__ == "__main__":
+    app.run()
