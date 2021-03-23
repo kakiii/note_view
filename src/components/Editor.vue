@@ -1,13 +1,12 @@
 <template>
   <div>
-    <mavon-editor
-        language="en" placeholder="Please Enter your notes"/>
+    <mavon-editor language="en" placeholder="Please Enter your notes" />
   </div>
 </template>
 
 <script>
 export default {
-  name: "Editor"
+  name: "Editor",
 };
 </script>
 

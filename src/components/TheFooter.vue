@@ -1,7 +1,7 @@
 <template>
   <div>
-  <router-link to="/about">About</router-link>
-  <router-link to="/">BACK TO HOME PAGE</router-link>
+    <router-link to="/about">About</router-link>
+    <router-link to="/">BACK TO HOME PAGE</router-link>
   </div>
 </template>
 <script>
