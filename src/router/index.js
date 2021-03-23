@@ -6,7 +6,7 @@ import Home from "@/components/Home";
 import About from "@/components/About.vue"
 import Editor from "@/components/Editor";
 import Discussion from "@/components/Discussion";
-import Login from "@/components/Login";
+import Login from "../components/Login.vue";
 Vue.use(VueRouter)
 
 const routes = [
