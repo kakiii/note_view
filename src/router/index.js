@@ -4,9 +4,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from "@/components/Home";
 import About from "@/components/About.vue"
-import page_404 from "@/components/404.vue"
 import Editor from "@/components/Editor";
 import Discussion from "@/components/Discussion";
+import Login from "@/components/Login";
 Vue.use(VueRouter)
 
 const routes = [
@@ -33,9 +33,9 @@ const routes = [
     component: About
   },
   {
-    path:'/404',
-    name:'404',
-    component: page_404
+    path:'/login',
+    name:'login',
+    component: Login
   }
 ]
 
