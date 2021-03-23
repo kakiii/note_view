@@ -1,13 +1,8 @@
 <template>
   <div id="app">
-    <el-container>
-      <el-aside>
         <TheHeader></TheHeader>
-      </el-aside>
-      <el-main>
         <router-view></router-view>
-      </el-main>
-    </el-container>
+
   </div>
 </template>
 
@@ -27,6 +22,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+
 }
 </style>
