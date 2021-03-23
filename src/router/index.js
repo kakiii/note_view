@@ -9,6 +9,7 @@ import Discussion from "@/components/Discussion";
 import Login from "@/components/Login.vue";
 import Register from "@/components/Register";
 import FindArticle from "@/components/FindArticle";
+import CodeEditor from "@/components/CodeEditor";
 Vue.use(VueRouter)
 
 const routes = [
@@ -47,6 +48,10 @@ const routes = [
   path:'/find',
     name:'find',
     component: FindArticle
+  },{
+  path : '/code',
+    name:'code',
+    component: CodeEditor
   }
 
 ]

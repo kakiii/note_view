@@ -18,7 +18,7 @@
 - [ ] Note Editing  ???
 - [ ] Note Exportation 0.0.1
 - [ ] Discussion Board ???
-- [ ] Code Editor ???
+- [ ] Code Editor 0.0.1
 - [ ] Admin Page  ???
 - [ ] Home Page UI Design  0.0.2
 - [ ] Search Engine 0.0.1😜
