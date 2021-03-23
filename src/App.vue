@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <v-container>
-      <router-link v-if="$route.name !== `login`" to="/login">To Login</router-link>
+      <!-- <router-view></router-view> -->
+      <the-header></the-header>
       <router-view></router-view>
     </v-container>
   </div>
 </template>
 
 <script>
+import TheHeader from "./components/TheHeader";
 export default {
+  
   name: "app",
-  components: {},
+  components: {TheHeader},
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
