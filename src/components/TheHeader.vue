@@ -13,7 +13,8 @@
       <el-menu-item index="/register">REGISTER</el-menu-item>
       <el-menu-item index="/editor">EDITOR</el-menu-item>
       <el-menu-item index="/find">FIND</el-menu-item>
-            <el-menu-item index="/code">CODE</el-menu-item>
+      <el-menu-item index="/code">CODE</el-menu-item>
+      <el-menu-item index="/about">ABOUT</el-menu-item>
     </el-menu>
   </div>
 </template>
