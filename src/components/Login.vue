@@ -10,7 +10,11 @@
         @submit.native.prevent="login"
       >
         <el-form-item prop="username">
-          <el-input v-model="model.username" placeholder="Username" prefix-icon="fas fa-user"></el-input>
+          <el-input
+            v-model="model.username"
+            placeholder="Username"
+            prefix-icon="fas fa-user"
+          ></el-input>
         </el-form-item>
         <el-form-item prop="password">
           <el-input
@@ -27,9 +31,12 @@
             type="primary"
             native-type="submit"
             block
-          >Login</el-button>
+            >Login</el-button
+          >
         </el-form-item>
-        <a class="forgot-password" href="https://oxfordinformatics.com/">Forgot password ?</a>
+        <a class="forgot-password" href="https://oxfordinformatics.com/"
+          >Forgot password ?</a
+        >
       </el-form>
     </el-card>
   </div>
@@ -42,11 +49,11 @@ export default {
     return {
       validCredentials: {
         username: "lightscope",
-        password: "lightscope"
+        password: "lightscope",
       },
       model: {
         username: "",
-        password: ""
+        password: "",
       },
       loading: false,
       rules: {
@@ -54,28 +61,28 @@ export default {
           {
             required: true,
             message: "Username is required",
-            trigger: "blur"
+            trigger: "blur",
           },
           {
             min: 4,
             message: "Username length should be at least 5 characters",
-            trigger: "blur"
-          }
+            trigger: "blur",
+          },
         ],
         password: [
           { required: true, message: "Password is required", trigger: "blur" },
           {
             min: 5,
             message: "Password length should be at least 5 characters",
-            trigger: "blur"
-          }
-        ]
-      }
+            trigger: "blur",
+          },
+        ],
+      },
     };
   },
   methods: {
     simulateLogin() {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         setTimeout(resolve, 800);
       });
     },
@@ -95,8 +102,8 @@ export default {
       } else {
         this.$message.error("Username or password is invalid");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
