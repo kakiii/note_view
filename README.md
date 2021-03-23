@@ -10,10 +10,21 @@
 
 
 
+### Progress
 
+- [ ] Register System    0.1
+- [ ] Login System  0.1
+- [ ] Gravataar  ???
+- [ ] Note Editing  ???
+- [ ] Note Exportation 0.0.1
+- [ ] Discussion Board ???
+- [ ] Code Editor ???
+- [ ] Admin Page  ???
+- [ ] Home Page UI Design  0.0.2
 
-后端的启动命令在backend收藏夹里。
+-----
 
-需要事先安装flask。
+>  后端的实例数据库在backend的文件夹中。
+>
+> 密码和账户相同
 
-进入`backend`收藏夹后，运行`flask run`即可。
