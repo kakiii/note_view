@@ -1,10 +1,13 @@
 <template>
   <div id="app">
-    <v-container>
-      <!-- <router-view></router-view> -->
-      <the-header></the-header>
-      <router-view></router-view>
-    </v-container>
+    <el-container>
+      <el-aside>
+        <TheHeader></TheHeader>
+      </el-aside>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
+    </el-container>
   </div>
 </template>
 
@@ -13,15 +16,7 @@ import TheHeader from "./components/TheHeader";
 export default {
   
   name: "app",
-  components: {TheHeader},
-  methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    },
-  },
+  components: {TheHeader}
 };
 </script>
 
