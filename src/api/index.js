@@ -11,9 +11,9 @@ export default{
     gets(){
         return api.get('/').then(response => response.data)
     },
-    // login({username, password, remember}) {
-    //     return api.post('/auth/login', {username, password, remember}).then(response => response.data)
-    // },
+    login({username, password, remember}) {
+        return api.post('/auth/login', {username, password, remember}).then(response => response.data)
+    },
     // register({username, password}) {
     //     return api.post('/auth/register', {username, password}).then(response => response.data)
     // },
