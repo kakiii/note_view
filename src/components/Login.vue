@@ -31,12 +31,12 @@
             type="primary"
             native-type="submit"
             block
-            >Login</el-button
-          >
+            >Login</el-button>
         </el-form-item>
         <a class="forgot-password" href="https://oxfordinformatics.com/"
-          >Forgot password ?</a
-        >
+          >Forgot password ?</a>
+        <br>
+        <a class="register" href="https://google.com">New User? Register Here</a>
       </el-form>
     </el-card>
   </div>
@@ -145,7 +145,6 @@ $teal: rgb(0, 124, 137);
 }
 .login .el-input__prefix {
   background: rgb(238, 237, 234);
-  left: 0;
   height: calc(100% - 2px);
   left: 1px;
   top: 1px;
@@ -162,12 +161,12 @@ $teal: rgb(0, 124, 137);
   padding-bottom: 30px;
 }
 h2 {
-  font-family: "Open Sans";
+  font-family: sans-serif;
   letter-spacing: 1px;
-  font-family: Roboto, sans-serif;
   padding-bottom: 20px;
 }
 a {
+  line-height: 140%;
   color: $teal;
   text-decoration: none;
   &:hover,
