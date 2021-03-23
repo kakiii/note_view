@@ -5,8 +5,11 @@ import router from './router'
 import Vuex from 'vuex'
 import './editor_config'
 import './plugins/element.js'
+import 'element-tiptap/lib/index.css';
+import {ElementTiptapPlugin} from "element-tiptap";
 Vue.config.productionTip = true
 Vue.use(Vuex)
+Vue.use(ElementTiptapPlugin,{lang:"en",spellcheck:true})
 new Vue({
   router,
   render: h => h(App)
