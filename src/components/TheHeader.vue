@@ -10,7 +10,8 @@
         text-color="#fff"
         active-text-color="#ffd04b">
       <el-menu-item index="/login">LOGIN</el-menu-item>
-          <el-menu-item index="/editor">EDITOR</el-menu-item>
+      <el-menu-item index="/register">REGISTER</el-menu-item>
+      <el-menu-item index="/editor">EDITOR</el-menu-item>
     </el-menu>
   </div>
 </template>

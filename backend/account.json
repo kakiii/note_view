@@ -1,19 +1,45 @@
 [{
   "_id": {
-    "$oid": "605a318d74bb4f7a8f60d572"
+    "$oid": "605a52023e1e365be1dbe324"
   },
-  "password": "123456",
-  "username": "abcdef"
+  "username": "admin",
+  "password": {
+    "$binary": {
+      "base64": "JDJiJDEyJFlJRVdkSVBuN2RlWGQzdS9VT3BuRy5TOVpWOUhUSGozcFRKWWpJZktkbkJUcUxOT3Vrd1Zp",
+      "subType": "00"
+    }
+  }
 },{
   "_id": {
-    "$oid": "605a31ae74bb4f7a8f60d573"
+    "$oid": "605a520b3e1e365be1dbe325"
   },
-  "password": "123456",
-  "username": "bcdefg"
+  "username": "aaaaaa",
+  "password": {
+    "$binary": {
+      "base64": "JDJiJDEyJFdJcHRPUk9hRVVCaGVSL0Z3WHBoOC4xeW0uYk5teS9oSU9jVk9COTNYa3F4ZG5Nb3huQU95",
+      "subType": "00"
+    }
+  }
 },{
   "_id": {
-    "$oid": "605a31c074bb4f7a8f60d574"
+    "$oid": "605a52133e1e365be1dbe326"
   },
-  "password": "123456",
-  "username": "cdefgh"
+  "username": "bbbbbb",
+  "password": {
+    "$binary": {
+      "base64": "JDJiJDEyJGUxU2hOVy5mcDlKVzJoMkRRSnhhaGVYcjJzMFVNN2RuWWdobzMyNzFoWWZ5Sk9ON25ZOGp5",
+      "subType": "00"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "605a52233e1e365be1dbe327"
+  },
+  "username": "cccccc",
+  "password": {
+    "$binary": {
+      "base64": "JDJiJDEyJE04d1cxdDlCY1lrTGNFV0sxWHlLVk9KczUuM3Rwc3NFMFlZdU1Ib0NkcWFBZmhSc0l3dEVL",
+      "subType": "00"
+    }
+  }
 }]

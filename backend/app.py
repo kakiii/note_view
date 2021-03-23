@@ -1,10 +1,11 @@
+import bcrypt
 from flask import Flask, render_template, json, jsonify, request, redirect, url_for, session
 from flask_pymongo import PyMongo
 
 app = Flask(__name__, static_folder="../dist/static", template_folder="../dist")
 
 # 实际部署时需要更改
-#数据库的文件在account.json里面
+# 数据库的文件在account.json里面
 app.config["MONGO_URI"] = "mongodb://localhost:27017/account"
 
 mongo = PyMongo(app)
@@ -25,14 +26,15 @@ def weather():
 
 @app.route('/auth/login', methods=['POST'])
 def login():
-    users = mongo.db.account
     print("Connected\n")
+    users = mongo.db.account
     login_user = users.find_one({'username': request.form['username']})
 
     if login_user:
+        # 有用户
         print("Found one")
-        # if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password']) == login_user['password']:
-        if request.form['password'] == login_user['password']:
+        if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password']) == login_user['password']:
+        # if request.form['password'] == login_user['password']:
             session['username'] = request.form['username']
             print("Check complete")
             return redirect(url_for('index'))
@@ -44,6 +46,19 @@ def login():
             return jsonify({'status': 'exists'})
     else:
         return jsonify({'status': 'failure', 'user': request.form['username']})
+
+
+@app.route('/auth/register', methods=['POST', 'GET'])
+def register():
+    if request.method == 'POST':
+        users = mongo.db.account
+        existing_user = users.find_one({'username': request.form['username']})
+
+        if existing_user is None:
+            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+            users.insert({'username': request.form['username'], 'password': hashpass})
+            session['username'] = request.form['username']
+            return redirect(url_for("index"))
 
 
 if __name__ == "__main__":

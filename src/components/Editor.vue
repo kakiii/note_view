@@ -9,7 +9,7 @@
     />
 
     <br>
-    <h1>BELOW IS STRUCTURED HTML OUTPUT</h1>
+    <h1>BELOW IS STRUCTURED JSON OUTPUT</h1>
     <br>
     <pre><code>{{ output.html }}</code></pre>
   </div>

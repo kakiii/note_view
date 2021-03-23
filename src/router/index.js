@@ -6,7 +6,8 @@ import Home from "@/components/Home";
 import About from "@/components/About.vue"
 import Editor from "@/components/Editor";
 import Discussion from "@/components/Discussion";
-import Login from "../components/Login.vue";
+import Login from "@/components/Login.vue";
+import Register from "@/components/Register";
 Vue.use(VueRouter)
 
 const routes = [
@@ -36,7 +37,12 @@ const routes = [
     path:'/login',
     name:'login',
     component: Login
+  },{
+  path: '/register',
+    name:'register',
+    component: Register
   }
+
 ]
 
 const router = new VueRouter({
