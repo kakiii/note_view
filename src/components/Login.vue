@@ -1,108 +1,80 @@
 <template>
   <div class="login">
-    <el-card>
+    <!--    <el-card>-->
+    <!--      <h2>Login</h2>-->
+    <!--      <el-form-->
+    <!--        class="login-form"-->
+    <!--        :model="model"-->
+    <!--        :rules="rules"-->
+    <!--        ref="form"-->
+    <!--        @submit.native.prevent="login"-->
+    <!--      >-->
+    <!--        <el-form-item prop="username">-->
+    <!--          <el-input-->
+    <!--            v-model="model.username"-->
+    <!--            placeholder="Username"-->
+    <!--            prefix-icon="fas fa-user"-->
+    <!--          ></el-input>-->
+    <!--        </el-form-item>-->
+    <!--        <el-form-item prop="password">-->
+    <!--          <el-input-->
+    <!--            v-model="model.password"-->
+    <!--            placeholder="Password"-->
+    <!--            type="password"-->
+    <!--            prefix-icon="fas fa-lock"-->
+    <!--          ></el-input>-->
+    <!--        </el-form-item>-->
+    <!--        <el-form-item>-->
+    <!--          <el-button-->
+    <!--            :loading="loading"-->
+    <!--            class="login-button"-->
+    <!--            type="primary"-->
+    <!--            native-type="submit"-->
+    <!--            block-->
+    <!--            >Login</el-button>-->
+    <!--        </el-form-item>-->
+    <!--        <a class="forgot-password" href="https://oxfordinformatics.com/"-->
+    <!--          >Forgot password ?</a>-->
+    <!--        <br>-->
+    <!--        <a class="register" href="https://google.com">New User? Register Here</a>-->
+    <!--      </el-form>-->
+    <!--    </el-card>-->
+    <form action="/auth/login" method="post" @submit="checkForm">
       <h2>Login</h2>
-      <el-form
-        class="login-form"
-        :model="model"
-        :rules="rules"
-        ref="form"
-        @submit.native.prevent="login"
-      >
-        <el-form-item prop="username">
-          <el-input
-            v-model="model.username"
-            placeholder="Username"
-            prefix-icon="fas fa-user"
-          ></el-input>
-        </el-form-item>
-        <el-form-item prop="password">
-          <el-input
-            v-model="model.password"
-            placeholder="Password"
-            type="password"
-            prefix-icon="fas fa-lock"
-          ></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button
-            :loading="loading"
-            class="login-button"
-            type="primary"
-            native-type="submit"
-            block
-            >Login</el-button>
-        </el-form-item>
-        <a class="forgot-password" href="https://oxfordinformatics.com/"
-          >Forgot password ?</a>
-        <br>
-        <a class="register" href="https://google.com">New User? Register Here</a>
-      </el-form>
-    </el-card>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" v-model="username" name="username" required type="text">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" v-model="password" name="password" required type="password">
+      </div>
+      <div class="form-group">
+        <label for="remember">
+          <input id="remember" v-model="remember" name="remember" type="checkbox">
+          Remember Me
+        </label>
+      </div>
+      <div class="form-footer">
+        <button class="btn" name="submit" type="submit">Submit</button>
+        <router-link class="btn" to="/">Return Home</router-link>
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
+// import api from '../api'
 export default {
   name: "login",
   data() {
     return {
-      validCredentials: {
-        username: "lightscope",
-        password: "lightscope",
-      },
-      model: {
-        username: "",
-        password: "",
-      },
-      loading: false,
-      rules: {
-        username: [
-          {
-            required: true,
-            message: "Username is required",
-            trigger: "blur",
-          },
-          {
-            min: 4,
-            message: "Username length should be at least 5 characters",
-            trigger: "blur",
-          },
-        ],
-        password: [
-          { required: true, message: "Password is required", trigger: "blur" },
-          {
-            min: 5,
-            message: "Password length should be at least 5 characters",
-            trigger: "blur",
-          },
-        ],
-      },
-    };
+      username: "",
+      password: "",
+      remember: false
+    }
   },
   methods: {
-    simulateLogin() {
-      return new Promise((resolve) => {
-        setTimeout(resolve, 800);
-      });
-    },
-    async login() {
-      let valid = await this.$refs.form.validate();
-      if (!valid) {
-        return;
-      }
-      this.loading = true;
-      await this.simulateLogin();
-      this.loading = false;
-      if (
-        this.model.username === this.validCredentials.username &&
-        this.model.password === this.validCredentials.password
-      ) {
-        this.$message.success("Login successfull");
-      } else {
-        this.$message.error("Username or password is invalid");
-      }
-    },
   },
 };
 </script>
@@ -120,9 +92,11 @@ export default {
   width: 100%;
   margin-top: 40px;
 }
+
 .login-form {
   width: 290px;
 }
+
 .forgot-password {
   margin-top: 10px;
 }
@@ -140,41 +114,50 @@ $teal: rgb(0, 124, 137);
     border-color: lighten($teal, 7);
   }
 }
+
 .login .el-input__inner:hover {
   border-color: $teal;
 }
+
 .login .el-input__prefix {
   background: rgb(238, 237, 234);
   height: calc(100% - 2px);
   left: 1px;
   top: 1px;
   border-radius: 3px;
+
   .el-input__icon {
     width: 30px;
   }
 }
+
 .login .el-input input {
   padding-left: 35px;
 }
+
 .login .el-card {
   padding-top: 0;
   padding-bottom: 30px;
 }
+
 h2 {
   font-family: sans-serif;
   letter-spacing: 1px;
   padding-bottom: 20px;
 }
+
 a {
   line-height: 140%;
   color: $teal;
   text-decoration: none;
+
   &:hover,
   &:active,
   &:focus {
     color: lighten($teal, 7);
   }
 }
+
 .login .el-card {
   width: 340px;
   display: flex;
