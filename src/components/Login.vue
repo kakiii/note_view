@@ -145,7 +145,6 @@ $teal: rgb(0, 124, 137);
 }
 .login .el-input__prefix {
   background: rgb(238, 237, 234);
-  left: 0;
   height: calc(100% - 2px);
   left: 1px;
   top: 1px;
@@ -162,9 +161,8 @@ $teal: rgb(0, 124, 137);
   padding-bottom: 30px;
 }
 h2 {
-  font-family: "Open Sans";
+  font-family: sans-serif;
   letter-spacing: 1px;
-  font-family: Roboto, sans-serif;
   padding-bottom: 20px;
 }
 a {
