@@ -31,12 +31,12 @@
             type="primary"
             native-type="submit"
             block
-            >Login</el-button
-          >
+            >Login</el-button>
         </el-form-item>
         <a class="forgot-password" href="https://oxfordinformatics.com/"
-          >Forgot password ?</a
-        >
+          >Forgot password ?</a>
+        <br>
+        <a class="register" href="https://google.com">New User? Register Here</a>
       </el-form>
     </el-card>
   </div>
@@ -168,6 +168,7 @@ h2 {
   padding-bottom: 20px;
 }
 a {
+  line-height: 140%;
   color: $teal;
   text-decoration: none;
   &:hover,
