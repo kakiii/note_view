@@ -1,20 +1,23 @@
 <template>
   <div>
-    <el-menu
-        :default-active="activeIndex2"
-        class="el-menu-demo"
-        mode="horizontal"
-        router
-        @select="handleSelect"
-        background-color="#020080"
-        text-color="#fff"
-        active-text-color="#ffd04b">
-      <el-menu-item index="/login">LOGIN</el-menu-item>
-          <el-menu-item index="/editor">EDITOR</el-menu-item>
+    <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
+      <el-radio-button :label="false">OPEN</el-radio-button>
+      <el-radio-button :label="true">CLOSE</el-radio-button>
+    </el-radio-group>
+    <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+      <el-menu-item index="1">
+        <i class="el-icon-menu"></i>
+          <span slot="title"><router-link to="/login">LOGIN</router-link></span>
+      </el-menu-item>
+      <el-menu-item index="2">
+        <i class="el-icon-menu"></i>
+        <span slot="title"><router-link to="/editor">EDITOR</router-link> </span>
+      </el-menu-item>
+      <el-menu-item index="3" >
+        <i class="el-icon-menu"></i>
+        <span slot="title"><router-link to="/">HOME</router-link> </span>
+      </el-menu-item>
     </el-menu>
-<!--    <router-link to="/login">LOGIN</router-link>-->
-<!--    <router-link to="/editor">EDITOR</router-link>-->
-<!--    <router-link to="/">HOME</router-link>-->
   </div>
 </template>
 
