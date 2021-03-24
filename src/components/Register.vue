@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form action="/auth/register" method="get">
+    <form action="/auth/register" method="post">
       <h2>Register</h2>
       <div class="form-group">
         <label for="username">Username</label>
