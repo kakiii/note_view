@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <Monaco
-        :options="options"
-        :value="content"
-        @contentChange="contentChange"
-        style="height: 400px; width: 600px;"
+      :options="options"
+      :value="content"
+      @contentChange="contentChange"
+      style="height: 400px; width: 600px"
     ></Monaco>
   </div>
 </template>
@@ -21,25 +21,24 @@ export default {
       content: "",
       options: {
         language: "sql",
-        theme: 'vs',
-        readOnly: false
-      }
+        theme: "vs",
+        readOnly: false,
+      },
     };
   },
-  created() {
-  },
+  created() {},
   methods: {
     // 绑定编辑器value值的变化
     contentChange(val) {
       this.content = val;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
-  .container {
-    text-align: left;
-    padding: 10px;
-  }
+.container {
+  text-align: left;
+  padding: 10px;
+}
 </style>

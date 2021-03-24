@@ -1,14 +1,15 @@
 <template>
   <div>
     <el-menu
-        :default-active="activeIndex2"
-        class="el-menu-demo"
-        mode="horizontal"
-        router
-        @select="handleSelect"
-        background-color="#020080"
-        text-color="#fff"
-        active-text-color="#ffd04b">
+      :default-active="activeIndex2"
+      class="el-menu-demo"
+      mode="horizontal"
+      router
+      @select="handleSelect"
+      background-color="#020080"
+      text-color="#fff"
+      active-text-color="#ffd04b"
+    >
       <el-menu-item index="/login">LOGIN</el-menu-item>
       <el-menu-item index="/register">REGISTER</el-menu-item>
       <el-menu-item index="/editor">EDITOR</el-menu-item>
@@ -24,7 +25,7 @@ export default {
   name: "Header",
   data() {
     return {
-      isCollapse: false
+      isCollapse: false,
     };
   },
   methods: {
@@ -33,7 +34,7 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
-    }
+    },
   },
 };
 </script>

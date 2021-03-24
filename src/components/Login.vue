@@ -43,15 +43,32 @@
       <h2>Login</h2>
       <div class="form-group">
         <label for="username">Username</label>
-        <input id="username" v-model="username" name="username" required type="text">
+        <input
+          id="username"
+          v-model="username"
+          name="username"
+          required
+          type="text"
+        />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input id="password" v-model="password" name="password" required type="password">
+        <input
+          id="password"
+          v-model="password"
+          name="password"
+          required
+          type="password"
+        />
       </div>
       <div class="form-group">
         <label for="remember">
-          <input id="remember" v-model="remember" name="remember" type="checkbox">
+          <input
+            id="remember"
+            v-model="remember"
+            name="remember"
+            type="checkbox"
+          />
           Remember Me
         </label>
       </div>
@@ -61,7 +78,6 @@
       </div>
     </form>
     <h3>Successful Login will take you back to HOME PAGE</h3>
-
   </div>
 </template>
 
@@ -73,11 +89,10 @@ export default {
     return {
       username: "",
       password: "",
-      remember: false
-    }
+      remember: false,
+    };
   },
-  methods: {
-  },
+  methods: {},
 };
 </script>
 

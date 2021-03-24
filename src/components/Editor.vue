@@ -2,11 +2,10 @@
   <div>
     <el-container>
       <el-tiptap
-
-          :extensions="extensions"
-          output="json"
-          :content="content"
-          @onUpdate="onUpdate"
+        :extensions="extensions"
+        output="json"
+        :content="content"
+        @onUpdate="onUpdate"
       />
     </el-container>
 
@@ -21,10 +20,8 @@
       <el-container>
         <pre><code>{{ output.json }}</code></pre>
       </el-container>
-
     </el-container>
   </div>
-
 </template>
 
 <script>
@@ -48,14 +45,13 @@ import {
   TodoItem,
   TodoList,
   Underline,
-} from 'element-tiptap';
+} from "element-tiptap";
 
 export default {
-
   name: "Editor",
   methods: {
     onUpdate(output, options) {
-      const {getJSON, getHTML} = options;
+      const { getJSON, getHTML } = options;
       this.output.json = getJSON();
       this.output.html = getHTML();
     },
@@ -64,15 +60,15 @@ export default {
     return {
       output: {
         json: `json content`,
-        html: `html content`
+        html: `html content`,
       },
       extensions: [
         new Doc(),
         new Text(),
         new Paragraph(),
-        new Heading({level: 5}),
-        new Bold({bubble: true}), // render command-button in bubble menu.
-        new Underline({bubble: true, menubar: false}), // render command-button in bubble menu but not in menubar.
+        new Heading({ level: 5 }),
+        new Bold({ bubble: true }), // render command-button in bubble menu.
+        new Underline({ bubble: true, menubar: false }), // render command-button in bubble menu but not in menubar.
         new Italic(),
         new Strike(),
         new TextAlign(),
@@ -83,14 +79,14 @@ export default {
         new TodoList(),
         new Indent(),
         new HardBreak(),
-        new HorizontalRule({bubble: true}),
+        new HorizontalRule({ bubble: true }),
         new Fullscreen(),
         new History(),
       ],
       // editor's content
       content: `Enter your notes here.`,
     };
-  }
+  },
 };
 </script>
 
