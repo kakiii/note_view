@@ -1,14 +1,21 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <Gravatar gen_key="zhuboxuan" />
+    <Gravatar :gen_key="inputs" />
+    <input v-model="inputs" />
   </div>
 </template>
 
 <script>
 import Gravatar from "@/components/Gravatar";
+
 export default {
   name: "About",
   components: { Gravatar },
+  data() {
+    return {
+      inputs: "",
+    };
+  },
 };
 </script>
