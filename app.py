@@ -1,8 +1,8 @@
 import bcrypt
 from flask import Flask, render_template, json, jsonify, request, redirect, url_for, session
-# from flask_pymongo import PyMongo
 
 import pymongo
+
 app = Flask(__name__, static_folder="./dist/static", template_folder="./dist")
 
 # 实际部署时需要更改
@@ -15,6 +15,7 @@ database = client.account
 
 @app.route('/')
 def index():
+    # return "<h1>SUCCESS</h1>"
     return render_template("index.html")
 
 
@@ -80,4 +81,4 @@ def return_article(article_id):
 if __name__ == "__main__":
     # 确保传输安全的密钥，可以随意更换
     app.secret_key = 'testing'
-    app.run(debug=True)
+    app.run()

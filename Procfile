@@ -1,1 +1,1 @@
-web: gunicorn note-view-team-16:app
+web: gunicorn app:app
