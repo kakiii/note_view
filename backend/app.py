@@ -79,4 +79,4 @@ def return_article(article_id):
 if __name__ == "__main__":
     # 确保传输安全的密钥，可以随意更换
     app.secret_key = 'testing'
-    app.run(debug=True)
+    app.run(debug=True, port=10010)
