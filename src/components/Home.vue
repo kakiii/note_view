@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>HOME PAGE</h1>
-
   </div>
 </template>
 
@@ -11,5 +10,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
