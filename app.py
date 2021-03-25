@@ -3,7 +3,7 @@ from flask import Flask, render_template, json, jsonify, request, redirect, url_
 # from flask_pymongo import PyMongo
 
 import pymongo
-app = Flask(__name__, static_folder="../dist/static", template_folder="../dist")
+app = Flask(__name__, static_folder="./dist/static", template_folder="./dist")
 
 # 实际部署时需要更改
 # 数据库的文件在account.json里面
