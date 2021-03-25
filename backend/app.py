@@ -1,15 +1,16 @@
 import bcrypt
 from flask import Flask, render_template, json, jsonify, request, redirect, url_for, session
-from flask_pymongo import PyMongo
+# from flask_pymongo import PyMongo
 
+import pymongo
 app = Flask(__name__, static_folder="../dist/static", template_folder="../dist")
 
 # 实际部署时需要更改
 # 数据库的文件在account.json里面
-app.config["MONGO_URI"] = "mongodb://localhost:27017/account"
 
-mongo = PyMongo(app)
-database = mongo.db
+client = pymongo.MongoClient("mongodb+srv://zhongyiyu:Zhongyiyu123!@note-view.cfr3m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+
+database = client.account
 
 
 @app.route('/')
@@ -27,7 +28,7 @@ def weather():
 @app.route('/auth/login', methods=['POST'])
 def login():
     print("Connected\n")
-    users = mongo.db.account
+    users = database.account
     login_user = users.find_one({'username': request.form['username']})
 
     if login_user:
@@ -50,7 +51,7 @@ def login():
 @app.route('/auth/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
-        users = mongo.db.account
+        users = database.account
         existing_user = users.find_one({'username': request.form['username']})
 
         if existing_user is None:
@@ -68,7 +69,7 @@ def articles():
 @app.route('/articles/<int:article_id>', methods=['GET'])
 def return_article(article_id):
     print(article_id)
-    articles = mongo.db.articles
+    articles = database.articles
     match_article = articles.find_one({'id': article_id})
     if match_article:
         return jsonify({'ID': article_id, 'Content': match_article['content']})

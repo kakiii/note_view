@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <Gravatar gen_key="boaSDS" />
+    <Gravatar gen_key="zhuboxuan" />
   </div>
 </template>
 
