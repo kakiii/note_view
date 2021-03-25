@@ -4,7 +4,7 @@ from flask import Flask, render_template, json, jsonify, request, redirect, url_
 import pymongo
 
 app = Flask(__name__, static_folder="./dist/static", template_folder="./dist")
-
+app.secret_key = 'testing'
 # 实际部署时需要更改
 # 数据库的文件在account.json里面
 
@@ -80,5 +80,5 @@ def return_article(article_id):
 
 if __name__ == "__main__":
     # 确保传输安全的密钥，可以随意更换
-    app.secret_key = 'testing'
+
     app.run()
