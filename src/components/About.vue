@@ -2,7 +2,7 @@
   <div class="about">
     <h1>This is an about page</h1>
     <Gravatar :gen_key="inputs" />
-    <input v-model="inputs" />
+    <input placeholder="INPUT USER NAME" v-model="inputs" />
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
   components: { Gravatar },
   data() {
     return {
-      inputs: "",
+      inputs: "users",
     };
   },
 };

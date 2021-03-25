@@ -10,7 +10,6 @@ export default {
   props: { gen_key: String },
   data() {
     return {
-      key: "12345",
       svgs: multiavatar(this.gen_key),
     };
   },
@@ -26,10 +25,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.p {
-  width: 10px;
-  height: 10px;
-}
-</style>

@@ -1,26 +1,26 @@
 <template>
-  <form :action="url" method="GET">
-    <h2>FIND</h2>
-    <div class="form-group">
-      <label>ID</label>
-      <input
-        type="text"
-        id="username"
-        name="username"
-        v-model="id"
-        v-on:change="change_url"
-        required
-      />
-    </div>
-    <div class="form-footer">
-      <button type="submit" name="submit" class="btn">Submit</button>
-      <router-link to="/" class="btn">Return Home</router-link>
-    </div>
-  </form>
+  <div>
+    <input v-model="id" />
+    <button v-on:click="get_article()">HIT TO GET VALUE</button>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Content</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ this.id }}</td>
+          <td>{{ content }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
-// import api from "@/api"
+import axios from "axios";
 
 export default {
   name: "FindArticle",
@@ -28,12 +28,17 @@ export default {
     return {
       id: "",
       content: "",
-      url: "/articles/",
     };
   },
   methods: {
-    change_url() {
-      this.url = "/articles/" + this.id;
+    get_article() {
+      axios
+        .get("/articles/" + this.id)
+        .then((res) => {
+          console.log(res.data["Content"]);
+          this.content = res.data["Content"];
+        })
+        .catch(() => (this.content = "NO CONTENT"));
     },
   },
 };
