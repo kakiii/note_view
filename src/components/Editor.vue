@@ -64,6 +64,8 @@ export default {
 
 ## Image size and Viewer
 
+![GitHub](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png =50x)
+
 
 ## GitHub Table of Contents
 
