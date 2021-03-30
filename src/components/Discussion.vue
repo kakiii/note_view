@@ -60,9 +60,6 @@ export default {
 };
 </script>
 
-
-
-
 <!-- 
 <script>
 export default {
@@ -115,7 +112,6 @@ export default {
 };
 </script>
 -->
-
 
 <style>
 .el-header {
