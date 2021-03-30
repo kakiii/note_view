@@ -1,5 +1,8 @@
 <template>
-  <p style="width: 4em; height: 4em;border-radius: 50%;overflow: hidden" v-html="svgs" />
+  <p
+    style="width: 4em; height: 4em; border-radius: 50%; overflow: hidden"
+    v-html="svgs"
+  />
 </template>
 
 <script>
@@ -85,7 +88,7 @@ function avatar(gen_key) {
       }
     }
   }
-  svg += "< rx = \"100 \" /svg>";
+  svg += '< rx = "100 " /svg>';
   return svg;
 }
 </script>
