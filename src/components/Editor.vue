@@ -1,9 +1,15 @@
 <template>
   <div>
-    <div>
-      <textarea v-model="content"/>
+    <div style="float:left">
+      <el-input class="text"
+        type="textarea"
+        :autosize="{minRows:2,maxRows:200}"
+        
+        v-model="content"
+      >
+      </el-input>
     </div>
-    <div>
+    <div style="display:inline">
       <MarkdownItVue :content="content" :options="options" class="md-body" />
     </div>
   </div>
@@ -11,7 +17,7 @@
 
 <script>
 import MarkdownItVue from "markdown-it-vue";
-import 'markdown-it-vue/dist/markdown-it-vue.css'
+import "markdown-it-vue/dist/markdown-it-vue.css";
 export default {
   components: { MarkdownItVue },
   name: "Editor",
@@ -20,25 +26,25 @@ export default {
       const { getJSON, getHTML } = options;
       this.output.json = getJSON();
       this.output.html = getHTML();
-    }
+    },
   },
   data() {
     return {
       output: {
         json: `json content`,
-        html: `html content`
+        html: `html content`,
       },
       content: "CONTENT",
       options: {
         linkAttributes: {
           attrs: {
             target: "_blank",
-            rel: "noopener"
-          }
+            rel: "noopener",
+          },
         },
         katex: {
           throwOnError: false,
-          errorColor: "#cc0000"
+          errorColor: "#cc0000",
         },
         icons: "font-awesome",
         githubToc: {
@@ -48,20 +54,21 @@ export default {
           anchorLinkSymbol: "",
           anchorLinkSpace: false,
           anchorClassName: "anchor",
-          anchorLinkSymbolClassName: "octicon octicon-link"
+          anchorLinkSymbolClassName: "octicon octicon-link",
         },
         mermaid: {
-          theme: "default"
+          theme: "default",
         },
         image: {
           hAlign: "left",
-          viewer: true
-        }
-      }
-
+          viewer: true,
+        },
+      },
     };
-  }
+  },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>
