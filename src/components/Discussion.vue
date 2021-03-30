@@ -41,9 +41,15 @@
       >
       </el-pagination>
 
-      <el-footer
-        ><el-input v-model="input" placeholder="input something"></el-input
-      ></el-footer>
+      <el-input
+          type="textarea"
+          :autosize="{ minRows: 2, maxRows: 4 }"
+          placeholder="请输入内容"
+          v-model="textarea2"
+        >
+        </el-input
+      >
+      <el-button type="send" @click="clickSending()">发送</el-button>
     </el-container>
   </div>
 </template>
@@ -53,10 +59,16 @@ export default {
   name: "Discussion",
   data() {
     return {
-      input: "",
+      textarea2: '',
     };
   },
-  methods: {},
+  methods: {
+    clickSending(){
+      var that = this;
+      console.log("Hello "+that.textarea2);
+      this.textarea2="";
+    }
+  },
 };
 </script>
 
@@ -129,8 +141,8 @@ export default {
 }
 
 .el-footer {
-  background-color: #d1b3b3;
-  color: rgb(255, 0, 0);
+  background-color: #92be1a;
+  color: rgb(194, 233, 87);
   text-align: center;
   line-height: 60px;
 }
