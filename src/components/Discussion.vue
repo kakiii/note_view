@@ -42,13 +42,12 @@
       </el-pagination>
 
       <el-input
-          type="textarea"
-          :autosize="{ minRows: 2, maxRows: 4 }"
-          placeholder="请输入内容"
-          v-model="textarea2"
-        >
-        </el-input
+        type="textarea"
+        :autosize="{ minRows: 2, maxRows: 4 }"
+        placeholder="请输入内容"
+        v-model="textarea2"
       >
+      </el-input>
       <el-button type="send" @click="clickSending()">发送</el-button>
     </el-container>
   </div>
@@ -59,15 +58,15 @@ export default {
   name: "Discussion",
   data() {
     return {
-      textarea2: '',
+      textarea2: "",
     };
   },
   methods: {
-    clickSending(){
+    clickSending() {
       var that = this;
-      console.log("Hello "+that.textarea2);
-      this.textarea2="";
-    }
+      console.log("Hello " + that.textarea2);
+      this.textarea2 = "";
+    },
   },
 };
 </script>

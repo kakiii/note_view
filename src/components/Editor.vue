@@ -1,10 +1,8 @@
 <template>
   <div>
     <el-container>
-
       <el-input v-model="content" :rows="100" type="textarea"></el-input>
       <!--      <textarea v-model="content"/>-->
-
 
       <MarkdownItVue :content="content" :options="options" class="md-body" />
     </el-container>
@@ -23,24 +21,24 @@ export default {
       const { getJSON, getHTML } = options;
       this.output.json = getJSON();
       this.output.html = getHTML();
-    }
+    },
   },
   data() {
     return {
       output: {
         json: `json content`,
-        html: `html content`
+        html: `html content`,
       },
       options: {
         linkAttributes: {
           attrs: {
             target: "_blank",
-            rel: "noopener"
-          }
+            rel: "noopener",
+          },
         },
         katex: {
           throwOnError: false,
-          errorColor: "#cc0000"
+          errorColor: "#cc0000",
         },
         icons: "font-awesome",
         githubToc: {
@@ -50,24 +48,22 @@ export default {
           anchorLinkSymbol: "",
           anchorLinkSpace: false,
           anchorClassName: "anchor",
-          anchorLinkSymbolClassName: "octicon octicon-link"
+          anchorLinkSymbolClassName: "octicon octicon-link",
         },
         mermaid: {
-          theme: "default"
+          theme: "default",
         },
         image: {
           hAlign: "left",
-          viewer: true
-        }
+          viewer: true,
+        },
       },
-      content:`
+      content: `
 
 # markdown-it-vue
 
 ## Image size and Viewer
 
-![gvf](http://www.aqcoder.com/gvf-project.png =x50)
-![ravenq](http://www.aqcoder.com/ravenq-qr.png =50x50)
 
 ## GitHub Table of Contents
 
@@ -284,13 +280,17 @@ st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","stroke-width":6,"arrow-end":"cl
 \`\`\`
 
 
-      `
-
+      `,
     };
-  }
+  },
 };
 </script>
 
 <style scoped>
-.el-container{height:100%;padding:0;margin:0;width:100%;}
+.el-container {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
 </style>

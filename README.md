@@ -10,7 +10,7 @@
 
 ## 方法二
 
-需要先安装yarn，以`npm install --global yarn`
+需要先安装 yarn，以`npm install --global yarn`
 
 1. 使用`yarn install`安装依赖
 2. 使用`yarn serve`运行开发服务器
