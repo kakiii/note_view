@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Gravatar from "@/components/Gravatar2";
+import Gravatar from "@/components/Gravatar";
 
 export default {
   name: "About",
