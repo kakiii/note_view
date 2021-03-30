@@ -1,10 +1,11 @@
 <template>
   <div>
     <el-container>
-      <el-input v-model="content" :rows="100" type="textarea"></el-input>
+      <el-input style="width:33%"  v-model="content" :rows="100" type="textarea"></el-input>
       <!--      <textarea v-model="content"/>-->
 
-      <MarkdownItVue :content="content" :options="options" class="md-body" />
+      <MarkdownItVue style="width:33%" :content="content" :options="options" class="md-body" />
+      <code id="preview" style="width:33%">aaa</code>
     </el-container>
   </div>
 </template>
@@ -12,6 +13,10 @@
 <script>
 import MarkdownItVue from "markdown-it-vue";
 import "markdown-it-vue/dist/markdown-it-vue.css";
+window.onload =  function what(){
+  document.getElementById("preview").textContent= document.getElementsByClassName("md-body")[0].innerHTML;
+}
+
 
 export default {
   components: { MarkdownItVue },
