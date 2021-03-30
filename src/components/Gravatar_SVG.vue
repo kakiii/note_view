@@ -88,7 +88,7 @@ function avatar(gen_key) {
       }
     }
   }
-  svg += '< rx = "100 " /svg>';
+  svg += "</svg>";
   return svg;
 }
 </script>
