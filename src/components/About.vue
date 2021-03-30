@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import Gravatar from "./Gravatar";
 import GravatarsSVG from "./Gravatar_SVG";
+import Gravatar from "./Gravatar";
 
 export default {
   name: "About",
