@@ -1,12 +1,12 @@
 <template>
-  <p style="width: 4em; height: 4em" v-html="svgs" />
+  <p style="width: 4em; height: 4em;border-radius: 50%;overflow: hidden" v-html="svgs" />
 </template>
 
 <script>
 import md5 from "js-md5";
 
 export default {
-  name: "Gravatar",
+  name: "GravatarsSVG",
   props: { gen_key: String },
   data() {
     return {
@@ -85,7 +85,7 @@ function avatar(gen_key) {
       }
     }
   }
-  svg += "</svg>";
+  svg += "< rx = \"100 \" /svg>";
   return svg;
 }
 </script>
