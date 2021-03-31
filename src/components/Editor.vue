@@ -1,10 +1,23 @@
 <template>
   <div>
+    <el-button v-on:click="what">Update HTML Input</el-button>
     <el-container>
-      <el-input v-model="content" :rows="100" type="textarea"></el-input>
+      <el-input
+        style="width: 33%"
+        v-model="content"
+        :rows="100"
+        type="textarea"
+      ></el-input>
       <!--      <textarea v-model="content"/>-->
-
-      <MarkdownItVue :content="content" :options="options" class="md-body" />
+      <MarkdownItVue
+        style="width: 33%"
+        :content="content"
+        :options="options"
+        class="md-body"
+        v-model="htmloutput"
+      />
+      
+      <pre id="preview" style="width: 33%">{{ htmloutput }}</pre>
     </el-container>
   </div>
 </template>
@@ -12,15 +25,27 @@
 <script>
 import MarkdownItVue from "markdown-it-vue";
 import "markdown-it-vue/dist/markdown-it-vue.css";
+/* window.onload = function what() {
+  document.getElementById(
+    "preview"
+  ).textContent = document.getElementsByClassName("md-body")[0].innerHTML;
+}; */
 
 export default {
   components: { MarkdownItVue },
   name: "Editor",
   methods: {
-    onUpdate(output, options) {
+    /* onUpdate(output, options) {
       const { getJSON, getHTML } = options;
       this.output.json = getJSON();
       this.output.html = getHTML();
+    }, */
+    what() {
+      document.getElementById(
+        "preview"
+      ).textContent = document.getElementsByClassName(
+        "markdown-body"
+      )[0].innerHTML;
     },
   },
   data() {
