@@ -1,5 +1,6 @@
 <template>
   <div>
+    <el-button v-on:click="what">Update HTML Input</el-button>
     <el-container>
       <el-input
         style="width: 33%"
@@ -13,8 +14,10 @@
         :content="content"
         :options="options"
         class="md-body"
+        v-model="htmloutput"
       />
-      <code id="preview" style="width: 33%">{{htmloutput}}</code>
+      
+      <pre id="preview" style="width: 33%">{{ htmloutput }}</pre>
     </el-container>
   </div>
 </template>
@@ -22,11 +25,11 @@
 <script>
 import MarkdownItVue from "markdown-it-vue";
 import "markdown-it-vue/dist/markdown-it-vue.css";
-/* function what() {
+/* window.onload = function what() {
   document.getElementById(
     "preview"
   ).textContent = document.getElementsByClassName("md-body")[0].innerHTML;
-}  */
+}; */
 
 export default {
   components: { MarkdownItVue },
@@ -37,6 +40,13 @@ export default {
       this.output.json = getJSON();
       this.output.html = getHTML();
     }, */
+    what() {
+      document.getElementById(
+        "preview"
+      ).textContent = document.getElementsByClassName(
+        "markdown-body"
+      )[0].innerHTML;
+    },
   },
   data() {
     return {
@@ -44,7 +54,6 @@ export default {
         json: `json content`,
         html: `html content`,
       },
-      htmloutput: document.getElementsByClassName("markdown-body")[0].innerHTML,
       options: {
         linkAttributes: {
           attrs: {
