@@ -1,6 +1,7 @@
 <template>
   <div>
-    <el-button v-on:click="what">Update HTML Input</el-button>
+    <el-button v-on:click="toHTML">Update HTML Input</el-button>
+    <el-button>Download</el-button>
     <el-container>
       <el-input
         style="width: 33%"
@@ -16,7 +17,7 @@
         class="md-body"
         v-model="htmloutput"
       />
-      
+
       <pre id="preview" style="width: 33%">{{ htmloutput }}</pre>
     </el-container>
   </div>
@@ -40,7 +41,7 @@ export default {
       this.output.json = getJSON();
       this.output.html = getHTML();
     }, */
-    what() {
+    toHTML() {
       document.getElementById(
         "preview"
       ).textContent = document.getElementsByClassName(
@@ -50,6 +51,7 @@ export default {
   },
   data() {
     return {
+      htmloutput: "",
       output: {
         json: `json content`,
         html: `html content`,
