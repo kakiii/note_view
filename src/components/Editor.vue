@@ -1,13 +1,16 @@
 <template>
   <div>
     <el-button v-on:click="toHTML">Update HTML Input</el-button>
-    <el-button>Download</el-button>
+    <el-button v-on:click="insertHeader">H1</el-button>
+    <el-button v-on:click="clear">Clear</el-button>
+    <el-button>Save</el-button>
     <el-container>
       <el-input
         style="width: 33%"
         v-model="content"
         :rows="100"
         type="textarea"
+        ref="textarea"
       ></el-input>
       <!--      <textarea v-model="content"/>-->
       <MarkdownItVue
@@ -17,7 +20,6 @@
         class="md-body"
         v-model="htmloutput"
       />
-
       <pre id="preview" style="width: 33%">{{ htmloutput }}</pre>
     </el-container>
   </div>
@@ -41,6 +43,18 @@ export default {
       this.output.json = getJSON();
       this.output.html = getHTML();
     }, */
+    clear(){
+      this.content="";
+      alert("You have reset the content!");
+    },
+    insertHeader() {
+      let textArea = this.$refs.textarea;
+      let cursorPosition = textArea.selectionStart;
+      //let endPos = textArea.selectionEnd;
+      //let tmpStr = textArea.value;
+      alert(cursorPosition);
+      //this.content = tmpStr.substring(0,cursorPosition)+ "# "+ tmpStr.substring(cursorPosition) ;
+    },
     toHTML() {
       document.getElementById(
         "preview"

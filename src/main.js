@@ -3,7 +3,6 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import Vuex from "vuex";
-import "./editor_config";
 import "./plugins/element.js";
 //import "element-tiptap/lib/index.css";
 //import { ElementTiptapPlugin } from "element-tiptap";
