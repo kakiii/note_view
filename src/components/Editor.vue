@@ -1,18 +1,26 @@
 <template>
   <div>
     <el-button v-on:click="toHTML">Update HTML Input</el-button>
-    <el-button v-on:click="insertHeader">H1</el-button>
+    <el-button v-on:click="markup('h1')"><h1>H1</h1></el-button>
+    <el-button v-on:click="markup('h2')"><h2>H2</h2></el-button>
+    <el-button v-on:click="markup('h3')"><h3>H3</h3></el-button>
+    <el-button v-on:click="markup('h4')"><h4>H4</h4></el-button>
+    <el-button v-on:click="markup('h5')"><h5>H5</h5></el-button>
+    <el-button v-on:click="markup('h6')"><h6>H6</h6></el-button>
+    <el-button v-on:click="markup('bold')"><b>B</b></el-button>
+    <el-button v-on:click="markup('italic')"><i>I</i></el-button>
+    <el-button v-on:click="markup('code')">Code Block</el-button>
+    <el-button v-on:click="markup('blockquote')">Block Quotes</el-button>
     <el-button v-on:click="clear">Clear</el-button>
     <el-button>Save</el-button>
     <el-container>
-      <el-input
+      <textarea
         style="width: 33%"
         v-model="content"
         :rows="100"
         type="textarea"
         ref="textarea"
-      ></el-input>
-      <!--      <textarea v-model="content"/>-->
+      ></textarea>
       <MarkdownItVue
         style="width: 33%"
         :content="content"
@@ -28,11 +36,6 @@
 <script>
 import MarkdownItVue from "markdown-it-vue";
 import "markdown-it-vue/dist/markdown-it-vue.css";
-/* window.onload = function what() {
-  document.getElementById(
-    "preview"
-  ).textContent = document.getElementsByClassName("md-body")[0].innerHTML;
-}; */
 
 export default {
   components: { MarkdownItVue },
@@ -43,17 +46,85 @@ export default {
       this.output.json = getJSON();
       this.output.html = getHTML();
     }, */
-    clear(){
-      this.content="";
-      alert("You have reset the content!");
+    markup(val) {
+      let textArea = this.$refs.textarea;
+      let startPos = textArea.selectionStart;
+      let endPos = textArea.selectionEnd;
+      let tmpStr = textArea.value;
+      //this.$alert(tmpStr);
+      switch (val) {
+        case "h1":
+          this.content =
+            tmpStr.substring(0, startPos) + "# " + tmpStr.substring(startPos);
+          break;
+        case "h2":
+          this.content =
+            tmpStr.substring(0, startPos) + "## " + tmpStr.substring(startPos);
+          break;
+        case "h3":
+          this.content =
+            tmpStr.substring(0, startPos) + "### " + tmpStr.substring(startPos);
+          break;
+        case "h4":
+          this.content =
+            tmpStr.substring(0, startPos) +
+            "#### " +
+            tmpStr.substring(startPos);
+          break;
+        case "h5":
+          this.content =
+            tmpStr.substring(0, startPos) +
+            "##### " +
+            tmpStr.substring(startPos);
+          break;
+        case "h6":
+          this.content =
+            tmpStr.substring(0, startPos) +
+            "###### " +
+            tmpStr.substring(startPos);
+          break;
+        case "bold":
+          this.content =
+            tmpStr.substring(0, startPos) +
+            "**" +
+            tmpStr.substring(startPos, endPos) +
+            "**" +
+            tmpStr.substring(endPos);
+          break;
+        case "italic":
+          this.content =
+            tmpStr.substring(0, startPos) +
+            "*" +
+            tmpStr.substring(startPos, endPos) +
+            "*" +
+            tmpStr.substring(endPos);
+          break;
+        case "blockquotes": {
+          let temp = tmpStr.substring(startPos, endPos).split("\n");
+          let res = "";
+          for (let i = 0; i < temp.length; ++i) {
+            res += "> " + temp[i] + "\n";
+          }
+          this.content =
+            tmpStr.substring(0, startPos) + res + tmpStr.substring(endPos);
+          break;
+        }
+        case "code":
+          this.content =
+            tmpStr.substring(0, startPos) +
+            "```\n" +
+            tmpStr.substring(startPos, endPos) +
+            "\n```\n" +
+            tmpStr.substring(endPos);
+          break;
+      }
+    },
+    clear() {
+      this.content = "";
+      this.$alert("You have reset the content!");
     },
     insertHeader() {
-      let textArea = this.$refs.textarea;
-      let cursorPosition = textArea.selectionStart;
-      //let endPos = textArea.selectionEnd;
-      //let tmpStr = textArea.value;
-      alert(cursorPosition);
-      //this.content = tmpStr.substring(0,cursorPosition)+ "# "+ tmpStr.substring(cursorPosition) ;
+      this.markup("code");
     },
     toHTML() {
       document.getElementById(
