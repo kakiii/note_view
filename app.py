@@ -38,7 +38,7 @@ def login():
         if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password']) == login_user['password']:
             session['username'] = request.form['username']
             print("Check complete")
-            return redirect(url_for('index'))
+            return jsonify({'status':'success'})
         else:
             print("EXISTS")
             print(request.form['password'])
