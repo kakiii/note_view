@@ -33,7 +33,7 @@ export default {
   methods: {
     get_article() {
       axios
-        .get("/articles/" + this.id)
+        .get("http://127.0.0.1:5000/articles/" + this.id)
         .then((res) => {
           console.log(res.data["Content"]);
           this.content = res.data["Content"];

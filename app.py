@@ -15,8 +15,8 @@ database = client.account
 
 @app.route('/')
 def index():
-    # return "<h1>SUCCESS</h1>"
-    return render_template("index.html")
+    return "<h1>SUCCESS</h1>"
+    # return render_template("index.html")
 
 
 @app.route('/weather')
@@ -81,4 +81,4 @@ def return_article(article_id):
 if __name__ == "__main__":
     # 确保传输安全的密钥，可以随意更换
 
-    app.run()
+    app.run(debug=True)
