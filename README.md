@@ -1,5 +1,12 @@
 # COMP 208 作业仓库
 
+
+## UPDATE 
+
+要验证前后端共通的组件，需要同时开启两个服务器。
+一个用于`app.py`文件，端口5000；
+一个用于`npm run serve`，端口不限。
+
 ## 部署方法
 
 ### 方法一
@@ -22,20 +29,19 @@
 
 ### Progress
 
-- [ ] Register System 0.1
-- [ ] Login System 0.1
-- [ ] Gravataar ???
-- [ ] Note Editing ???
+- [ ] Register System 0.2
+- [ ] Login System 0.2
+- [ ] Gravataar 0.2
+- [ ] Note Editing 0.1
 - [ ] Note Exportation 0.0.1
-- [ ] Discussion Board ???
+- [ ] Discussion Board 0.
 - [ ] Code Editor 0.0.1
-- [ ] Admin Page ???
+- [ ] Admin Page 0.1
 - [ ] Home Page UI Design 0.0.2
-- [ ] Search Engine 0.0.1😜
+- [ ] Search Engine 0.0.2
 
 ---
-
-> 后端的实例数据库在 backend 的文件夹中。
+UPDATE
+> 无需导入数据库文件，直接运行`app.py`即可连接数据库。
 >
 > 密码和账户相同
-> aa
