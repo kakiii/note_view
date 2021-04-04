@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>REGISTER</h1>
     <input v-model="username" value="username"/><br/>
     <input v-model="password" value="password"/><br/>
     <input type="submit" @click="exec_register"/>

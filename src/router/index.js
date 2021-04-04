@@ -10,56 +10,77 @@ import Login from "@/components/Login.vue";
 import Register from "@/components/Register";
 import FindArticle from "@/components/FindArticle";
 import CodeEditor from "@/components/CodeEditor";
+import store from "../store";
+
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    // 这个URL表示根目录
-    path: "/",
-    // 名字是只是标识符,没有特殊的含义,只需要方便记忆即可
-    name: "Index",
-    // Component表示挂载在这个URL下的Vue组件名称,只能填入一个.
-    component: Home,
-  },
-  {
-    path: "/editor",
-    name: "editor",
-    component: Editor,
-  },
-  {
-    path: "/discussion",
-    name: "discussion",
-    component: Discussion,
-  },
-  {
-    path: "/about",
-    name: "about",
-    component: About,
-  },
-  {
-    path: "/login",
-    name: "login",
-    component: Login,
-  },
-  {
-    path: "/register",
-    name: "register",
-    component: Register,
-  },
-  {
-    path: "/find",
-    name: "find",
-    component: FindArticle,
-  },
-  {
-    path: "/code",
-    name: "code",
-    component: CodeEditor,
-  },
+    {
+        // 这个URL表示根目录
+        path: "/",
+        // 名字是只是标识符,没有特殊的含义,只需要方便记忆即可
+        name: "Index",
+        // Component表示挂载在这个URL下的Vue组件名称,只能填入一个.
+        component: Home
+    },
+    {
+        path: "/editor",
+        name: "editor",
+        component: Editor
+    },
+    {
+        path: "/discussion",
+        name: "discussion",
+        component: Discussion
+    },
+    {
+        path: "/about",
+        name: "about",
+        component: About,
+    },
+    {
+        path: "/login",
+        name: "login",
+        component: Login,
+        meta: {
+            isLogin: false
+        }
+    },
+    {
+        path: "/register",
+        name: "register",
+        component: Register,
+        meta: {
+            isLogin: false
+        }
+    },
+    {
+        path: "/find",
+        name: "find",
+        component: FindArticle
+    },
+    {
+        path: "/code",
+        name: "code",
+        component: CodeEditor
+    },
 ];
 
 const router = new VueRouter({
-  routes,
+    routes,
 });
 
+router.beforeEach((to, from, next) => {
+    let getFlag = store.isLogin;
+    if (getFlag === to.meta.isLogin || to.meta.isLogin) {
+        console.log("HOHOH")
+        next();
+    } else {
+        console.log("HAHAH")
+        alert("PLEASE LOG IN FIRST");
+        next({
+            path: '/login'
+        })
+    }
+})
 export default router;
