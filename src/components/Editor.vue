@@ -1,13 +1,22 @@
 <template>
   <div>
+    <el-select
+      v-model="headerValue"
+      placeholder="Select header"
+      @change="function() {
+        markup(headerValue);
+        headerValue='';
+      }"
+    >
+      <el-option
+        v-for="header in headers"
+        :key="header.value"
+        :label="header.label"
+        :value="header.value"
+      >
+      </el-option>
+    </el-select>
     <el-button v-on:click="toHTML">Update HTML Input</el-button>
-    <el-button v-on:click="markup('h1')"><h1>H1</h1></el-button>
-    <el-button v-on:click="markup('h2')"><h2>H2</h2></el-button>
-    <el-button v-on:click="markup('h3')"><h3>H3</h3></el-button>
-    <el-button v-on:click="markup('h4')"><h4>H4</h4></el-button>
-    <el-button v-on:click="markup('h5')"><h5>H5</h5></el-button>
-    <el-button v-on:click="markup('h6')"><h6>H6</h6></el-button>
-    <el-button v-on:click="markup('bold')"><b>B</b></el-button>
     <el-button v-on:click="markup('italic')"><i>I</i></el-button>
     <el-button v-on:click="markup('code')">Code Block</el-button>
     <el-button v-on:click="markup('blockquote')">Block Quotes</el-button>
@@ -136,6 +145,33 @@ export default {
   },
   data() {
     return {
+      headerValue:"",
+      headers: [
+        {
+          value: "h1",
+          label: "Header 1",
+        },
+        {
+          value: "h2",
+          label: "Header 2",
+        },
+        {
+          value: "h3",
+          label: "Header 3",
+        },
+        {
+          value: "h4",
+          label: "Header 4",
+        },
+        {
+          value: "h5",
+          label: "Header 5",
+        },
+        {
+          value: "h6",
+          label: "Header 6",
+        },
+      ],
       htmloutput: "",
       output: {
         json: `json content`,
