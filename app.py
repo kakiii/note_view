@@ -1,14 +1,14 @@
 import bcrypt
-from flask import Flask, render_template, json, jsonify, request, redirect, url_for, session
-
 import pymongo
+from flask import Flask, json, jsonify, request, session
 
 app = Flask(__name__, static_folder="./dist/static", template_folder="./dist")
 app.secret_key = 'testing'
 # 实际部署时需要更改
 # 数据库的文件在account.json里面
 
-client = pymongo.MongoClient("mongodb+srv://zhongyiyu:Zhongyiyu123!@note-view.cfr3m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+client = pymongo.MongoClient(
+    "mongodb+srv://zhongyiyu:Zhongyiyu123!@note-view.cfr3m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 
 database = client.account
 
@@ -37,14 +37,12 @@ def login():
 
     if login_user:
         # 有用户
-        print("Found one")
         if bcrypt.hashpw(data_json['password'].encode('utf-8'), login_user['password']) == login_user['password']:
             session['username'] = data_json['username']
             print("Check complete")
             # code 200 stands for user located & confirmed.
-            return jsonify({'status':200})
+            return jsonify({'status': 200})
         else:
-            print("EXISTS")
             print(data_json['password'])
             print("\n")
             print(login_user['password'])
@@ -57,15 +55,22 @@ def login():
 
 @app.route('/auth/register', methods=['POST', 'GET'])
 def register():
+    request_data = request.get_data()
+    data_json = json.loads(request_data)
+
     if request.method == 'POST':
         users = database.account
-        existing_user = users.find_one({'username': request.form['username']})
+        existing_user = users.find_one({'username': data_json['username']})
 
         if existing_user is None:
-            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
-            users.insert({'username': request.form['username'], 'password': hashpass})
-            session['username'] = request.form['username']
-            return redirect(url_for("index"))
+            hashpass = bcrypt.hashpw(data_json['password'].encode('utf-8'), bcrypt.gensalt())
+            users.insert_one({'username': data_json['username'], 'password': hashpass})
+            # code 200 stands for user registration success.
+            return jsonify({"status": 200})
+        else:
+            # code 201 stands for username already registered.
+            # TODO take status in frontend & display proper warnings.
+            return jsonify({"status": 201})
 
 
 @app.route('/articles')
