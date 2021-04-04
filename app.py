@@ -30,23 +30,29 @@ def weather():
 def login():
     print("Connected\n")
     users = database.account
-    login_user = users.find_one({'username': request.form['username']})
+    request_data = request.get_data()
+    data_json = json.loads(request_data)
+    login_user = users.find_one({'username': data_json['username']})
+    print(login_user)
 
     if login_user:
         # 有用户
         print("Found one")
-        if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password']) == login_user['password']:
-            session['username'] = request.form['username']
+        if bcrypt.hashpw(data_json['password'].encode('utf-8'), login_user['password']) == login_user['password']:
+            session['username'] = data_json['username']
             print("Check complete")
-            return jsonify({'status':'success'})
+            # code 200 stands for user located & confirmed.
+            return jsonify({'status':200})
         else:
             print("EXISTS")
-            print(request.form['password'])
-            print("\n\n")
+            print(data_json['password'])
+            print("\n")
             print(login_user['password'])
-            return jsonify({'status': 'exists'})
+            # code 201 stands for user located but not confirmed.
+            return jsonify({'status': 201})
     else:
-        return jsonify({'status': 'failure', 'user': request.form['username']})
+        # code 202 stands for user not located.
+        return jsonify({'status': 202, 'user': data_json['username']})
 
 
 @app.route('/auth/register', methods=['POST', 'GET'])

@@ -1,49 +1,13 @@
 <template>
-  <div class="login">
-    <form action="http://localhost:5000/auth/login" method="post" @submit="checkForm">
-      <h2>Login</h2>
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input
-          id="username"
-          v-model="username"
-          name="username"
-          required
-          type="text"
-        />
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          id="password"
-          v-model="password"
-          name="password"
-          required
-          type="password"
-        />
-      </div>
-      <div class="form-group">
-        <label for="remember">
-          <input
-            id="remember"
-            v-model="remember"
-            name="remember"
-            type="checkbox"
-          />
-          Remember Me
-        </label>
-      </div>
-      <div class="form-footer">
-        <button class="btn" name="submit" type="submit">Submit</button>
-        <router-link class="btn" to="/">Return Home</router-link>
-      </div>
-    </form>
-    <h3>Successful Login will take you back to HOME PAGE</h3>
+  <div>
+    <input v-model="username" value="username"/><br/>
+    <input v-model="password" value="password"/><br/>
+    <input type="submit" @click="exec_login"/>
   </div>
 </template>
 
 <script>
-// import api from '../api'
+import axios from "axios";
 export default {
   name: "login",
   data() {
@@ -53,6 +17,15 @@ export default {
       remember: false,
     };
   },
-  methods: {},
+  methods: {
+    exec_login(){
+      /*
+      * If the user exists & password confirmed, the console should output 200.
+      * If the user exists but password wrong, the console should output 201.
+      * If the user doesn't exist, the console should output 202.
+      */
+      axios.post("http://localhost:5000/auth/login",{username:this.username,password:this.password}).then(res => console.log(res.data.status)).catch(err => console.log(err));
+    }
+  },
 };
 </script>
