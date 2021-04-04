@@ -22,8 +22,8 @@ const routes = [
         name: "Index",
         // Component表示挂载在这个URL下的Vue组件名称,只能填入一个.
         component: Home,
-        meta:{
-            isLogin:false
+        meta: {
+            isLogin: false
         }
     },
     {
@@ -45,6 +45,9 @@ const routes = [
         path: "/login",
         name: "login",
         component: Login,
+        meta: {
+            isLogin: false
+        }
     },
     {
         path: "/register",
@@ -68,14 +71,10 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    let getFlag = store.isLogin;
-    if (getFlag) {
-        next({
-            path:'/login'
-        });
+    var getFlag = store.isLogin;
+    if (!getFlag && to.name != "login") {
+        next("/login")
     } else {
-        console.log("HAHAH")
-        // alert("PLEASE LOG IN FIRST");
         next()
     }
 })
