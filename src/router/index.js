@@ -21,7 +21,10 @@ const routes = [
         // 名字是只是标识符,没有特殊的含义,只需要方便记忆即可
         name: "Index",
         // Component表示挂载在这个URL下的Vue组件名称,只能填入一个.
-        component: Home
+        component: Home,
+        meta:{
+            isLogin:false
+        }
     },
     {
         path: "/editor",
@@ -42,17 +45,11 @@ const routes = [
         path: "/login",
         name: "login",
         component: Login,
-        meta: {
-            isLogin: false
-        }
     },
     {
         path: "/register",
         name: "register",
-        component: Register,
-        meta: {
-            isLogin: false
-        }
+        component: Register
     },
     {
         path: "/find",
@@ -72,15 +69,14 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     let getFlag = store.isLogin;
-    if (getFlag === to.meta.isLogin || to.meta.isLogin) {
-        console.log("HOHOH")
-        next();
+    if (getFlag) {
+        next({
+            path:'/login'
+        });
     } else {
         console.log("HAHAH")
-        alert("PLEASE LOG IN FIRST");
-        next({
-            path: '/login'
-        })
+        // alert("PLEASE LOG IN FIRST");
+        next()
     }
 })
 export default router;
