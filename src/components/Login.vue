@@ -3,8 +3,6 @@
     <h1>LOGIN PAGE</h1>
     <el-form
       ref="loginForm"
-      :model="form"
-      :rules="rules"
       label-width="80px"
       class="login-box"
     >
@@ -26,7 +24,10 @@
         /><br />
       </el-form-item>
       <el-form-item>
-        <el-button class="onSubmit" type="primary" v-on:click="onSubmit('exec_login')"
+        <el-button
+          class="onSubmit"
+          type="primary"
+          v-on:click="exec_login"
           >Login</el-button
         >
       </el-form-item>
@@ -87,9 +88,9 @@ export default {
   color: #020080;
 }
 
-.onSubmit{
+.onSubmit {
   width: 80px;
-  height:36px;
+  height: 36px;
   float: right;
   margin-top: 15px;
   margin-left: 10px;
