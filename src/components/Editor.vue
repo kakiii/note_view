@@ -3,10 +3,7 @@
     <el-select
       v-model="headerValue"
       placeholder="Select header"
-      @change="function() {
-        markup(headerValue);
-        headerValue='';
-      }"
+      @change="insertHeader(headerValue)"
     >
       <el-option
         v-for="header in headers"
@@ -23,13 +20,15 @@
     <el-button v-on:click="clear">Clear</el-button>
     <el-button>Save</el-button>
     <el-container>
-      <textarea
-        style="width: 33%"
-        v-model="content"
-        :rows="100"
-        type="textarea"
-        ref="textarea"
-      ></textarea>
+      <label>
+<textarea
+  style="width: 33%"
+  v-model="content"
+  :rows="100"
+  type="textarea"
+  ref="textarea"
+></textarea>
+      </label>
       <MarkdownItVue
         style="width: 33%"
         :content="content"
@@ -132,8 +131,9 @@ export default {
       this.content = "";
       this.$alert("You have reset the content!");
     },
-    insertHeader() {
-      this.markup("code");
+    insertHeader(headerValue) {
+      this.markup(headerValue);
+      this.headerValue = "";
     },
     toHTML() {
       document.getElementById(
@@ -145,7 +145,7 @@ export default {
   },
   data() {
     return {
-      headerValue:"",
+      headerValue: "",
       headers: [
         {
           value: "h1",
@@ -437,10 +437,10 @@ st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","stroke-width":6,"arrow-end":"cl
 </script>
 
 <style scoped>
-.el-container {
+/*.el-container {
   height: 100%;
   padding: 0;
   margin: 0;
   width: 100%;
-}
+}*/
 </style>
