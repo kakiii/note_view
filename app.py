@@ -1,6 +1,6 @@
 import bcrypt
 import pymongo
-from flask import Flask, json, jsonify, request, session
+from flask import Flask, json, jsonify, request, session,render_template
 
 app = Flask(__name__, static_folder="./dist/static", template_folder="./dist")
 app.secret_key = 'testing'
@@ -15,8 +15,8 @@ database = client.account
 
 @app.route('/')
 def index():
-    return "<h1>SUCCESS</h1>"
-    # return render_template("index.html")
+    #return "<h1>SUCCESS</h1>"
+    return render_template("index.html")
 
 
 @app.route('/weather')

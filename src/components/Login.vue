@@ -1,11 +1,7 @@
 <template>
   <div>
     <h1>LOGIN PAGE</h1>
-    <el-form
-      ref="loginForm"
-      label-width="80px"
-      class="login-box"
-    >
+    <el-form ref="loginForm" label-width="80px" class="login-box">
       <h3 class="login-title">Welcome!</h3>
       <el-form-item label="Username" prop="username">
         <el-input
@@ -24,10 +20,7 @@
         /><br />
       </el-form-item>
       <el-form-item>
-        <el-button
-          class="onSubmit"
-          type="primary"
-          v-on:click="exec_login"
+        <el-button class="onSubmit" type="primary" v-on:click="exec_login"
           >Login</el-button
         >
       </el-form-item>

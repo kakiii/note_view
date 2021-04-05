@@ -20,15 +20,14 @@
     <el-button v-on:click="clear">Clear</el-button>
     <el-button>Save</el-button>
     <el-container>
-      <label>
-<textarea
-  style="width: 33%"
-  v-model="content"
-  :rows="100"
-  type="textarea"
-  ref="textarea"
-></textarea>
-      </label>
+      <textarea
+        style="width: 33%"
+        v-model="content"
+        :rows="100"
+        type="textarea"
+        ref="textarea"
+      ></textarea>
+
       <MarkdownItVue
         style="width: 33%"
         :content="content"
@@ -437,10 +436,10 @@ st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","stroke-width":6,"arrow-end":"cl
 </script>
 
 <style scoped>
-/*.el-container {
+.el-container {
   height: 100%;
   padding: 0;
   margin: 0;
   width: 100%;
-}*/
+}
 </style>

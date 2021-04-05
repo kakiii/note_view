@@ -15,67 +15,67 @@ import store from "../store";
 Vue.use(VueRouter);
 
 const routes = [
-    {
-        // 这个URL表示根目录
-        path: "/",
-        // 名字是只是标识符,没有特殊的含义,只需要方便记忆即可
-        name: "Index",
-        // Component表示挂载在这个URL下的Vue组件名称,只能填入一个.
-        component: Home,
-        meta: {
-            isLogin: false
-        }
+  {
+    // 这个URL表示根目录
+    path: "/",
+    // 名字是只是标识符,没有特殊的含义,只需要方便记忆即可
+    name: "Index",
+    // Component表示挂载在这个URL下的Vue组件名称,只能填入一个.
+    component: Home,
+    meta: {
+      isLogin: false,
     },
-    {
-        path: "/editor",
-        name: "editor",
-        component: Editor
+  },
+  {
+    path: "/editor",
+    name: "editor",
+    component: Editor,
+  },
+  {
+    path: "/discussion",
+    name: "discussion",
+    component: Discussion,
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: About,
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+    meta: {
+      isLogin: false,
     },
-    {
-        path: "/discussion",
-        name: "discussion",
-        component: Discussion
-    },
-    {
-        path: "/about",
-        name: "about",
-        component: About,
-    },
-    {
-        path: "/login",
-        name: "login",
-        component: Login,
-        meta: {
-            isLogin: false
-        }
-    },
-    {
-        path: "/register",
-        name: "register",
-        component: Register
-    },
-    {
-        path: "/find",
-        name: "find",
-        component: FindArticle
-    },
-    {
-        path: "/code",
-        name: "code",
-        component: CodeEditor
-    },
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: Register,
+  },
+  {
+    path: "/find",
+    name: "find",
+    component: FindArticle,
+  },
+  {
+    path: "/code",
+    name: "code",
+    component: CodeEditor,
+  },
 ];
 
 const router = new VueRouter({
-    routes,
+  routes,
 });
 
 router.beforeEach((to, from, next) => {
-    var getFlag = store.isLogin;
-    if (!getFlag && to.name != "login") {
-        next("/login")
-    } else {
-        next()
-    }
-})
+  var getFlag = store.isLogin;
+  if (!getFlag && to.name != "login") {
+    next("/login");
+  } else {
+    next();
+  }
+});
 export default router;
