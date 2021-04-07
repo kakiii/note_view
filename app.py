@@ -1,6 +1,6 @@
 import bcrypt
 import pymongo
-from flask import Flask, json, jsonify, request, session,render_template
+from flask import Flask, json, jsonify, request, session, render_template
 
 app = Flask(__name__, static_folder="./dist/static", template_folder="./dist")
 app.secret_key = 'testing'
@@ -15,7 +15,7 @@ database = client.account
 
 @app.route('/')
 def index():
-    #return "<h1>SUCCESS</h1>"
+    # return "<h1>SUCCESS</h1>"
     return render_template("index.html")
 
 
@@ -87,6 +87,19 @@ def return_article(article_id):
         return jsonify({'ID': article_id, 'Content': match_article['content']})
     else:
         return jsonify(({'ID': article_id, 'Content': 'NOT FOUND'}))
+
+
+@app.route('/content/discussion/<int:discussion_id>', methods=['GET'])
+def return_discussion(discussion_id):
+    discussions = database.discussion
+    match_discussion = discussions.find_one({'id': discussion_id})
+    if match_discussion:
+        return jsonify(
+            {'id': discussion_id, 'content': match_discussion['content'], 'author': match_discussion['author']})
+    else:
+        return jsonify({
+            'id': discussion_id, 'content': 'NOT FOUND'
+        })
 
 
 if __name__ == "__main__":
