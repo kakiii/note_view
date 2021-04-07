@@ -3,9 +3,8 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "serve": "npx prettier --write . && vue-cli-service serve",
-    "build": "npx prettier --write . && vue-cli-service build --mode prod",
-    "lint": "npx prettier --write ."
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --mode prod"
   },
   "dependencies": {
     "@multiavatar/multiavatar": "^1.0.6",
@@ -37,7 +36,6 @@
     "eslint-plugin-vue": "^6.2.2",
     "mockjs": "^1.1.0",
     "node-sass": "^4.9.2",
-    "prettier": "2.2.1",
     "sass": "^1.32.0",
     "sass-loader": "^10.0.0",
     "vue-cli-plugin-element": "^1.0.1",
