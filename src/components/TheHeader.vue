@@ -17,6 +17,7 @@
       <el-menu-item index="/code">CODE</el-menu-item>
       <el-menu-item index="/about">ABOUT</el-menu-item>
       <el-menu-item index="/discussion">DISCUSSION</el-menu-item>
+      <el-menu-item index="/todo">TODOLIST</el-menu-item>
     </el-menu>
   </div>
 </template>

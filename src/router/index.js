@@ -10,7 +10,10 @@ import Login from "@/components/Login.vue";
 import Register from "@/components/Register";
 import FindArticle from "@/components/FindArticle";
 import CodeEditor from "@/components/CodeEditor";
+
 import store from "../store";
+//import { TodoList } from "element-tiptap"; //Gan：不知道这个是干啥的我先把它注释掉了不然我新todo要报错
+import todo from"@/components/todo";
 
 Vue.use(VueRouter);
 
@@ -64,6 +67,12 @@ const routes = [
     name: "code",
     component: CodeEditor,
   },
+  {
+    path: "/todo",
+    name: "todo",
+    component: todo,
+  }
+
 ];
 
 const router = new VueRouter({
