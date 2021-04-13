@@ -2,11 +2,13 @@
 
 ## UPDATE
 
-要验证前后端共通的组件，需要同时开启两个服务器。
+进行开发时，需要同时开启两个服务器。
 一个用于`app.py`文件，端口 5000；
 一个用于`npm run serve`，端口不限。
 
-**WARNING: 除非修改端口，否则 heroku 部署必然失败**
+*本地开发验证成功的组件，需要添加特定的`if-else`语句对开发环境和部署环境进行区分*
+
+具体实现请看`components`文件夹下的Login和Register。
 
 ## 部署方法
 
@@ -23,10 +25,6 @@
 1. 使用`yarn install`安装依赖
 2. 使用`yarn serve`运行开发服务器
 3. 使用`yarn build`运行打包服务
-
-为了方便开发和调试，需要在浏览器里下载`vue devtools`工具。[链接](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=zh-CN)
-
-具体的结构说明在`src/App.vue`等文件的注释中。
 
 ### Progress
 
