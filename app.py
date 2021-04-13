@@ -89,6 +89,14 @@ def return_article(article_id):
         return jsonify(({'ID': article_id, 'Content': 'NOT FOUND'}))
 
 
+@app.route('/articles', methods=['POST'])
+def add_article():
+    request_data = request.get_data()
+    data_json = json.loads(request_data)
+    article_collection = database.articles
+    article_collection.insert({'id':data_json['id'],'content':data_json['content']})
+
+
 @app.route('/content/discussion/<int:discussion_id>', methods=['GET'])
 def return_discussion(discussion_id):
     discussions = database.discussion
