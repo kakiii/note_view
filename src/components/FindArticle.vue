@@ -1,19 +1,19 @@
 <template>
   <div>
-    <input v-model="id" />
+    <input v-model="id"/>
     <button v-on:click="get_article()">HIT TO GET VALUE</button>
     <table>
       <thead>
-        <tr>
-          <th>ID</th>
-          <th>Content</th>
-        </tr>
+      <tr>
+        <th>ID</th>
+        <th>Content</th>
+      </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>{{ this.id }}</td>
-          <td>{{ content }}</td>
-        </tr>
+      <tr>
+        <td>{{ this.id }}</td>
+        <td>{{ content }}</td>
+      </tr>
       </tbody>
     </table>
   </div>
@@ -32,13 +32,23 @@ export default {
   },
   methods: {
     get_article() {
-      axios
-        .get("http://127.0.0.1:5000/articles/" + this.id)
-        .then((res) => {
-          console.log(res.data["Content"]);
-          this.content = res.data["Content"];
-        })
-        .catch(() => (this.content = "NO CONTENT"));
+      if (process.env === "production") {
+        axios
+            .get("/articles/" + this.id)
+            .then((res) => {
+              console.log(res.data["Content"]);
+              this.content = res.data["Content"];
+            })
+            .catch(() => (this.content = "NO CONTENT"));
+      } else {
+        axios
+            .get("http://localhost:5000/articles/" + this.id)
+            .then((res) => {
+              console.log(res.data["Content"]);
+              this.content = res.data["Content"];
+            })
+            .catch(() => (this.content = "NO CONTENT"));
+      }
     },
   },
 };
