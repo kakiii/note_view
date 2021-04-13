@@ -12,18 +12,21 @@
       <tbody>
       <tr>
         <td>{{ this.id }}</td>
-        <td>{{ content }}</td>
+<!--        <td>{{ content }}</td>-->
       </tr>
       </tbody>
     </table>
+    <MarkdownItVue :content="content"/>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-
+import "markdown-it-vue/dist/markdown-it-vue.css";
+import MarkdownItVue from "markdown-it-vue";
 export default {
   name: "FindArticle",
+  components:{MarkdownItVue},
   data() {
     return {
       id: "",
