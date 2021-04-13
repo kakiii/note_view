@@ -1,27 +1,30 @@
 <template>
   <div>
     <h1>LOGIN PAGE</h1>
-    <el-form ref="loginForm" label-width="80px" class="login-box">
+    <el-form ref="loginForm" class="login-box" label-width="80px">
       <h3 class="login-title">Welcome!</h3>
       <el-form-item label="Username" prop="username">
         <el-input
-          type="text"
-          placeholder="Please enter your username"
-          v-model="username"
-          value="username"
-        /><br />
+            v-model="username"
+            placeholder="Please enter your username"
+            type="text"
+            value="username"
+        />
+        <br/>
       </el-form-item>
       <el-form-item label="Password" prop="password">
         <el-input
-          type="password"
-          placeholder="Please enter your password"
-          v-model="password"
-          value="password"
-        /><br />
+            v-model="password"
+            placeholder="Please enter your password"
+            type="password"
+            value="password"
+        />
+        <br/>
       </el-form-item>
       <el-form-item>
         <el-button class="onSubmit" type="primary" v-on:click="exec_login"
-          >Login</el-button
+        >Login
+        </el-button
         >
       </el-form-item>
     </el-form>
@@ -31,6 +34,8 @@
 <script>
 import axios from "axios";
 import store from "../store";
+import {validateUsername} from "../utils/auth";
+
 export default {
   name: "login",
   data() {
@@ -42,22 +47,27 @@ export default {
   },
   methods: {
     exec_login() {
-      /*
-       * If the user exists & password confirmed, the console should output 200.
-       * If the user exists but password wrong, the console should output 201.
-       * If the user doesn't exist, the console should output 202.
-       */
-      axios
-        .post("http://localhost:5000/auth/login", {
-          username: this.username,
-          password: this.password,
-        })
-        .then((res) => {
-          console.log(res.data.status);
-          store.isLogin = true;
-          this.$router.push("/about");
-        })
-        .catch((err) => console.log(err));
+      if (validateUsername(this.username)) {
+
+        /*
+         * If the user exists & password confirmed, the console should output 200.
+         * If the user exists but password wrong, the console should output 201.
+         * If the user doesn't exist, the console should output 202.
+         */
+        axios
+            .post("http://localhost:5000/auth/login", {
+              username: this.username,
+              password: this.password,
+            })
+            .then((res) => {
+              console.log(res.data.status);
+              store.isLogin = true;
+              this.$router.push("/about");
+            })
+            .catch((err) => console.log(err));
+      }else{
+        this.$alert("Username not appropriate.")
+      }
     },
   },
 };
