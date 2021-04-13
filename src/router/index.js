@@ -11,9 +11,9 @@ import Register from "@/components/Register";
 import FindArticle from "@/components/FindArticle";
 import CodeEditor from "@/components/CodeEditor";
 
-import store from "../store";
+import store from "../store/index";
 //import { TodoList } from "element-tiptap"; //Gan：不知道这个是干啥的我先把它注释掉了不然我新todo要报错
-import todo from"@/components/todo";
+import todo from "@/components/todo";
 
 Vue.use(VueRouter);
 
@@ -74,17 +74,18 @@ const routes = [
   }
 
 ];
-
+if (process.env === "production"){
+  router.beforeEach((to, from, next) => {
+    var getFlag = store.isLogin;
+    if (!getFlag && to.name != "login") {
+      next("/login");
+    } else {
+      next();
+    }
+  });
+}
 const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  var getFlag = store.isLogin;
-  if (!getFlag && to.name != "login") {
-    next("/login");
-  } else {
-    next();
-  }
-});
 export default router;
