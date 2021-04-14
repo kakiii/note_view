@@ -29,6 +29,7 @@ export default {
             .then((res) => {
               if (res.data.status === 200) {
                 console.log(res.data.status);
+                this.$alert("Registration Success, please login now.");
               } else {
                 this.$alert("Registration Failed, Please try again.");
               }
@@ -43,6 +44,7 @@ export default {
             .then((res) => {
               if (res.data.status === 200) {
                 console.log(res.data.status);
+                this.$alert("Registration Success, please login now.");
               } else {
                 this.$alert("Registration Failed, Please try again.");
               }
