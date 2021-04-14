@@ -14,7 +14,7 @@
     <!-- ToDo -->
     <h3>ToDo</h3>
     <ul v-for="(item, index) in list" :key="index">
-      <li v-if="item.done == false">
+      <li v-if="item.done === false">
         <input type="checkbox" @change="change(index, true)" />
         <span>{{ item.text }}</span>
         <button @click="remove(index)">delete</button>
@@ -24,7 +24,7 @@
     <!-- Done -->
     <h3>Done</h3>
     <ul v-for="(item, index) in list" :key="index">
-      <li v-if="item.done == true">
+      <li v-if="item.done === true">
         <input
           type="checkbox"
           @change="change(index, false)"
