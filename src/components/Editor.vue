@@ -13,7 +13,6 @@
       >
       </el-option>
     </el-select>
-    <el-button v-on:click="toHTML">Update HTML Input</el-button>
     <el-button v-on:click="markup('italic')"><i>Italic</i></el-button>
     <el-button v-on:click="markup('bold')"><b>Bold</b></el-button>
     <el-button v-on:click="markup('code')">Code Block</el-button>
@@ -27,7 +26,7 @@
         ref="textarea"
         v-model="content"
         :rows="100"
-        style="width: 33%"
+        style="width: 50%"
         type="textarea"
       ></textarea>
 
@@ -36,9 +35,8 @@
         :content="content"
         :options="options"
         class="md-body"
-        style="width: 33%"
+        style="width: 50%"
       />
-      <pre id="preview" style="width: 33%">{{ htmloutput }}</pre>
     </el-container>
   </div>
 </template>
@@ -162,13 +160,6 @@ export default {
     insertHeader(headerValue) {
       this.markup(headerValue);
       this.headerValue = "";
-    },
-    toHTML() {
-      document.getElementById(
-        "preview"
-      ).textContent = document.getElementsByClassName(
-        "markdown-body"
-      )[0].innerHTML;
     },
   },
   data() {
