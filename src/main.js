@@ -2,13 +2,14 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import Vuex from "vuex";
 import "./plugins/element.js";
-
+// import Vuex from "vuex"
+import store from "./store";
 require("./mock");
+
 Vue.config.productionTip = true;
-Vue.use(Vuex);
 new Vue({
-  router,
-  render: (h) => h(App),
+    router,
+    store,
+    render: (h) => h(App),
 }).$mount("#app");

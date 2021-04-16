@@ -32,7 +32,6 @@
 
 <script>
 import axios from "axios";
-import store from "../store";
 import { validateUsername } from "../utils/auth";
 
 export default {
@@ -52,7 +51,7 @@ export default {
          * If the user exists but password wrong, the console should output 201.
          * If the user doesn't exist, the console should output 202.
          */
-        try{
+      if (process.env.NODE_ENV === "development") {
           axios
             .post("http://localhost:5000/auth/login", {
               username: this.username,
@@ -61,7 +60,7 @@ export default {
             .then((res) => {
               if (res.data.status === 200) {
                 console.log(res.data.status);
-                store.isLogin = true;
+                this.$store.state.isLogin = true;
                 this.$router.push("/about");
               } else if (res.data.status == 201) {
                 this.$alert("WRONG PASSWORD");
@@ -70,7 +69,7 @@ export default {
               }
             })
             .catch((err) => console.log(err));
-        } catch(e) {
+        } else {
           axios
             .post("/auth/login", {
               username: this.username,
@@ -79,12 +78,13 @@ export default {
             .then((res) => {
               if (res.data.status === 200) {
                 console.log(res.data.status);
-                store.isLogin = true;
+                // store.isLogin = true;
                 this.$router.push("/about");
               } else if (res.data.status == 201) {
                 this.$alert("WRONG PASSWORD");
               } else {
-                this.$alert("NO USER");
+                this.$alert("NO USER, GO REGISTER ONE.");
+                this.$router.push("/login")
               }
             })
             .catch((err) => console.log(err));

@@ -52,7 +52,8 @@ export default {
   name: "Editor",
   methods: {
     upload() {
-      if (process.env === "development") {
+      if (process.env.NODE_ENV === "development") {
+        console.log("DEVELOPMENT")
         axios
           .post("http://localhost:5000/articles", {
             id: this.article_id,
@@ -62,6 +63,7 @@ export default {
             console.log(err);
           });
       } else {
+        console.log(process.env)
         axios
           .post("/articles", {
             id: this.article_id,

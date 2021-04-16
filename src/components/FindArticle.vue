@@ -22,9 +22,17 @@
 
 <script>
 import axios from "axios";
+import store from "../store";
 import "markdown-it-vue/dist/markdown-it-vue.css";
 import MarkdownItVue from "markdown-it-vue";
 export default {
+  beforeRouteEnter(to,from,next){
+    if(store.state.isLogin == true){
+      next();
+    }else{
+      next("/login");
+    }
+  },
   name: "FindArticle",
   components:{MarkdownItVue},
   data() {
@@ -35,7 +43,7 @@ export default {
   },
   methods: {
     get_article() {
-try {
+      if (process.env.NODE_ENV === "development") {
         axios
             .get("http://localhost:5000/article/" + this.id)
             .then((res) => {
@@ -44,7 +52,7 @@ try {
             })
             .catch(() => (this.content = "NO CONTENT"));
       }
-      catch(e){
+      else{
         axios
             .get("/article/" + this.id)
             .then((res) => {

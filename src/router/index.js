@@ -10,8 +10,6 @@ import Login from "@/components/Login.vue";
 import Register from "@/components/Register";
 import FindArticle from "@/components/FindArticle";
 import CodeEditor from "@/components/CodeEditor";
-
-import store from "../store/index";
 import todo from "@/components/todo";
 
 Vue.use(VueRouter);
@@ -24,32 +22,26 @@ const routes = [
     name: "Index",
     // Component表示挂载在这个URL下的Vue组件名称,只能填入一个.
     component: Home,
-    meta: {
-      isLogin: false,
-    },
   },
   {
     path: "/editor",
     name: "editor",
-    component: Editor,
+    component: Editor
   },
   {
     path: "/discussion",
     name: "discussion",
-    component: Discussion,
+    component: Discussion
   },
   {
     path: "/about",
     name: "about",
-    component: About,
+    component: About
   },
   {
     path: "/login",
     name: "login",
-    component: Login,
-    meta: {
-      isLogin: false,
-    },
+    component: Login
   },
   {
     path: "/register",
@@ -60,6 +52,7 @@ const routes = [
     path: "/find",
     name: "find",
     component: FindArticle,
+
   },
   {
     path: "/code",
@@ -71,18 +64,7 @@ const routes = [
     name: "todo",
     component: todo,
   }
-
 ];
-if (process.env === "production"){
-  router.beforeEach((to, from, next) => {
-    var getFlag = store.isLogin;
-    if (!getFlag && to.name != "login") {
-      next("/login");
-    } else {
-      next();
-    }
-  });
-}
 const router = new VueRouter({
   routes,
 });

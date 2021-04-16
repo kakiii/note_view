@@ -12,7 +12,7 @@ import Gravatar from "./Gravatar";
 import GravatarsSVG from "./Gravatar_SVG";
 
 export default {
-  name: "About",
+  name: "About",  
   components: { Gravatar, GravatarsSVG },
   data() {
     return {

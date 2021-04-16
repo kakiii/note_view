@@ -28,6 +28,7 @@
 
 ### Progress
 
+**NEW: 实现用户的个人界面**
 - [ ] Register System 0.2
 - [ ] Login System 0.2
 - [ ] Gravataar 0.2
@@ -38,3 +39,8 @@
 - [ ] Admin Page 0.1
 - [ ] Home Page UI Design 0.0.2
 - [ ] Search Engine 0.0.2
+
+
+### Note
+
+要实现开发时和部署时不同的配置，需要使用if-else语句指定`process.env.NODE_ENV`为"development"或"production"。

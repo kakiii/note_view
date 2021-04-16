@@ -9,7 +9,7 @@
 import TheHeader from "./components/TheHeader";
 export default {
   name: "app",
-  components: { TheHeader },
+  components: { TheHeader }
 };
 </script>
 

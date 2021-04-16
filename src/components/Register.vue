@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     exec_register() {
-      try {
+      if (process.env.NODE_ENV === "development") {
         axios
             .post("http://localhost:5000/auth/register", {
               username: this.username,
@@ -30,12 +30,13 @@ export default {
               if (res.data.status === 200) {
                 console.log(res.data.status);
                 this.$alert("Registration Success, please login now.");
+                this.$router.push("/login");
               } else {
                 this.$alert("Registration Failed, Please try again.");
               }
             })
             .catch((err) => console.log(err));
-      } catch(e){
+      } else{
         axios
             .post("/auth/register", {
               username: this.username,
