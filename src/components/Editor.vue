@@ -19,14 +19,15 @@
     <el-button v-on:click="markup('blockquotes')">Block Quotes</el-button>
     <el-button v-on:click="clear">Clear</el-button>
     <el-button>Save</el-button>
+    <br>
     <el-button v-on:click="upload">Upload</el-button>
-    <el-input v-model="article_id" placeholder="choose a id" type="text" style="width:100px" clearable/>
+    <el-input v-model="article_id" placeholder="choose a id" type="text" style="width:200px" clearable/>
     <el-container>
       <textarea
         ref="textarea"
         v-model="content"
         :rows="100"
-        style="width: 50%"
+        style="width: 47% ; border: 1px solid; border-radius:5px; margin:3px;"
         type="textarea"
       ></textarea>
 
@@ -35,7 +36,7 @@
         :content="content"
         :options="options"
         class="md-body"
-        style="width: 50%"
+        style="width: 50% ; margin:3px;"
       />
     </el-container>
   </div>
