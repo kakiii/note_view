@@ -1,15 +1,15 @@
 <template>
   <div>
     <el-select
-        v-model="headerValue"
-        placeholder="Select header"
-        @change="insertHeader(headerValue)"
+      v-model="headerValue"
+      placeholder="Select header"
+      @change="insertHeader(headerValue)"
     >
       <el-option
-          v-for="header in headers"
-          :key="header.value"
-          :label="header.label"
-          :value="header.value"
+        v-for="header in headers"
+        :key="header.value"
+        :label="header.label"
+        :value="header.value"
       >
       </el-option>
     </el-select>
@@ -20,22 +20,22 @@
     <el-button v-on:click="clear">Clear</el-button>
     <el-button>Save</el-button>
     <el-button v-on:click="upload">Upload</el-button>
-    <input v-model="article_id" placeholder="choose a id" type="text"/>
+    <el-input v-model="article_id" placeholder="choose a id" type="text" style="width:100px" clearable/>
     <el-container>
       <textarea
-          ref="textarea"
-          v-model="content"
-          :rows="100"
-          style="width: 33%"
-          type="textarea"
+        ref="textarea"
+        v-model="content"
+        :rows="100"
+        style="width: 33%"
+        type="textarea"
       ></textarea>
 
       <MarkdownItVue
-          v-model="htmloutput"
-          :content="content"
-          :options="options"
-          class="md-body"
-          style="width: 33%"
+        v-model="htmloutput"
+        :content="content"
+        :options="options"
+        class="md-body"
+        style="width: 33%"
       />
       <pre id="preview" style="width: 33%">{{ htmloutput }}</pre>
     </el-container>
@@ -48,25 +48,28 @@ import "markdown-it-vue/dist/markdown-it-vue.css";
 import axios from "axios";
 
 export default {
-  components: {MarkdownItVue},
+  components: { MarkdownItVue },
   name: "Editor",
   methods: {
     upload() {
-      if(process.env === "development"){
-
-
-      axios.post("http://localhost:5000/articles", {
-        id: this.article_id,
-        content: this.content
-      }).catch((err) => {
-        console.log(err)
-      });}else{
-        axios.post("/articles", {
-          id: this.article_id,
-          content: this.content
-        }).catch((err) => {
-          console.log(err)
-        });
+      if (process.env === "development") {
+        axios
+          .post("http://localhost:5000/articles", {
+            id: this.article_id,
+            content: this.content,
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        axios
+          .post("/articles", {
+            id: this.article_id,
+            content: this.content,
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     },
     /* onUpdate(output, options) {
@@ -83,49 +86,53 @@ export default {
       switch (val) {
         case "h1":
           this.content =
-              tmpStr.substring(0, startPos) + "# " + tmpStr.substring(startPos);
+            tmpStr.substring(0, startPos) + "# \n" + tmpStr.substring(startPos);
           break;
         case "h2":
           this.content =
-              tmpStr.substring(0, startPos) + "## " + tmpStr.substring(startPos);
+            tmpStr.substring(0, startPos) +
+            "## \n" +
+            tmpStr.substring(startPos);
           break;
         case "h3":
           this.content =
-              tmpStr.substring(0, startPos) + "### " + tmpStr.substring(startPos);
+            tmpStr.substring(0, startPos) +
+            "### \n" +
+            tmpStr.substring(startPos);
           break;
         case "h4":
           this.content =
-              tmpStr.substring(0, startPos) +
-              "#### " +
-              tmpStr.substring(startPos);
+            tmpStr.substring(0, startPos) +
+            "#### " +
+            tmpStr.substring(startPos);
           break;
         case "h5":
           this.content =
-              tmpStr.substring(0, startPos) +
-              "##### " +
-              tmpStr.substring(startPos);
+            tmpStr.substring(0, startPos) +
+            "##### \n" +
+            tmpStr.substring(startPos);
           break;
         case "h6":
           this.content =
-              tmpStr.substring(0, startPos) +
-              "###### " +
-              tmpStr.substring(startPos);
+            tmpStr.substring(0, startPos) +
+            "###### \n" +
+            tmpStr.substring(startPos);
           break;
         case "bold":
           this.content =
-              tmpStr.substring(0, startPos) +
-              "**" +
-              tmpStr.substring(startPos, endPos) +
-              "**" +
-              tmpStr.substring(endPos);
+            tmpStr.substring(0, startPos) +
+            "**" +
+            tmpStr.substring(startPos, endPos) +
+            "**" +
+            tmpStr.substring(endPos);
           break;
         case "italic":
           this.content =
-              tmpStr.substring(0, startPos) +
-              "*" +
-              tmpStr.substring(startPos, endPos) +
-              "*" +
-              tmpStr.substring(endPos);
+            tmpStr.substring(0, startPos) +
+            "*" +
+            tmpStr.substring(startPos, endPos) +
+            "*" +
+            tmpStr.substring(endPos);
           break;
         case "blockquotes": {
           let temp = tmpStr.substring(startPos, endPos).split("\n");
@@ -134,16 +141,16 @@ export default {
             res += "> " + temp[i] + "\n";
           }
           this.content =
-              tmpStr.substring(0, startPos) + res + tmpStr.substring(endPos);
+            tmpStr.substring(0, startPos) + res + tmpStr.substring(endPos);
           break;
         }
         case "code":
           this.content =
-              tmpStr.substring(0, startPos) +
-              "```\n" +
-              tmpStr.substring(startPos, endPos) +
-              "\n```\n" +
-              tmpStr.substring(endPos);
+            tmpStr.substring(0, startPos) +
+            "```\n" +
+            tmpStr.substring(startPos, endPos) +
+            "\n```\n" +
+            tmpStr.substring(endPos);
           break;
       }
     },
@@ -157,9 +164,9 @@ export default {
     },
     toHTML() {
       document.getElementById(
-          "preview"
+        "preview"
       ).textContent = document.getElementsByClassName(
-          "markdown-body"
+        "markdown-body"
       )[0].innerHTML;
     },
   },
