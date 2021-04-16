@@ -14,9 +14,10 @@
       </el-option>
     </el-select>
     <el-button v-on:click="toHTML">Update HTML Input</el-button>
-    <el-button v-on:click="markup('italic')"><i>I</i></el-button>
+    <el-button v-on:click="markup('italic')"><i>Italic</i></el-button>
+    <el-button v-on:click="markup('bold')"><b>Bold</b></el-button>
     <el-button v-on:click="markup('code')">Code Block</el-button>
-    <el-button v-on:click="markup('blockquote')">Block Quotes</el-button>
+    <el-button v-on:click="markup('blockquotes')">Block Quotes</el-button>
     <el-button v-on:click="clear">Clear</el-button>
     <el-button>Save</el-button>
     <el-button v-on:click="upload">Upload</el-button>
