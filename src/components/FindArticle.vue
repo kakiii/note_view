@@ -35,15 +35,7 @@ export default {
   },
   methods: {
     get_article() {
-      if (process.env === "production") {
-        axios
-            .get("/article/" + this.id)
-            .then((res) => {
-              console.log(res.data["Content"]);
-              this.content = res.data["Content"];
-            })
-            .catch(() => (this.content = "NO CONTENT"));
-      } else {
+try {
         axios
             .get("http://localhost:5000/article/" + this.id)
             .then((res) => {
@@ -52,6 +44,15 @@ export default {
             })
             .catch(() => (this.content = "NO CONTENT"));
       }
+      catch(e){
+        axios
+            .get("/article/" + this.id)
+            .then((res) => {
+              console.log(res.data["Content"]);
+              this.content = res.data["Content"];
+            })
+            .catch(() => (this.content = "NO CONTENT"));
+      } 
     },
   },
 };

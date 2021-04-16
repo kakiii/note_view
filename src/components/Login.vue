@@ -52,7 +52,7 @@ export default {
          * If the user exists but password wrong, the console should output 201.
          * If the user doesn't exist, the console should output 202.
          */
-        if (process.env !== "development") {
+        try{
           axios
             .post("http://localhost:5000/auth/login", {
               username: this.username,
@@ -70,7 +70,7 @@ export default {
               }
             })
             .catch((err) => console.log(err));
-        } else {
+        } catch(e) {
           axios
             .post("/auth/login", {
               username: this.username,

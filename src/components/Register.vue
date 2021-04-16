@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     exec_register() {
-      if (process.env === "development") {
+      try {
         axios
             .post("http://localhost:5000/auth/register", {
               username: this.username,
@@ -35,7 +35,7 @@ export default {
               }
             })
             .catch((err) => console.log(err));
-      } else {
+      } catch(e){
         axios
             .post("/auth/register", {
               username: this.username,
