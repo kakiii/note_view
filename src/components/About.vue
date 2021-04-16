@@ -1,9 +1,11 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <Gravatar :gen_key="inputs" />
-    <GravatarsSVG :gen_key="inputs" />
-    <input placeholder="INPUT USER NAME" v-model="inputs" />
+    <Gravatar :gen_key="inputs"/>
+    <GravatarsSVG :gen_key="inputs"/>
+    <input placeholder="INPUT USER NAME" v-model="inputs"/>
+<!--这里放一个Log Out的功能，能够去除Login的状态。-->
+    <input type="button" v-on:click="logout" value="LOGOUT"/>
   </div>
 </template>
 
@@ -12,12 +14,17 @@ import Gravatar from "./Gravatar";
 import GravatarsSVG from "./Gravatar_SVG";
 
 export default {
-  name: "About",  
-  components: { Gravatar, GravatarsSVG },
+  name: "About",
+  components: {Gravatar, GravatarsSVG},
   data() {
     return {
       inputs: "users",
     };
   },
+  methods: {
+    logout() {
+      this.$store.state.isLogin = false;
+    }
+  }
 };
 </script>
