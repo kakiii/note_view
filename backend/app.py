@@ -22,8 +22,8 @@ app.register_blueprint(auth)
 
 @app.route('/')
 def index():
-    return "<h1>SUCCESS</h1>"
-    # return render_template("index.html")
+    # return "<h1>SUCCESS</h1>"
+    return render_template("index.html")
 
 
 @app.route('/content/discussion/<int:discussion_id>', methods=['GET'])

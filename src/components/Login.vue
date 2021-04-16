@@ -5,27 +5,26 @@
       <h3 class="login-title">Welcome!</h3>
       <el-form-item label="Username" prop="username">
         <el-input
-            v-model="username"
-            placeholder="Please enter your username"
-            type="text"
-            value="username"
+          v-model="username"
+          placeholder="Please enter your username"
+          type="text"
+          value="username"
         />
-        <br/>
+        <br />
       </el-form-item>
       <el-form-item label="Password" prop="password">
         <el-input
-            v-model="password"
-            placeholder="Please enter your password"
-            type="password"
-            value="password"
+          v-model="password"
+          placeholder="Please enter your password"
+          type="password"
+          value="password"
         />
-        <br/>
+        <br />
       </el-form-item>
       <el-form-item>
         <el-button class="onSubmit" type="primary" v-on:click="exec_login"
-        >Login
-        </el-button
-        >
+          >Login
+        </el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -34,7 +33,7 @@
 <script>
 import axios from "axios";
 import store from "../store";
-import {validateUsername} from "../utils/auth";
+import { validateUsername } from "../utils/auth";
 
 export default {
   name: "login",
@@ -48,48 +47,50 @@ export default {
   methods: {
     exec_login() {
       if (validateUsername(this.username)) {
-
         /*
          * If the user exists & password confirmed, the console should output 200.
          * If the user exists but password wrong, the console should output 201.
          * If the user doesn't exist, the console should output 202.
          */
-        // if (process.env === "development") {
-
-
+        if (process.env !== "development") {
           axios
-              .post("http://localhost:5000/auth/login", {
-                username: this.username,
-                password: this.password,
-              })
-              .then((res) => {
-                if(res.data.status == 200){
+            .post("http://localhost:5000/auth/login", {
+              username: this.username,
+              password: this.password,
+            })
+            .then((res) => {
+              if (res.data.status === 200) {
                 console.log(res.data.status);
                 store.isLogin = true;
                 this.$router.push("/about");
-                }else if(res.data.status == 201){
-                  this.$alert("WRONG PASSWORD");
-                }else{
-                  this.$alert("NO USER");
-                }
-              })
-              .catch((err) => console.log(err));
-        // } 
-        // else {
-        //   axios
-        //       .post("auth/login", {
-        //         username: this.username,
-        //         password: this.password,
-        //       })
-        //       .then((res) => {
-        //         console.log(res.data.status);
-        //         store.isLogin = true;
-        //         this.$router.push("/about");
-        //       })
-        //       .catch((err) => console.log(err));
-        // }
+              } else if (res.data.status == 201) {
+                this.$alert("WRONG PASSWORD");
+              } else {
+                this.$alert("NO USER");
+              }
+            })
+            .catch((err) => console.log(err));
+        } else {
+          axios
+            .post("/auth/login", {
+              username: this.username,
+              password: this.password,
+            })
+            .then((res) => {
+              if (res.data.status === 200) {
+                console.log(res.data.status);
+                store.isLogin = true;
+                this.$router.push("/about");
+              } else if (res.data.status == 201) {
+                this.$alert("WRONG PASSWORD");
+              } else {
+                this.$alert("NO USER");
+              }
+            })
+            .catch((err) => console.log(err));
+        }
       } else {
-        this.$alert("Username not appropriate.")
+        this.$alert("Username not appropriate.");
       }
     },
   },
