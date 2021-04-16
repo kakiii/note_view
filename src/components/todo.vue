@@ -2,46 +2,66 @@
 
 <template>
   <div>
-
     <!--测试用
     <p>Local Data = {{ st }}</p>
     <button @click="myGetFunction()">Get Local Storage Data</button><br />
 -->
-    <h2>To Do List</h2>
-    <input
-      type="text"
-      v-model="inputValue"
-      placeholder="Add ToDo"
-      @keyup.enter="add()"
-    />
-    <button @click="add()">add</button>
+    <el-container>
+      <el-main>
+        <h2>To Do List</h2>
+        <el-input
+          type="text"
+          v-model="inputValue"
+          placeholder="Add ToDo"
+          @keyup.enter="add()"
+        ></el-input>
 
-    <!-- ToDo -->
-    <h3>ToDo</h3>
-    <ul v-for="(item, index) in list" :key="'info-' + index">
-      <!-- 这里的info没什么意义就是防俩v-for并行报错-->
-      <li v-if="item.done === false">
-        <input type="checkbox" @change="change(index, true)" />
-        <span>{{ item.text }}</span>
-        <button @click="remove(index)">delete</button>
-      </li>
-    </ul>
+        <el-button type="send" @click="add()">add</el-button>
+      </el-main>
+    </el-container>
 
-    <!-- Done -->
-    <h3>Done</h3>
-    <ul v-for="(item, index) in list" :key="index">
-      <li v-if="item.done === true">
-        <input
-          type="checkbox"
-          @change="change(index, false)"
-          checked="checked"
-        />
-        <span>{{ item.text }}</span>
-        <button @click="remove(index)">delete</button>
-      </li>
-    </ul>
+    <el-container>
+      <el-col :span="12"  
+        ><div class="grid-content bg-purple">
 
+          <h3>ToDo</h3>
+          <ul v-for="(item, index) in list" :key="'info-' + index">
+            <!-- 这里的info没什么意义就是防俩v-for并行报错-->
 
+            <li v-if="item.done === false">
+              <el-checkbox
+                type="checkbox"
+                @change="change(index, true)"
+              ></el-checkbox>
+             
+              <span>{{ item.text }}</span>
+              <el-button type="danger" icon="el-icon-delete" circle @click="remove(index)"></el-button>
+
+            </li>
+          </ul>
+        </div></el-col
+      >
+
+      <el-col :span="12"
+        ><div class="grid-content bg-purple-light">
+          <h3>Done</h3>
+          <ul v-for="(item, index) in list" :key="index">
+            <li v-if="item.done === true">
+              <el-checkbox
+                type="checkbox"
+                @change="change(index, false)"
+                checked="checked"
+
+              ></el-checkbox>
+
+              <span>{{ item.text }}</span>
+
+              <el-button type="danger" icon="el-icon-delete" circle @click="remove(index)"></el-button>
+            </li>
+          </ul>
+        </div></el-col
+      >
+    </el-container>
   </div>
 </template>
 
@@ -90,14 +110,12 @@ export default {
       this.list.splice(index, 1);
     },
 
-/*测试用
+    /*测试用
     myGetFunction: function () {
       this.st = myStorage.get("list");
       console.log("hello" + this.st);
     },*/
-
   },
-
 
   watch: {
     list: {
@@ -112,7 +130,48 @@ export default {
     },
   },
   mounted: function () {
-    this.list = myStorage.get("list")|| [];
+    this.list = myStorage.get("list") || [];
   },
 };
 </script>
+
+<style>
+.el-main {
+  background-color: #e9eef3;
+  color: #333;
+  text-align: center;
+  line-height: 30px;
+}
+.el-aside {
+  background-color: #d3dce6;
+  color: #333;
+  text-align: center;
+  line-height: 200px;
+}
+.el-row {
+  margin-bottom: 20px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+.el-col {
+  border-radius: 4px;
+}
+.bg-purple-dark {
+  background: #99a9bf;
+}
+.bg-purple {
+  background: #d3dce6;
+}
+.bg-purple-light {
+  background: #e5e9f2;
+}
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
+}
+.row-bg {
+  padding: 10px 0;
+  background-color: #f9fafc;
+}
+</style>
