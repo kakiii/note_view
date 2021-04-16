@@ -27,6 +27,6 @@ export default {
     return api.get("/article", id).then((response) => response.data);
   },
   // getSession() {
-  //     return api.get('/auth/session').then(response => response.data)
+  //     return api.get('/content/session').then(response => response.data)
   // }
 };
