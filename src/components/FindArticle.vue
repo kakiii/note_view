@@ -37,7 +37,7 @@ export default {
     get_article() {
       if (process.env === "production") {
         axios
-            .get("/articles/" + this.id)
+            .get("/article/" + this.id)
             .then((res) => {
               console.log(res.data["Content"]);
               this.content = res.data["Content"];
@@ -45,7 +45,7 @@ export default {
             .catch(() => (this.content = "NO CONTENT"));
       } else {
         axios
-            .get("http://localhost:5000/articles/" + this.id)
+            .get("http://localhost:5000/article/" + this.id)
             .then((res) => {
               console.log(res.data["Content"]);
               this.content = res.data["Content"];

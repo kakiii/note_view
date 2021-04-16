@@ -54,7 +54,7 @@ export default {
          * If the user exists but password wrong, the console should output 201.
          * If the user doesn't exist, the console should output 202.
          */
-        if (process.env === "development") {
+        // if (process.env === "development") {
 
 
           axios
@@ -63,24 +63,31 @@ export default {
                 password: this.password,
               })
               .then((res) => {
+                if(res.data.status == 200){
                 console.log(res.data.status);
                 store.isLogin = true;
                 this.$router.push("/about");
+                }else if(res.data.status == 201){
+                  this.$alert("WRONG PASSWORD");
+                }else{
+                  this.$alert("NO USER");
+                }
               })
               .catch((err) => console.log(err));
-        } else {
-          axios
-              .post("auth/login", {
-                username: this.username,
-                password: this.password,
-              })
-              .then((res) => {
-                console.log(res.data.status);
-                store.isLogin = true;
-                this.$router.push("/about");
-              })
-              .catch((err) => console.log(err));
-        }
+        // } 
+        // else {
+        //   axios
+        //       .post("auth/login", {
+        //         username: this.username,
+        //         password: this.password,
+        //       })
+        //       .then((res) => {
+        //         console.log(res.data.status);
+        //         store.isLogin = true;
+        //         this.$router.push("/about");
+        //       })
+        //       .catch((err) => console.log(err));
+        // }
       } else {
         this.$alert("Username not appropriate.")
       }
