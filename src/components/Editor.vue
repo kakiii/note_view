@@ -1,42 +1,70 @@
 <template>
   <div>
-    <el-select
-      v-model="headerValue"
-      placeholder="Select header"
-      @change="insertHeader(headerValue)"
-    >
-      <el-option
-        v-for="header in headers"
-        :key="header.value"
-        :label="header.label"
-        :value="header.value"
-      >
-      </el-option>
-    </el-select>
-    <el-button v-on:click="markup('italic')"><i>Italic</i></el-button>
-    <el-button v-on:click="markup('bold')"><b>Bold</b></el-button>
-    <el-button v-on:click="markup('code')">Code Block</el-button>
-    <el-button v-on:click="markup('blockquotes')">Block Quotes</el-button>
-    <el-button v-on:click="clear">Clear</el-button>
-    <el-button>Save</el-button>
-    <br>
-    <el-button v-on:click="upload">Upload</el-button>
-    <el-input v-model="article_id" placeholder="choose a id" type="text" style="width:200px" clearable/>
     <el-container>
+      <el-select
+          v-model="headerValue"
+          placeholder="Select header"
+          @change="insertHeader(headerValue)"
+      >
+        <el-option
+            v-for="header in headers"
+            :key="header.value"
+            :label="header.label"
+            :value="header.value"
+        >
+        </el-option>
+      </el-select>
+      <el-button v-on:click="markup('italic')"><i>Italic</i></el-button>
+      <el-button v-on:click="markup('bold')"><b>Bold</b></el-button>
+      <el-button v-on:click="markup('code')">Code Block</el-button>
+      <el-button v-on:click="markup('blockquotes')">Block Quotes</el-button>
+      <el-button v-on:click="markup('image')">Image</el-button>
+      <el-button v-on:click="markup('link')">Link</el-button>
+      <el-button v-on:click="clear">Clear</el-button>
+      <el-button>Save</el-button>
+
+      <el-button v-on:click="upload">Upload</el-button>
+      <el-input v-model="article_id" placeholder="choose a id" type="text" style="width:200px" clearable/>
+    </el-container>
+    <el-container>
+      <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;alignment: left">
+        <el-radio-button :label="false">展开</el-radio-button>
+        <el-radio-button :label="true">收起</el-radio-button>
+      </el-radio-group>
+    </el-container>
+
+    <el-container>
+      <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
+               :collapse="isCollapse">
+        <el-submenu index="1">
+          <template slot="title">
+            <i class="el-icon-document"></i>
+            <span slot="title">My Articles</span>
+          </template>
+          <el-menu-item-group>
+            <span slot="title">Folder 1</span>
+            <el-menu-item index="1-1" v-on:click="load('1')">Article 1</el-menu-item>
+            <el-menu-item index="1-2" v-on:click="load('2')">Article 2</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group title="Folder 2">
+            <el-menu-item index="1-3" v-on:click="load('3')">Article 3</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
+      </el-menu>
       <textarea
-        ref="textarea"
-        v-model="content"
-        :rows="100"
-        style="width: 47% ; border: 1px solid; border-radius:5px; margin:3px;"
-        type="textarea"
+          ref="textarea"
+          v-model="content"
+          :rows="100"
+          style="width: 47% ; border: 1px solid #ccc; border-radius:15px; margin:3px;"
+          type="textarea"
       ></textarea>
 
       <MarkdownItVue
-        v-model="htmloutput"
-        :content="content"
-        :options="options"
-        class="md-body"
-        style="width: 50% ; margin:3px;"
+          v-model="htmloutput"
+          :content="content"
+          :options="options"
+          class="md-body"
+          style="width: 50% ; margin:3px;"
       />
     </el-container>
   </div>
@@ -48,30 +76,55 @@ import "markdown-it-vue/dist/markdown-it-vue.css";
 import axios from "axios";
 
 export default {
-  components: { MarkdownItVue },
+  components: {MarkdownItVue},
   name: "Editor",
   methods: {
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    async load(id) {
+      if (process.env.NODE_ENV === "development") {
+        //console.log("DEVELOPMENT")
+        const article = await axios({
+          url: "http://localhost:5000/article/".concat(id),
+          method: "GET"
+            }
+        );
+        //window.location.reload();
+        this.content=article.data["Content"];
+      } else {
+        console.log(process.env)
+        axios
+            .get("/articles".concat(id))
+            .catch((err) => {
+              console.log(err);
+            });
+      }
+    },
     upload() {
       if (process.env.NODE_ENV === "development") {
         console.log("DEVELOPMENT")
         axios
-          .post("http://localhost:5000/articles", {
-            id: this.article_id,
-            content: this.content,
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+            .post("http://localhost:5000/articles", {
+              id: this.article_id,
+              content: this.content,
+            })
+            .catch((err) => {
+              console.log(err);
+            });
       } else {
         console.log(process.env)
         axios
-          .post("/articles", {
-            id: this.article_id,
-            content: this.content,
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+            .post("/articles", {
+              id: this.article_id,
+              content: this.content,
+            })
+            .catch((err) => {
+              console.log(err);
+            });
       }
     },
     /* onUpdate(output, options) {
@@ -88,53 +141,53 @@ export default {
       switch (val) {
         case "h1":
           this.content =
-            tmpStr.substring(0, startPos) + "# \n" + tmpStr.substring(startPos);
+              tmpStr.substring(0, startPos) + "# \n" + tmpStr.substring(startPos);
           break;
         case "h2":
           this.content =
-            tmpStr.substring(0, startPos) +
-            "## \n" +
-            tmpStr.substring(startPos);
+              tmpStr.substring(0, startPos) +
+              "## \n" +
+              tmpStr.substring(startPos);
           break;
         case "h3":
           this.content =
-            tmpStr.substring(0, startPos) +
-            "### \n" +
-            tmpStr.substring(startPos);
+              tmpStr.substring(0, startPos) +
+              "### \n" +
+              tmpStr.substring(startPos);
           break;
         case "h4":
           this.content =
-            tmpStr.substring(0, startPos) +
-            "#### " +
-            tmpStr.substring(startPos);
+              tmpStr.substring(0, startPos) +
+              "#### " +
+              tmpStr.substring(startPos);
           break;
         case "h5":
           this.content =
-            tmpStr.substring(0, startPos) +
-            "##### \n" +
-            tmpStr.substring(startPos);
+              tmpStr.substring(0, startPos) +
+              "##### \n" +
+              tmpStr.substring(startPos);
           break;
         case "h6":
           this.content =
-            tmpStr.substring(0, startPos) +
-            "###### \n" +
-            tmpStr.substring(startPos);
+              tmpStr.substring(0, startPos) +
+              "###### \n" +
+              tmpStr.substring(startPos);
           break;
         case "bold":
           this.content =
-            tmpStr.substring(0, startPos) +
-            "**" +
-            tmpStr.substring(startPos, endPos) +
-            "**" +
-            tmpStr.substring(endPos);
+              tmpStr.substring(0, startPos) +
+              "**" +
+              tmpStr.substring(startPos, endPos) +
+              "**" +
+              tmpStr.substring(endPos);
           break;
         case "italic":
           this.content =
-            tmpStr.substring(0, startPos) +
-            "*" +
-            tmpStr.substring(startPos, endPos) +
-            "*" +
-            tmpStr.substring(endPos);
+              tmpStr.substring(0, startPos) +
+              "*" +
+              tmpStr.substring(startPos, endPos) +
+              "*" +
+              tmpStr.substring(endPos);
           break;
         case "blockquotes": {
           let temp = tmpStr.substring(startPos, endPos).split("\n");
@@ -143,17 +196,28 @@ export default {
             res += "> " + temp[i] + "\n";
           }
           this.content =
-            tmpStr.substring(0, startPos) + res + tmpStr.substring(endPos);
+              tmpStr.substring(0, startPos) + res + tmpStr.substring(endPos);
           break;
         }
         case "code":
           this.content =
-            tmpStr.substring(0, startPos) +
-            "```\n" +
-            tmpStr.substring(startPos, endPos) +
-            "\n```\n" +
-            tmpStr.substring(endPos);
+              tmpStr.substring(0, startPos) +
+              "```\n" +
+              tmpStr.substring(startPos, endPos) +
+              "\n```\n" +
+              tmpStr.substring(endPos);
           break;
+        case "image":
+          this.content =
+              tmpStr.substring(0, startPos) +
+              "![]()\n"+
+              tmpStr.substring(startPos);
+          break;
+        case "link":
+          this.content =
+              tmpStr.substring(0, startPos) +
+              "[]()\n"+
+              tmpStr.substring(startPos);
       }
     },
     clear() {
@@ -169,6 +233,7 @@ export default {
     return {
       article_id: null,
       headerValue: "",
+      isCollapse: true,
       headers: [
         {
           value: "h1",
@@ -465,5 +530,10 @@ st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","stroke-width":6,"arrow-end":"cl
   padding: 0;
   margin: 0;
   width: 100%;
+}
+
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
 }
 </style>
