@@ -5,25 +5,25 @@
       <h3 class="login-title">Welcome!</h3>
       <el-form-item label="Username" prop="username">
         <el-input
-          v-model="username"
-          placeholder="Please enter your username"
-          type="text"
-          value="username"
+            v-model="username"
+            placeholder="Please enter your username"
+            type="text"
+            value="username"
         />
-        <br />
+        <br/>
       </el-form-item>
       <el-form-item label="Password" prop="password">
         <el-input
-          v-model="password"
-          placeholder="Please enter your password"
-          type="password"
-          value="password"
+            v-model="password"
+            placeholder="Please enter your password"
+            type="password"
+            value="password"
         />
-        <br />
+        <br/>
       </el-form-item>
       <el-form-item>
         <el-button class="onSubmit" type="primary" v-on:click="exec_login"
-          >Login
+        >Login
         </el-button>
       </el-form-item>
     </el-form>
@@ -32,7 +32,7 @@
 
 <script>
 import axios from "axios";
-import { validateUsername } from "../utils/auth";
+import {validateUsername} from "../utils/auth";
 
 export default {
   name: "login",
@@ -51,9 +51,14 @@ export default {
          * If the user exists but password wrong, the console should output 201.
          * If the user doesn't exist, the console should output 202.
          */
-      if (process.env.NODE_ENV === "development") {
-          axios
-            .post("http://localhost:5000/auth/login", {
+        let url;
+        if (process.env.NODE_ENV === "development") {
+          url = "http://localhost:5000/auth/login";
+        } else {
+          url = "auth/login";
+        }
+        axios
+            .post(url, {
               username: this.username,
               password: this.password,
             })
@@ -61,34 +66,15 @@ export default {
               if (res.data.status === 200) {
                 console.log(res.data.status);
                 this.$store.state.isLogin = true;
+                this.$store.state.username = this.username;
                 this.$router.push("/about");
-              } else if (res.data.status == 201) {
+              } else if (res.data.status === 201) {
                 this.$alert("WRONG PASSWORD");
               } else {
                 this.$alert("NO USER");
               }
             })
             .catch((err) => console.log(err));
-        } else {
-          axios
-            .post("/auth/login", {
-              username: this.username,
-              password: this.password,
-            })
-            .then((res) => {
-              if (res.data.status === 200) {
-                console.log(res.data.status);
-                // store.isLogin = true;
-                this.$router.push("/about");
-              } else if (res.data.status == 201) {
-                this.$alert("WRONG PASSWORD");
-              } else {
-                this.$alert("NO USER, GO REGISTER ONE.");
-                this.$router.push("/login")
-              }
-            })
-            .catch((err) => console.log(err));
-        }
       } else {
         this.$alert("Username not appropriate.");
       }

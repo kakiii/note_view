@@ -24,6 +24,11 @@ export default {
   methods: {
     logout() {
       this.$store.state.isLogin = false;
+      this.$store.state.username="";
+      this.$alert("You have logged out!");
+      setTimeout(function () {
+        this.$router.push("/");
+      },2000);
     }
   }
 };
