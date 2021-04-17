@@ -2,15 +2,17 @@
 
 <template>
   <div>
-    <p>Hello, {{this.$store.state.username}}!</p>
+    <p>Hello, {{ this.$store.state.username }}!</p>
+
     <Gravatar :gen_key=this.$store.state.username
-    />
+              style="margin: auto"/>
   </div>
 </template>
 
 <script>
 import Gravatar from "./Gravatar";
-export default{
+
+export default {
   components: {Gravatar},
 }
 </script>
