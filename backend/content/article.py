@@ -31,8 +31,9 @@ def add_article():
     article_collection = database.articles
     article_collection.insert({'id': data_json['id'], 'content': data_json['content']})
 
-# Whole path should be "/artilce/user/<user_name>"
-# An example may be "/article/user/admin", then it will return admin's all artilce_id.
+
+# Whole path should be "/article/user/<user_name>"
+# An example may be "/article/user/admin", then it will return admin's all article_id.
 @article.route('/user/<string:user_name>', methods=['GET'])
 def return_user_article_collection(user_name):
     user_db = database.account
