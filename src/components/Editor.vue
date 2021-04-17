@@ -93,22 +93,25 @@ export default {
           method: "GET"
             }
         );
-        //window.location.reload();
         this.content=article.data["Content"];
+        //window.location.reload();
+
       } else {
         console.log(process.env)
-        axios
-            .get("/articles".concat(id))
-            .catch((err) => {
-              console.log(err);
-            });
+        const article = await axios({
+          url: "/article/".concat(id),
+          method: "GET"
+            }
+        );
+        this.content=article.data["Content"];
       }
+
     },
     upload() {
       if (process.env.NODE_ENV === "development") {
         console.log("DEVELOPMENT")
         axios
-            .post("http://localhost:5000/articles", {
+            .post("http://localhost:5000/article", {
               id: this.article_id,
               content: this.content,
             })
@@ -118,7 +121,7 @@ export default {
       } else {
         console.log(process.env)
         axios
-            .post("/articles", {
+            .post("/article", {
               id: this.article_id,
               content: this.content,
             })

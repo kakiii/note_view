@@ -1,6 +1,5 @@
-import bcrypt
 import pymongo
-from flask import Flask, json, jsonify, request, render_template
+from flask import Flask, jsonify
 
 from auth.user_management import auth
 from content.article import article
