@@ -30,3 +30,16 @@ def add_article():
     data_json = json.loads(request_data)
     article_collection = database.articles
     article_collection.insert({'id': data_json['id'], 'content': data_json['content']})
+
+# Whole path should be "/artilce/user/<user_name>"
+# An example may be "/article/user/admin", then it will return admin's all artilce_id.
+@article.route('/user/<string:user_name>', methods=['GET'])
+def return_user_article_collection(user_name):
+    user_db = database.account
+    dedicated_user = user_db.find_one({'username': user_name})
+    if dedicated_user:
+        if dedicated_user['my_article']:
+            return jsonify({'article_collection': dedicated_user['my_article']})
+    else:
+        # temporary patch only for backend.
+        print("no such user")
