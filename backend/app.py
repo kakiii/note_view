@@ -1,5 +1,5 @@
 import pymongo
-from flask import Flask, jsonify
+from flask import Flask, jsonify,render_template
 
 from auth.user_management import auth
 from content.article import article
