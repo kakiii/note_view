@@ -11,6 +11,7 @@ import Register from "@/components/Register";
 import FindArticle from "@/components/FindArticle";
 import CodeEditor from "@/components/CodeEditor";
 import todo from "@/components/todo";
+import UserPage from "@/components/UserPage";
 
 Vue.use(VueRouter);
 
@@ -63,6 +64,11 @@ const routes = [
     path: "/todo",
     name: "todo",
     component: todo,
+  },
+  {
+    path: "/user/:username",
+    name: "userpage",
+    component: UserPage,
   }
 ];
 const router = new VueRouter({
