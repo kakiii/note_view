@@ -1,14 +1,14 @@
 <template>
   <div>
     <el-menu
-      :default-active="activeIndex2"
-      class="el-menu-demo"
-      mode="horizontal"
-      router
-      @select="handleSelect"
-      background-color="#020080"
-      text-color="#fff"
-      active-text-color="#ffd04b"
+        :default-active="activeIndex2"
+        class="el-menu-demo"
+        mode="horizontal"
+        router
+        @select="handleSelect"
+        background-color="#020080"
+        text-color="#fff"
+        active-text-color="#ffd04b"
     >
       <el-menu-item index="/login">LOGIN</el-menu-item>
       <el-menu-item index="/register">REGISTER</el-menu-item>
@@ -18,7 +18,9 @@
       <el-menu-item index="/about">ABOUT</el-menu-item>
       <el-menu-item index="/discussion">DISCUSSION</el-menu-item>
       <el-menu-item index="/todo">TODOLIST</el-menu-item>
-      <el-menu-item :disabled="!this.$store.state.isLogin" style="float: right"  :index="{name:'userpage',params:{username:this.$store.state.username}}">My Page</el-menu-item>
+      <el-menu-item :disabled="!this.$store.state.isLogin" style="float: right"
+                    :index="{name:'userpage',params:{username:this.$store.state.username}}">My Page
+      </el-menu-item>
 
     </el-menu>
   </div>

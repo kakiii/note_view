@@ -1,6 +1,11 @@
 <template>
   <div>
     <el-container>
+
+      <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;alignment: left">
+        <el-radio-button :label="false">展开</el-radio-button>
+        <el-radio-button :label="true">收起</el-radio-button>
+      </el-radio-group>
       <el-select
           v-model="headerValue"
           placeholder="Select header"
@@ -22,15 +27,11 @@
       <el-button v-on:click="markup('link')">Link</el-button>
       <el-button v-on:click="clear">Clear</el-button>
       <el-button>Save</el-button>
-
       <el-button v-on:click="upload">Upload</el-button>
       <el-input v-model="article_id" placeholder="choose a id" type="text" style="width:200px" clearable/>
     </el-container>
     <el-container>
-      <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;alignment: left">
-        <el-radio-button :label="false">展开</el-radio-button>
-        <el-radio-button :label="true">收起</el-radio-button>
-      </el-radio-group>
+
     </el-container>
 
     <el-container>
@@ -520,11 +521,14 @@ st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","stroke-width":6,"arrow-end":"cl
 <style scoped>
 .el-container {
   height: 100%;
-  padding: 0;
-  margin: 0;
   width: 100%;
 }
-
+.el-button,.el-input,.el-select,.el-radio-button{
+  width:auto;
+  height: 40px;
+  margin:5px;
+  text-align: center;
+}
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;
