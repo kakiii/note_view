@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-menu
-        :default-active="activeIndex2"
+        :default-active="activeIndex"
         class="el-menu-demo"
         mode="horizontal"
         router
@@ -33,6 +33,7 @@ export default {
   data() {
     return {
       isCollapse: false,
+      activeIndex: "/login",
     };
   },
   methods: {
@@ -42,6 +43,9 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
+    handleSelect(key, keyPath) {
+      console.log(key, keyPath);
+    }
   },
 };
 </script>

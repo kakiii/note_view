@@ -28,6 +28,7 @@
       <el-button v-on:click="clear">Clear</el-button>
       <el-button>Save</el-button>
       <el-button v-on:click="upload">Upload</el-button>
+      <!--      <el-button v-on:click="refresh">Refresh</el-button>-->
       <el-input v-model="article_id" placeholder="choose a id" type="text" style="width:200px" clearable/>
     </el-container>
     <el-container>
@@ -35,20 +36,15 @@
     </el-container>
 
     <el-container>
-      <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
+      <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
                :collapse="isCollapse">
         <el-submenu index="1">
           <template slot="title">
             <i class="el-icon-document"></i>
             <span slot="title">My Articles</span>
           </template>
-          <el-menu-item-group>
-            <span slot="title">Folder 1</span>
-            <el-menu-item index="1-1" v-on:click="load('1')">Article 1</el-menu-item>
-            <el-menu-item index="1-2" v-on:click="load('2')">Article 2</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="Folder 2">
-            <el-menu-item index="1-3" v-on:click="load('3')">Article 3</el-menu-item>
+          <el-menu-item-group title="Folder 1">
+            <el-menu-item v-for="id in article_list" :key="id" v-on:click="load(id)">Article {{ id }}</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
@@ -56,7 +52,6 @@
           ref="textarea"
           v-model="content"
           :rows="100"
-          style="width: 47% ; border: 1px solid #ccc; border-radius:15px; margin:3px;"
           type="textarea"
       ></textarea>
 
@@ -65,7 +60,6 @@
           :content="content"
           :options="options"
           class="md-body"
-          style="width: 50% ; margin:3px;"
       />
     </el-container>
   </div>
@@ -79,7 +73,22 @@ import axios from "axios";
 export default {
   components: {MarkdownItVue},
   name: "Editor",
+  mounted() {
+    if (this.$store.state.isLogin) {
+      let url = "";
+      if (process.env.NODE_ENV === "development") {
+        url = "http://localhost:5000/article/user/";
+      } else {
+        url = "article/user/";
+      }
+      axios.get(url + this.$store.state.username).then((res) => {
+        this.article_list = res.data["article_collection"]
+        console.log(this.article_list);
+      }).catch((err) => console.log(err));
+    }
+  },
   methods: {
+
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },
@@ -93,9 +102,12 @@ export default {
       } else {
         url = "article/";
       }
-      axios.get(url +id).then((res) => {
-        this.content = res.data["Content"];
-      }).catch((err) => console.log(err));
+      if (id !== undefined) {
+        axios.get(url + id).then((res) => {
+          this.content = res.data["Content"];
+        }).catch((err) => console.log(err));
+      }
+
 
     },
     upload() {
@@ -121,11 +133,6 @@ export default {
             });
       }
     },
-    /* onUpdate(output, options) {
-      const { getJSON, getHTML } = options;
-      this.output.json = getJSON();
-      this.output.html = getHTML();
-    }, */
     markup(val) {
       let textArea = this.$refs.textarea;
       let startPos = textArea.selectionStart;
@@ -204,13 +211,13 @@ export default {
         case "image":
           this.content =
               tmpStr.substring(0, startPos) +
-              "![]()\n"+
+              "![]()\n" +
               tmpStr.substring(startPos);
           break;
         case "link":
           this.content =
               tmpStr.substring(0, startPos) +
-              "[]()\n"+
+              "[]()\n" +
               tmpStr.substring(startPos);
       }
     },
@@ -225,6 +232,7 @@ export default {
   },
   data() {
     return {
+      article_list: [],
       article_id: null,
       headerValue: "",
       isCollapse: true,
@@ -523,16 +531,19 @@ st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","stroke-width":6,"arrow-end":"cl
   height: 100%;
   width: 100%;
 }
-.el-button,.el-input,.el-select,.el-radio-button{
-  width:auto;
+
+.el-button, .el-input, .el-select, .el-radio-button {
+  width: auto;
   height: 40px;
-  margin:5px;
+  margin: 5px;
   text-align: center;
 }
+
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;
 }
+
 textarea {
   width: 100%;
   height: auto;
@@ -543,5 +554,17 @@ textarea {
   background-color: #f8f8f8;
   resize: none;
   font-family: "system-ui";
+}
+
+textarea {
+  width: 47%;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  margin: 3px;
+}
+
+.md-body {
+  width: 50%;
+  margin: 3px;
 }
 </style>
