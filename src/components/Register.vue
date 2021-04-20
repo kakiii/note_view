@@ -41,7 +41,7 @@
 
 <script>
 import axios from "axios";
-
+import validateUsername from "../utils/auth";
 export default {
   name: "Register",
   data() {
@@ -59,6 +59,9 @@ export default {
       } else {
         path = "/auth/register";
       }
+      if(validateUsername(this.username)){
+
+
       if (this.password !== this.password_again) {
         this.$alert("Password not match, please try again.")
       } else {
@@ -78,7 +81,11 @@ export default {
             })
             .catch((err) => console.log(err));
       }
+      }else{
+        this.$alert("Your username is not appropriate, please try a longer username.")
+      }
     },
+
   },
 };
 </script>

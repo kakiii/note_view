@@ -22,8 +22,8 @@
         <br/>
       </el-form-item>
       <el-form-item>
-        <el-button class="onSubmit" type="primary" v-on:click="exec_login"
-        >Login
+        <el-button class="onSubmit" type="primary" v-on:click="exec_login">
+          Login
         </el-button>
       </el-form-item>
     </el-form>
@@ -32,7 +32,7 @@
 
 <script>
 import axios from "axios";
-import {validateUsername} from "../utils/auth";
+import validateUsername from "../utils/auth";
 
 export default {
   name: "login",
@@ -40,7 +40,6 @@ export default {
     return {
       username: "",
       password: "",
-      remember: false,
     };
   },
   methods: {
