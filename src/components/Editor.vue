@@ -550,4 +550,15 @@ st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","stroke-width":6,"arrow-end":"cl
   width: 200px;
   min-height: 400px;
 }
+textarea {
+  width: 100%;
+  height: auto;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+  font-family: "system-ui";
+}
 </style>
