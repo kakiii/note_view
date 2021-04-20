@@ -86,7 +86,18 @@ export default {
       console.log(key, keyPath);
     },
     async load(id) {
+      let url = "";
       if (process.env.NODE_ENV === "development") {
+        url = "http://localhost:5000/article/";
+      } else {
+        url = "article/";
+      }
+      axios.get(url +id).then((res) => {
+        this.content = res.data["Content"];
+
+      }).catch((err) => console.log(err));
+
+      /*if (process.env.NODE_ENV === "development") {
         //console.log("DEVELOPMENT")
         const article = await axios({
           url: "http://localhost:5000/article/".concat(id),
@@ -104,7 +115,7 @@ export default {
             }
         );
         this.content=article.data["Content"];
-      }
+      }*/
 
     },
     upload() {
