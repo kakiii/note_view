@@ -85,7 +85,7 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
-    async load(id) {
+    load(id) {
       let url = "";
       if (process.env.NODE_ENV === "development") {
         url = "http://localhost:5000/article/";
@@ -94,28 +94,7 @@ export default {
       }
       axios.get(url +id).then((res) => {
         this.content = res.data["Content"];
-
       }).catch((err) => console.log(err));
-
-      /*if (process.env.NODE_ENV === "development") {
-        //console.log("DEVELOPMENT")
-        const article = await axios({
-          url: "http://localhost:5000/article/".concat(id),
-          method: "GET"
-            }
-        );
-        this.content=article.data["Content"];
-        //window.location.reload();
-
-      } else {
-        console.log(process.env)
-        const article = await axios({
-          url: "/article/".concat(id),
-          method: "GET"
-            }
-        );
-        this.content=article.data["Content"];
-      }*/
 
     },
     upload() {
