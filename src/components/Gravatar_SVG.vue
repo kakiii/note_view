@@ -1,7 +1,7 @@
 <template>
-  <div v-if="size == 8">
+  <div v-if="size == 4">
     <p
-      style="width: 4em; height: 4em; border-radius: 50%; overflow: hidden"
+      style="width: 2em; height: 2em; border-radius: 50%; overflow: hidden"
       v-html="svgs"
     />
   </div>
@@ -11,9 +11,9 @@
       v-html="svgs"
     />
   </div>
-  <div v-else-if="size == 4">
+  <div v-else-if="size == 8">
     <p
-      style="width: 2em; height: 2em; border-radius: 50%; overflow: hidden"
+      style="width: 4em; height: 4em; border-radius: 50%; overflow: hidden"
       v-html="svgs"
     />
   </div>
