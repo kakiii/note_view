@@ -2,9 +2,9 @@
   <div class="about">
     <h1>This is an about page</h1>
     <Gravatar :gen_key="inputs" />
-    <GravatarsSVG :gen_key="inputs" size="4" />
-    <GravatarsSVG :gen_key="inputs" size="6" />
-    <GravatarsSVG :gen_key="inputs" size="8" />
+    <GravatarsSVG :gen_key="inputs" v-bind:size="4" />
+    <GravatarsSVG :gen_key="inputs" v-bind:size="6" />
+    <GravatarsSVG :gen_key="inputs" v-bind:size="8" />
     <input placeholder="INPUT USER NAME" v-model="inputs" />
     <!--这里放一个Log Out的功能，能够去除Login的状态。-->
     <input type="button" v-on:click="logout" value="LOGOUT" />
