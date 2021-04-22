@@ -6,18 +6,24 @@
       <el-header>This is discussion borad. 这是讨论版</el-header>
 
       <el-main>
-        <li class="content" v-for="i in 8" :key="i" style="overflow: auto">
+        <li
+          class="content"
+          v-for="i in pagesize"
+          :key="i"
+          style="overflow: auto"
+        >
           {{ "this is " + i + "th comment" }}
-        </li></el-main
-      >
+        </li>
+      </el-main>
 
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page.sync="currentPage3"
-        :page-size="100"
-        layout="prev, pager, next, jumper"
-        :total="1000"
+        :current-page="currentPage"
+        :page-size="pagesize"
+        :page-sizes="[8, 10, 20, 40]"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
       >
       </el-pagination>
 
@@ -25,9 +31,10 @@
         type="textarea"
         :autosize="{ minRows: 2, maxRows: 4 }"
         placeholder="请输入内容"
-        v-model="textarea2"
+        v-model="textarea"
       >
       </el-input>
+
       <el-button type="send" @click="clickSending()">发送</el-button>
     </el-container>
   </div>
@@ -38,19 +45,29 @@ export default {
   name: "Discussion",
   data() {
     return {
-      textarea2: "",
+      currentPage: 1,
+      pagesize: 8,
+      total: 800,
+      textarea: "",
     };
   },
   methods: {
+    handleSizeChange(size) {
+      this.pagesize = size;
+      console.log(this.pagesize);
+    },
+    handleCurrentChange(currentPage) {
+      this.currentPage = currentPage;
+      console.log(this.currentPage);
+    },
     clickSending() {
       var that = this;
-      console.log("Hello " + that.textarea2);
-      this.textarea2 = "";
+      console.log("Hello " + that.textarea);
+      this.textarea = "";
     },
   },
 };
 </script>
-
 
 <style>
 .el-header {
@@ -75,4 +92,5 @@ export default {
 }
 </style>
 
-<style scoped></style>
+<style scoped>
+</style>
