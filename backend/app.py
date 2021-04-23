@@ -36,7 +36,11 @@ def return_discussion(discussion_id):
         return jsonify({
             'id': discussion_id, 'content': 'NOT FOUND'
         })
-
+@app.route('/content/discussion',methods=['GET'])
+def return_discussion_general():
+    discussions = database.discussion
+    counts = discussions.find().count()
+    return jsonify({'discussion_size':counts})
 
 if __name__ == "__main__":
     app.run(debug=True)
