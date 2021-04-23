@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Monaco from "@/components/Monaco";
+import Monaco from "./Monaco.vue";
 export default {
   name: "CodeEditor",
   components: {

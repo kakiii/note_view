@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import Gravatar from "./Gravatar";
-import GravatarsSVG from "./Gravatar_SVG";
+import Gravatar from "./Gravatar.vue";
+import GravatarsSVG from "./Gravatar_SVG.vue";
 
 export default {
   name: "About",

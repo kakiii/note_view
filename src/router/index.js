@@ -2,17 +2,17 @@
 // 下面的import语句用于引入需要的"核心"组件,下一级的组件无需在此注册.
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "@/components/Home";
-import About from "@/components/About.vue";
-import Editor from "@/components/Editor";
-import Discussion from "@/components/Discussion";
-import Login from "@/components/Login.vue";
-import Register from "@/components/Register";
-import FindArticle from "@/components/FindArticle";
-import CodeEditor from "@/components/CodeEditor";
-import todo from "@/components/todo";
-import UserPage from "@/components/UserPage";
-import page_404 from "@/components/404";
+import Home from "../components/Home.vue";
+import About from "../components/About.vue";
+import Editor from "../components/Editor.vue";
+import Discussion from "../components/Discussion.vue";
+import Login from "../components/Login.vue";
+import Register from "../components/Register.vue";
+import FindArticle from "../components/FindArticle.vue";
+import CodeEditor from "../components/CodeEditor.vue";
+import todo from "../components/todo.vue";
+import UserPage from "../components/UserPage.vue";
+import page_404 from "../components/404.vue";
 
 Vue.use(VueRouter);
 
