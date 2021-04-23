@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>😈😈😈</h1>
-    <p>THIS IS 404 PAGE</p>
+    <p>Sorry, your requested page doesn't exists.</p>
   </div>
 </template>
 
