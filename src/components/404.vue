@@ -192,8 +192,8 @@ export default {
       animation-fill-mode: forwards;
     }
     &__return-home {
-      display: block;
-      float: left;
+      display: inline-block;
+      //float: left;
       width: 90px;
       height: 36px;
       background: #020080;
