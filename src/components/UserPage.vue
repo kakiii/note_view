@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Gravatar from "./Gravatar";
+import Gravatar from "./Gravatar.vue";
 import axios from "axios";
 export default {
   components: {Gravatar},

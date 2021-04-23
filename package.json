@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vite",
     "build": "vue-cli-service build --mode prod"
   },
   "dependencies": {
@@ -19,6 +19,7 @@
     "monaco-editor-webpack-plugin": "^3.0.1",
     "qs": "^6.10.1",
     "vee-validate": "^3.4.5",
+    "vite-plugin-vue2": "^1.4.4",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^9.1.2",
@@ -26,6 +27,8 @@
     "vuex": "^3.6.2"
   },
   "devDependencies": {
+    "@vitejs/plugin-vue": "^1.2.1",
+    "vite": "^2.1.5",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "^4.5.11",
@@ -37,6 +40,7 @@
     "node-sass": "^4.9.2",
     "sass": "^1.32.0",
     "sass-loader": "^10.0.0",
+    "@vue/compiler-sfc": "^3.0.5",
     "vue-cli-plugin-element": "^1.0.1",
     "vue-template-compiler": "^2.6.11"
   },

@@ -5,7 +5,6 @@ import router from "./router";
 import "./plugins/element.js";
 // import Vuex from "vuex"
 import store from "./store";
-require("./mock");
 
 Vue.config.productionTip = true;
 new Vue({
