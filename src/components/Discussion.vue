@@ -1,4 +1,3 @@
-<!-- 讨论版试做v0.1,后期需要对放数据 翻页 输入进一步增加内容-->
 
 <template>
   <div>
@@ -6,14 +5,11 @@
       <el-header>This is discussion borad. 这是讨论版</el-header>
 
       <el-main>
-        <li
-          class="content"
-          v-for="i in pagesize"
-          :key="i"
-          style="overflow: auto"
-        >
-          {{ "this is " + i + "th comment" }}
-        </li>
+
+        <ul v-for="(item, index) in list" :key="index">
+          <span>{{ item.text }}</span>
+        </ul>
+        
       </el-main>
 
       <el-pagination
@@ -41,6 +37,9 @@
 </template>
 
 <script>
+import axios from 'axios';
+
+
 export default {
   name: "Discussion",
   data() {
@@ -49,6 +48,8 @@ export default {
       pagesize: 8,
       total: 800,
       textarea: "",
+      discussionContent: "",
+      list: [],
     };
   },
   methods: {
@@ -66,6 +67,33 @@ export default {
       this.textarea = "";
     },
   },
+    watch: {
+    pagesize: function () {
+      this.list=[];
+      var i;
+      for (i = 1; i <= this.pagesize; i++) {
+        axios
+          .get("http://127.0.0.1:5000/content/discussion/" + i)
+          .then((res) => {
+            console.log("数据：", res.data["author"]);
+            this.discussionContent = res.data["author"];
+            this.list.push({ text: this.discussionContent });
+          });
+
+          setTimeout("function",50000);
+      }
+    }
+  },
+  mounted() {
+    var i;
+    for (i = 1; i <= this.pagesize; i++) {
+      axios.get("http://127.0.0.1:5000/content/discussion/" + i).then((res) => {
+        console.log("数据：", res.data["author"]);
+        this.discussionContent = res.data["author"];
+        this.list.push({ text: this.discussionContent });
+      });
+    }
+    },
 };
 </script>
 
