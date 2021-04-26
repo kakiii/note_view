@@ -5,11 +5,9 @@
       <el-header>This is discussion borad. 这是讨论版</el-header>
 
       <el-main>
-
-        <ul v-for="(item, index) in list" :key="index">
-          <span>{{ item.text }}</span>
-        </ul>
-        
+      <ul v-for="(item, index) in list" :key="index">
+        <span>{{ item.author + " " + item.content }}</span>
+      </ul>
       </el-main>
 
       <el-pagination
@@ -37,8 +35,7 @@
 </template>
 
 <script>
-import axios from 'axios';
-
+import axios from "axios";
 
 export default {
   name: "Discussion",
@@ -52,6 +49,7 @@ export default {
       list: [],
     };
   },
+
   methods: {
     handleSizeChange(size) {
       this.pagesize = size;
@@ -67,39 +65,67 @@ export default {
       this.textarea = "";
     },
   },
-    watch: {
+  watch: {
     pagesize: function () {
-      this.list=[];
+      this.list = [];
+      var axiosList = [];
       var i;
       for (i = 1; i <= this.pagesize; i++) {
-        axios
-          .get("http://127.0.0.1:5000/content/discussion/" + i)
-          .then((res) => {
-            console.log("数据：", res.data["author"]);
-            this.discussionContent = res.data["author"];
-            this.list.push({ text: this.discussionContent });
-          });
-
-          setTimeout("function",50000);
+        axiosList.push(
+          axios.get("http://127.0.0.1:5000/content/discussion/" + i)
+        );
       }
-    }
+      axios
+        .all(axiosList)
+        .then((results) => {
+          let temp = results.map((r) => r.data);
+          // console.log("hello" + temp[1]);
+          // console.log(temp[0].author);
+          for (let j = 0; j < temp.length; j++) {
+            if (temp[j] == undefined || temp[j].author == null) {
+            } else {
+              this.list.push({
+                author: temp[j].author,
+                content: temp[j].content,
+              });
+            }
+          }
+        })
+        .catch((err) => console.log(err));
+    },
   },
   mounted() {
+    var axiosList = [];
     var i;
     for (i = 1; i <= this.pagesize; i++) {
-      axios.get("http://127.0.0.1:5000/content/discussion/" + i).then((res) => {
-        console.log("数据：", res.data["author"]);
-        this.discussionContent = res.data["author"];
-        this.list.push({ text: this.discussionContent });
-      });
+      axiosList.push(
+        axios.get("http://127.0.0.1:5000/content/discussion/" + i)
+      );
     }
-    },
+    axios
+      .all(axiosList)
+      .then((results) => {
+        let temp = results.map((r) => r.data);
+        // console.log("hello" + temp[1]);
+        // console.log(temp[0].author);
+        for (let j = 0; j < temp.length; j++) {
+          if (temp[j] == undefined || temp[j].author == null) {
+          } else {
+            this.list.push({
+              author: temp[j].author,
+              content: temp[j].content,
+            });
+          }
+        }
+      })
+      .catch((err) => console.log(err));
+  },
 };
 </script>
 
 <style>
 .el-header {
-  background-color: #d1b3b3;
+  background-color: #161515;
   color: rgb(255, 0, 0);
   text-align: center;
   line-height: 60px;
