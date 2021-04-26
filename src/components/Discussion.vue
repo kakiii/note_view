@@ -67,12 +67,18 @@ export default {
   },
   watch: {
     pagesize: function () {
+      let url = "";
+      if(process.env.NODE_ENV === "development"){
+        url = "http://127.0.0.1:5000/";
+      }else{
+        url = "/"
+      }
       this.list = [];
       var axiosList = [];
       var i;
       for (i = 1; i <= this.pagesize; i++) {
         axiosList.push(
-          axios.get("http://127.0.0.1:5000/content/discussion/" + i)
+          axios.get(url + "content/discussion/" + i)
         );
       }
       axios
@@ -95,11 +101,17 @@ export default {
     },
   },
   mounted() {
+          let url = "";
+      if(process.env.NODE_ENV === "development"){
+        url = "http://127.0.0.1:5000/";
+      }else{
+        url = "/"
+      }
     var axiosList = [];
     var i;
     for (i = 1; i <= this.pagesize; i++) {
       axiosList.push(
-        axios.get("http://127.0.0.1:5000/content/discussion/" + i)
+        axios.get(url + "content/discussion/" + i)
       );
     }
     axios

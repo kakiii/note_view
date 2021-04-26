@@ -43,24 +43,20 @@ export default {
   },
   methods: {
     get_article() {
+      let url = "";
       if (process.env.NODE_ENV === "development") {
-        axios
-            .get("http://localhost:5000/article/" + this.id)
-            .then((res) => {
-              console.log(res.data["Content"]);
-              this.content = res.data["Content"];
-            })
-            .catch(() => (this.content = "NO CONTENT"));
+        url = "http://127.0.0.1:5000/"
       }
       else{
-        axios
-            .get("/article/" + this.id)
+        url = "/"
+      } 
+              axios
+            .get(url + "article/" + this.id)
             .then((res) => {
               console.log(res.data["Content"]);
               this.content = res.data["Content"];
             })
             .catch(() => (this.content = "NO CONTENT"));
-      } 
     },
   },
 };
