@@ -1,3 +1,4 @@
+import re
 from flask.globals import request
 import pymongo
 import datetime
@@ -54,8 +55,12 @@ def return_latest_index():
     return jsonify({'latest':size})
 
 
-# @app.route('/content/discussion', methods=["POST"])
-# def insert_discussion():
+@app.route('/content/discussion', methods=["POST"])
+def insert_discussion():
+    request_data = request.get_data()
+    discussions = database.discussion
+    json_data = json.load(request_data)
+    discussions.insert_one({"author":request_data["author"],"content":request_data["content"],"timestamp":datetime.datetime.utcnow()})
 
 
 if __name__ == "__main__":
