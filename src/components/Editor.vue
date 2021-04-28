@@ -296,46 +296,24 @@ export default {
           viewer: true,
         },
       },
-      content: `
+      content: `# Manual for markdown editor
 
-# markdown-it-vue
+# This is H1
+## This is H2
+....
+###### This is h6
 
-## Image size and Viewer
-
-![GitHub](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png =50x)
-
-
-## GitHub Table of Contents
+## Table of content
 
 [toc]
 
 Note: Only \`h2\` and \`h3\` are shown in toc.
 
-## alter
+## Mermaid
 
-Markup is similar to fenced code blocks. Valid container types are \`success\`, \`info\`, \`warning\` and \`error\`.
+You can bold **text** and use *italic style* or ***combine them***.
 
-::: success
-You have got it.
-:::
-
-::: info
-You have new mail.
-:::
-
-::: warning
-You have new mail.
-:::
-
-::: error
-Staying up all night is bad for health.
-:::
-
-## mermaid charts
-
-### mermaid Flowchart
-
-[Flowchart Syntax](http://knsv.github.io/mermaid/#flowcharts-basic-syntax)
+We also support mermaid diagrams, like this:
 
 \`\`\`mermaid
 graph TD;
@@ -345,35 +323,19 @@ graph TD;
     C-->D;
 \`\`\`
 
-\`\`\`
-sequenceDiagram
-    participant Alice
-    participant Bob
-    Alice->John: Hello John, how are you?
-    loop Healthcheck
-        John->John: Fight against hypochondria
-    end
-    Note right of John: Rational thoughts <br/>prevail...
-    John-->Alice: Great!
-    John->Bob: How about you?
-    Bob-->John: Jolly good!
-\`\`\`
+For more information, click here: [Flowchart Syntax](http://knsv.github.io/mermaid/#flowcharts-basic-syntax)
 
-## Definition list
+## Image
 
-Term 1
-  ~ Definition 1
+You are free to use regular grammar, but you can stretch them now.
 
-Term 2
-  ~ Definition 2a
-  ~ Definition 2b
+ ![UK](https://wonderfulengineering.com/wp-content/uploads/2015/05/England-wallpaper-28.jpg =720x)
 
-[Definition List Syntax](http://pandoc.org/README.html#definition-lists)
+## Math Syntax
 
+Inline: \`@(1/2[1-(1/2)^n])/(1-(1/2))=s_n@\`
 
-## AsciiMath
-
-Inline AsciiMath: \`@(1/2[1-(1/2)^n])/(1-(1/2))=s_n@\`
+Discrete: 
 
 \`\`\`AsciiMath
 oint_Cx^3 dx+4y^2 dy
@@ -383,144 +345,32 @@ oint_Cx^3 dx+4y^2 dy
 sum_(m=1)^oosum_(n=1)^oo(m^2 n)/(3^m(m3^n+n3^m)
 \`\`\`
 
-\`\`\`ASCIIMath
-phi_n(kappa) = 1/(4pi^2 kappa^2)
- int_0^oo (sin(kappa R))/(kappa R)
- del/(del R)
-[R^2 (del D_n (R))/(del R)] del R
-\`\`\`
+For more syntax, click here [AsciiMath Documentation](http://asciimath.org/)
 
-[AsciiMath Documentation](http://asciimath.org/)
+## Emoji
 
-## Subscript: H~2~O
-
-You can also use inline math: \`$H_2O$\`
-
-
-## Superscript: 29^th^
-
-You can also use inline math: \`$29^{th}$\`
-
-
-## Emoji: :panda_face: :sparkles: :camel: :boom: :pig:
+:tiger: :panda_face: 
 
 [Emoji Cheat Sheet](http://www.emoji-cheat-sheet.com/)
 
-## Fontawesome: :fa-car: :fa-flag: :fa-bicycle: :fa-leaf: :fa-heart:
+## Alert
 
-[All the Font Awesome icons](http://fontawesome.io/icons/)
+::: success
+This is success
+:::
 
-## Echarts
+::: info
+This is info
+:::
 
-[Documentation for Echarts](http://echarts.baidu.com)
+::: warning
+This is warning
+:::
 
-The width and height is the size for chart container.
-
-\`\`\`echarts
-{
-  "width": 500,
-  "height": 400,
-  "series": [
-    {
-      "name": "访问来源",
-      "type": "pie",
-      "radius": "55%",
-      "data": [
-        {
-          "value": 235,
-          "name": "视频广告"
-        },
-        {
-          "value": 274,
-          "name": "联盟广告"
-        },
-        {
-          "value": 310,
-          "name": "邮件营销"
-        },
-        {
-          "value": 335,
-          "name": "直接访问"
-        },
-        {
-          "value": 400,
-          "name": "搜索引擎"
-        }
-      ]
-    }
-  ]
-}
-\`\`\`
-
-## code
-
-### c
-\`\`\`c
-#include <stdio.h>
-int main(int argc char* argv[]) {
-  printf("Hello, World!");
-  return 0;
-}
-\`\`\`
-
-### json
-
-\`\`\`json
-{
-  "name": "markdown-it-vue"
-}
-\`\`\`
-
-### javascript
-\`\`\`json
-import MarkdownItVue from 'markdown-it-vue'
-export default {
-  components: {
-    MarkdownItVue
-  }
-}
-\`\`\`
-
-### bash
-\`\`\`bash
-npm install markdown-it-vue
-\`\`\`
-
-## table
-
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-
-## flowchart.js
-
-\`\`\`flowchart.js
-st=>start: Start|past:>http://www.google.com[blank]
-e=>end: End:>http://www.google.com
-op1=>operation: My Operation|past
-op2=>operation: Stuff|current
-sub1=>subroutine: My Subroutine|invalid
-cond=>condition: Yes
-or No?|approved:>http://www.google.com
-c2=>condition: Good idea|rejected
-io=>inputoutput: catch something...|request
-para=>parallel: parallel tasks
-
-st->op1(right)->cond
-cond(yes, right)->c2
-cond(no)->para
-c2(true)->io->e
-c2(false)->e
-
-para(path1, bottom)->sub1(left)->op1
-para(path2, right)->op2->e
-
-st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","stroke-width":6,"arrow-end":"classic-wide-long"})@>c2({"stroke":"Red"})@>op2({"stroke":"Red"})@>e({"stroke":"Red"})
-\`\`\`
-
-
-      `,
+::: error
+This is error
+:::
+`,
     };
   },
 };
