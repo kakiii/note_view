@@ -13,6 +13,7 @@ import CodeEditor from "../components/CodeEditor.vue";
 import todo from "../components/todo.vue";
 import UserPage from "../components/UserPage.vue";
 import page_404 from "../components/404.vue";
+import management from "../components/Management.vue"
 
 Vue.use(VueRouter);
 
@@ -70,7 +71,13 @@ const routes = [
     path: "/user/:username",
     name: "userpage",
     component: UserPage,
-  },{
+  },
+  {
+    path:"/management",
+    name:"management",
+    component:management,
+  },
+  {
     path:'*',
     name:"not found",
     component:page_404
