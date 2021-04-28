@@ -31,7 +31,7 @@ def index():
 @app.route('/content/discussion/<int:discussion_id>', methods=['GET'])
 def return_discussion(discussion_id):
     discussions = database.discussion
-    match_discussion = discussions.find_one({'id': discussion_id})
+    match_discussion = discussions.find_one({'seq': discussion_id})
     if match_discussion:
         return jsonify(
             {'id': discussion_id, 'content': match_discussion['content'], 'author': match_discussion['author']})
@@ -59,8 +59,16 @@ def return_latest_index():
 def insert_discussion():
     request_data = request.get_data()
     discussions = database.discussion
-    json_data = json.load(request_data)
-    discussions.insert_one({"author":request_data["author"],"content":request_data["content"],"timestamp":datetime.datetime.utcnow()})
+    json_data = json.loads(request_data)
+    print("\n\n\n\n\n\n\n\n\n")
+    print(json_data)
+    discussions.insert({
+        "author":json_data["author"],
+        "content":json_data["content"],
+        "timestamp":datetime.datetime.utcnow(),
+        "seq":discussions.find().count()+1
+        })
+    return 0
 
 
 if __name__ == "__main__":
