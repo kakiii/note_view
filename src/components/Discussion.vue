@@ -85,16 +85,11 @@ export default {
         .all(axiosList)
         .then((results) => {
           let temp = results.map((r) => r.data);
-          // console.log("hello" + temp[1]);
-          // console.log(temp[0].author);
           for (let j = 0; j < temp.length; j++) {
-            if (temp[j] == undefined || temp[j].author == null) {
-            } else {
               this.list.push({
                 author: temp[j].author,
                 content: temp[j].content,
               });
-            }
           }
         })
         .catch((err) => console.log(err));
@@ -121,13 +116,11 @@ export default {
         // console.log("hello" + temp[1]);
         // console.log(temp[0].author);
         for (let j = 0; j < temp.length; j++) {
-          if (temp[j] == undefined || temp[j].author == null) {
-          } else {
             this.list.push({
               author: temp[j].author,
               content: temp[j].content,
             });
-          }
+          
         }
       })
       .catch((err) => console.log(err));
