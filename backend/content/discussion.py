@@ -34,3 +34,15 @@ def insert_discussion():
         "seq":discussions.find().count()+1
         })
     return 0
+
+@discussion.route('/<int:discussion_id>', methods=['GET'])
+def return_discussion(discussion_id):
+    discussions = database.discussion
+    match_discussion = discussions.find_one({'seq': discussion_id})
+    if match_discussion:
+        return jsonify(
+            {'id': discussion_id, 'content': match_discussion['content'], 'author': match_discussion['author']})
+    else:
+        return jsonify({
+            'id': discussion_id, 'content': 'NOT FOUND'
+        })
