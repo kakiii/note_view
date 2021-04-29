@@ -6,6 +6,7 @@ from flask import Flask, jsonify, render_template, json
 
 from auth.user_management import auth
 from content.article import article
+from content.discussion import discussion
 
 app = Flask(__name__, static_folder="../dist/static",
             template_folder="../dist")
@@ -20,6 +21,7 @@ database = client.account
 
 app.register_blueprint(article)
 app.register_blueprint(auth)
+app.register_blueprint(discussion)
 
 
 @app.route('/')
@@ -41,34 +43,34 @@ def return_discussion(discussion_id):
         })
 
 
-@app.route('/content/discussion', methods=['GET'])
-def return_discussion_general():
-    discussions = database.discussion
-    counts = discussions.find().count()
-    return jsonify({'discussion_size': counts})
+# @app.route('/content/discussion', methods=['GET'])
+# def return_discussion_general():
+#     discussions = database.discussion
+#     counts = discussions.find().count()
+#     return jsonify({'discussion_size': counts})
 
 
-@app.route('/content/discussion/latest', methods=['GET'])
-def return_latest_index():
-    discussions = database.discussion
-    size = discussions.count()
-    return jsonify({'latest':size})
+# @app.route('/content/discussion/latest', methods=['GET'])
+# def return_latest_index():
+#     discussions = database.discussion
+#     size = discussions.count()
+#     return jsonify({'latest':size})
 
 
-@app.route('/content/discussion', methods=["POST"])
-def insert_discussion():
-    request_data = request.get_data()
-    discussions = database.discussion
-    json_data = json.loads(request_data)
-    print("\n\n\n\n\n\n\n\n\n")
-    print(json_data)
-    discussions.insert({
-        "author":json_data["author"],
-        "content":json_data["content"],
-        "timestamp":datetime.datetime.utcnow(),
-        "seq":discussions.find().count()+1
-        })
-    return 0
+# @app.route('/content/discussion', methods=["POST"])
+# def insert_discussion():
+#     request_data = request.get_data()
+#     discussions = database.discussion
+#     json_data = json.loads(request_data)
+#     print("\n\n\n\n\n\n\n\n\n")
+#     print(json_data)
+#     discussions.insert({
+#         "author":json_data["author"],
+#         "content":json_data["content"],
+#         "timestamp":datetime.datetime.utcnow(),
+#         "seq":discussions.find().count()+1
+#         })
+#     return 0
 
 
 if __name__ == "__main__":
