@@ -53,3 +53,20 @@ def register():
             # code 201 stands for username already registered.
             # TODO take status in frontend & display proper warnings.
             return jsonify({"status": 201})
+
+@auth.route('/check',methods=['GET'])
+def return_user_number():
+    user = database.account
+    return_user_number = user.count()
+    return jsonify({'user_number':return_user_number})
+
+@auth.route('/getAllUser',methods=["GET"])
+def return_all_username():
+    users = database.account
+    send_out_users = []
+    cursor = users.find({})
+    for doc in cursor:
+        send_out_users.append(doc["username"])
+    print(send_out_users[0])
+    jsonString = json.dumps(send_out_users)
+    return jsonString

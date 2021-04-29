@@ -44,3 +44,11 @@ def return_user_article_collection(user_name):
     else:
         # temporary patch only for backend.
         print("no such user")
+
+
+@article.route("/check",methods=["GET"])
+def return_article_number():
+    articles = database.articles
+    article_number = articles.count()
+    print("articles_number" + str(article_number))
+    return jsonify({'article_number':article_number})
