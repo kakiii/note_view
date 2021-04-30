@@ -3,7 +3,7 @@
     <span v-html="svgs" />
   </div>
   <div v-else-if="mode === 'userpage'">
-    <p style="width: 4em; height: 4em;margin: auto" v-html="svgs" />
+    <p style="width: 16em; height: 16em;" v-html="svgs" />
   </div>
 </template>
 
