@@ -1,5 +1,6 @@
 import bcrypt
 import pymongo
+import re
 from flask import Blueprint, jsonify, request, json, session
 
 client = pymongo.MongoClient(
@@ -70,3 +71,17 @@ def return_all_username():
     print(send_out_users[0])
     jsonString = json.dumps(send_out_users)
     return jsonString
+
+@auth.route('/findUser',methods=["GET"])
+def return_certain_user():
+    name_raw = request.get_data()
+    name_json = json.loads(name_raw)
+    name_extract = name_json["username"]
+    real_name = name_extract + "*"
+    users = database.account
+    regex = re.compile(real_name,re.IGNORECASE)
+    cursor = users.find_one({"username":regex})
+    username_return = cursor["username"]
+    return jsonify({
+        "username":username_return
+    })
