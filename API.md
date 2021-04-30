@@ -90,3 +90,56 @@
 ["user1", "user2", ...] //一被BAN用户的用户名组成的数组
 ```
 
+## Disucssion部分
+
+#### 获取当前discussion总数
+
+使用`/content/discussion/`接口，使用**GET**操作，没有BODY参数。
+
+返回的内容为：
+```json
+{
+    "discussion_size":... //讨论总数
+}
+```
+
+#### 用户添加自己的discussion
+
+使用`/content/discussion/`接口，使用**POST**操作。
+
+**该操作和上面的获取总数使用同一个URL的接口，只有HTTP的操作不同**
+
+需要发送BODY内容，类似：
+
+```json
+{
+    "author":..., //discussion的作者
+    "content":... //discussion的具体内容
+}
+```
+
+**该API目前暂时不返回有意义的内容**
+
+#### 依据特定的ID获取Discussion的内容
+
+使用`/content/discussion/<id>`接口，使用**GET**操作。
+
+`<id>`内的内容即讨论的序号。
+
+如果找到了对应的discussion内容，返回：
+
+```json
+{
+    "id":...,//discussion的id
+    "content":...,//discussion的具体内容
+    "author":...//discussion的作者
+}
+```
+
+如果**没有找到**对应的discussion内容，则返回：
+```json
+{
+    "id":...,
+    "content":"NOT FOUND"
+}
+```

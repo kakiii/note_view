@@ -25,8 +25,6 @@ def insert_discussion():
     request_data = request.get_data()
     discussions = database.discussion
     json_data = json.loads(request_data)
-    print("\n\n\n\n\n\n\n\n\n")
-    print(json_data)
     discussions.insert({
         "author":json_data["author"],
         "content":json_data["content"],
