@@ -23,8 +23,17 @@ def return_article(article_id):
 def add_article():
     request_data = request.get_data()
     data_json = json.loads(request_data)
+    new_article_ids = []
     article_collection = database.articles
     article_collection.insert_one({'id': data_json['id'], 'content': data_json['content'],'author':data_json["author"],'title':data_json["title"]})
+    user_collection = database.account
+    dedicated_user = user_collection.find_one({"username":data_json['author']})
+    original_article_ids = dedicated_user['my_article']
+    print(original_article_ids)
+    new_article_ids = original_article_ids
+    new_article_ids.append(data_json['id'])
+    print(new_article_ids)
+    user_collection.update_one({"username":data_json['author']},{"$set":{"my_article":new_article_ids}})
     return jsonify({"success":"yes"})
 
 
