@@ -1,12 +1,14 @@
 <template>
   <div>
+    <h1>EDITOR</h1>
     <el-container>
       <el-radio-group
         v-model="isCollapse"
         style="margin-bottom: 20px; alignment: left"
       >
-        <el-radio-button :label="false">展开</el-radio-button>
-        <el-radio-button :label="true">收起</el-radio-button>
+        <el-radio-button :label="true"> &lt; </el-radio-button>
+        <el-radio-button :label="false"> &gt; </el-radio-button>
+
       </el-radio-group>
       <el-select
         v-model="headerValue"
@@ -35,7 +37,7 @@
       <!--      <el-button v-on:click="refresh">Refresh</el-button>-->
       <el-input
         v-model="article_id"
-        placeholder="choose a id"
+        placeholder="Choose an ID"
         type="text"
         style="width: 200px"
         clearable
@@ -422,10 +424,10 @@ This is error
 .el-button,
 .el-input,
 .el-select,
-.el-radio-button {
+.el-radio-button{
   width: auto;
   height: 40px;
-  margin: 5px;
+  margin: 3px;
   text-align: center;
 }
 
