@@ -4,14 +4,23 @@
     <p>Discussions: {{ total_discussions }}</p>
     <p>Articles: {{ total_artilces }}</p>
     <p>Users: {{ total_users }}</p>
-    <el-button icon="el-icon-search" class="get-button" type="button" @click="getAllUser" value="GET All USERS" block
-      >Get All Users</el-button
-    >
-    <!-- <input type="button" @click="getAllUser" value="GET ALL USERS" /> -->
-    <input type="search" v-model="search_user_name" />
-    <input type="button" @click="searchUser" value="SEARCH FOR THAT USER" />
+    <el-button icon="el-icon-tickets" class="get-button" type="button" @click="getAllUser" value="GET All USERS" block
+      >Get All Users</el-button>
     <br /><br />
-    <p>Found User name: {{ found_user_name }}</p>
+    <br /><br />
+    <!-- <input type="button" @click="getAllUser" value="GET ALL USERS" /> -->
+    <el-input
+              class="search"
+              type="search"
+              v-model="search_user_name"
+              placeholder="Search for a user"
+              prefix-icon="el-icon-user-solid"
+    ></el-input>
+    <el-button icon="el-icon-search" class="search-button" type="button" @click="searchUser" value="SEARCH FOR THAT USER" block
+    ></el-button>
+    <!-- <input type="button" @click="searchUser" value="SEARCH FOR THAT USER" /> -->
+    <br /><br />
+    <p>Found User: {{ found_user_name }}</p>
     <ul>
       <li v-for="item in registered_users" :key="item">
         {{ item }}
@@ -99,5 +108,8 @@ export default {
   margin-top: 40px;
   background: #020080;
   color: white;
+}
+.search {
+  width: 200px;
 }
 </style>
