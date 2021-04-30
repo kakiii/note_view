@@ -7,5 +7,6 @@ export default new Vuex.Store({
     state:{
         isLogin: false,
         username: "",
+        gravatar: false,
     }
 })
