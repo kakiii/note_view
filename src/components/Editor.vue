@@ -30,7 +30,8 @@
       <el-button v-on:click="markup('indent')">Tab</el-button>
       <el-button v-on:click="clear">Clear</el-button>
       <el-button>Save</el-button>
-      <el-button v-on:click="upload">Upload</el-button>
+      <el-button v-on:click="upload" :disabled="content.length<=5||!this.$store.state.isLogin">Upload</el-button>
+      <el-button v-on:click="getTitle">Get Title</el-button>
       <!--      <el-button v-on:click="refresh">Refresh</el-button>-->
       <el-input
         v-model="article_id"
@@ -85,7 +86,7 @@
 import MarkdownItVue from "markdown-it-vue";
 import "markdown-it-vue/dist/markdown-it-vue.css";
 import axios from "axios";
-
+import CryptoJS from "crypto-js";
 export default {
   components: { MarkdownItVue },
   name: "Editor",
@@ -110,6 +111,18 @@ export default {
     }
   },
   methods: {
+    getTitle(){
+      const findTitle = /# [\w ]+/;
+      let possibleTitle = this.content.match(findTitle);
+      let realTitle;
+      if (possibleTitle!==null) {
+        realTitle = possibleTitle[0].substring(2);
+      }else{
+        realTitle = this.content.match(/[\w]+\n?/)[0];
+      }
+      console.log(this.$store.state.username+" "+realTitle+"\n"+CryptoJS.MD5(this.$store.state.username+" "+realTitle).toString());
+      return realTitle;
+    },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },
@@ -133,6 +146,8 @@ export default {
       }
     },
     upload() {
+      
+
       let url = "";
       if (process.env.NODE_ENV === "development") {
         url = "http://localhost:5000/article";
@@ -142,7 +157,9 @@ export default {
       axios
         .post(url, {
           id: this.article_id,
+          author: this.$store.state.username,
           content: this.content,
+          title: getTitle(),
         })
         .catch((err) => {
           console.log(err);
