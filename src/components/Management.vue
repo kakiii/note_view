@@ -1,14 +1,16 @@
 <template>
   <div>
     <h1>MANAGEMENT</h1>
-    <p>Users: {{ total_users }} &nbsp; Articles: {{ total_artilces }} &nbsp; Discussions: {{ total_discussions }} </p>
-    <el-button icon="el-icon-s-unfold" class="get-button" type="button" @click="getAllUser" value="GET All USERS" block
+    <p>Discussions: {{ total_discussions }}</p>
+    <p>Articles: {{ total_artilces }}</p>
+    <p>Users: {{ total_users }}</p>
+    <el-button icon="el-icon-search" class="get-button" type="button" @click="getAllUser" value="GET All USERS" block
       >Get All Users</el-button
     >
 
-    <!--<p>If you want to ban a user, just enter the user's name then hit <strong>BAN</strong> button</p>
+    <p>If you want to ban a user, just enter the user's name then hit <strong>BAN</strong> button</p>
     <input type="text" v-model="ban_user_name" />
-    <input type="button" @click="banUser" value="BAN THE USER"/>-->
+    <input type="button" @click="banUser" value="BAN THE USER"/>
     <br><br>
     <!-- <input type="button" @click="getAllUser" value="GET ALL USERS" /> -->
     <el-input
@@ -21,16 +23,6 @@
     <el-button icon="el-icon-search" class="search-button" type="button" @click="searchUser" value="SEARCH FOR THAT USER" block
     ></el-button>
     <!-- <input type="button" @click="searchUser" value="SEARCH FOR THAT USER" /> -->
-    <br /><br />
-    <el-input
-        class="ban"
-        type="text"
-        v-model="ban_user_name"
-        placeholder="Ban a user"
-        prefix-icon="el-icon-user-solid"
-    ></el-input>
-    <el-button icon="el-icon-circle-close" class="ban-button" type="button" @click="banUser" value="BAN THE USER" block
-    ></el-button>
     <br /><br />
     <p>Found User: {{ found_user_name }}</p>
     <ul>
@@ -143,8 +135,7 @@ export default {
   background: #020080;
   color: white;
 }
-.search,
-.ban {
+.search {
   width: 200px;
 }
 </style>
