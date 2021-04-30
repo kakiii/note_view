@@ -18,7 +18,7 @@
       <el-menu-item index="/about">ABOUT</el-menu-item>
       <el-menu-item index="/discussion">DISCUSSION</el-menu-item>
       <el-menu-item index="/todo">TODOLIST</el-menu-item>
-      <el-menu-item v-if="this.$store.state.username==='admin'" index="/management">Management</el-menu-item>
+      <el-menu-item v-if="this.$store.state.username==='admin'" index="/management">MANAGEMENT</el-menu-item>
       <el-menu-item
         :disabled="!this.$store.state.isLogin"
         style="float: right"

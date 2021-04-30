@@ -1,16 +1,17 @@
 <template>
   <div>
-    <h1>THIS IS ADMIN PAGE</h1>
-    <p>Currently, there's {{ total_discussions }} discussions</p>
-    <p>And there's {{ total_artilces }} articles made by {{ total_users }} users.</p>
-    <br /><br /><br />
-    <h4>For further infos about every user's usename, press the button below.</h4>
+    <h1>MANAGEMENT</h1>
+    <p>Discussions: {{ total_discussions }}</p>
+    <p>Articles: {{ total_artilces }}</p>
+    <p>Users: {{ total_users }}</p>
+    <el-button icon="el-icon-search" class="get-button" type="button" @click="getAllUser" value="GET All USERS" block
+      >Get All Users</el-button
+    >
+    <!-- <input type="button" @click="getAllUser" value="GET ALL USERS" /> -->
     <input type="search" v-model="search_user_name" />
     <input type="button" @click="searchUser" value="SEARCH FOR THAT USER" />
     <br /><br />
     <p>Found User name: {{ found_user_name }}</p>
-    <br /><br /><br />
-    <input type="button" @click="getAllUser" value="GET ALL USERS" />
     <ul>
       <li v-for="item in registered_users" :key="item">
         {{ item }}
@@ -92,3 +93,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.get-button {
+  margin-top: 40px;
+  background: #020080;
+  color: white;
+}
+</style>

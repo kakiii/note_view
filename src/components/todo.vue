@@ -15,16 +15,16 @@
         <el-input
           type="text"
           v-model="inputValue"
-          placeholder="Input ToDo"
+          placeholder="Enter your plan"
           @keyup.enter.native="add()"
           style="width: 400px"
         ></el-input>
-        <el-button type="send" @click="add()">add</el-button>
+        <el-button icon="el-icon-plus" type="send" @click="add()"></el-button>
 
         <el-row gutter="20">
           <el-col :span="12">
             <div class="grid-content bg-purple">
-              <h3>ToDo</h3>
+              <h3>To Do</h3>
               <ul v-for="(item, index) in list" :key="'info-' + index">
                 <!-- 这里的info没什么意义就是防俩v-for并行报错 -->
                 <li v-if="item.done === false">
@@ -174,7 +174,7 @@ export default {
   methods: {
     add() {
       if (this.inputValue == null) {
-        alert("不能爲空");
+        alert("Can not be null!");
       } else {
         //this.list.push({ text: this.inputValue, done: false });
         this.list.push({ text: this.inputValue, done: false });
@@ -234,7 +234,8 @@ export default {
 }
 
 .bg-purple {
-  background: #d3dce6;
+  background: #020080;
+  color: white;
 }
 
 /* .bg-purple-dark {
