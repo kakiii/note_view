@@ -1,13 +1,13 @@
 <template>
   <div v-if="mode === 'header'">
     <p
-      style="width: 2.3em; height: 2.3em; border-radius: 50%; overflow: hidden"
+      style="width: 2.3em; height: 2.3em; border-radius: 50%; overflow: hidden;"
       v-html="svgs"
     />
   </div>
   <div v-else-if="mode === 'userpage'">
     <p
-      style="width: 4em; height: 4em; border-radius: 50%; overflow: hidden;  margin: auto"
+      style="width: 16em; height: 16em; border-radius: 50%; overflow: hidden;"
       v-html="svgs"
     />
   </div>
@@ -44,12 +44,12 @@ function avatar(gen_key, mode) {
   var str = hash.toString(16);
   var color = "#" + str.substring(0, 6);
   var size;
-  if (mode == "header") {
+  if (mode === "header") {
     size = 4;
-  } else if (mode == "userpage") {
-    size = 8;
+  } else if (mode === "userpage") {
+    size = 32;
   }
-  var svg = "<svg>";
+  var svg = "<svg style='width: 16em; height: 16em'>";
   for (var i = 0; i < 8; i++) {
     for (var j = 0; j < 4; j++) {
       if (str.charAt(4 * i + j) < 8) {
