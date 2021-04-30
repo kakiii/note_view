@@ -1,14 +1,13 @@
 <template>
   <div>
-
-    <br /><br />
+    <h1>EDITOR</h1>
     <el-container>
       <el-radio-group
         v-model="isCollapse"
         style="margin-bottom: 20px; alignment: left"
       >
-        <el-radio-button :label="true">-</el-radio-button>
-        <el-radio-button :label="false">+</el-radio-button>
+        <el-radio-button :label="true"> &lt; </el-radio-button>
+        <el-radio-button :label="false"> &gt; </el-radio-button>
 
       </el-radio-group>
       <el-select
@@ -38,7 +37,7 @@
       <!--      <el-button v-on:click="refresh">Refresh</el-button>-->
       <el-input
         v-model="article_id"
-        placeholder="choose a id"
+        placeholder="Choose an ID"
         type="text"
         style="width: 200px"
         clearable
@@ -421,21 +420,13 @@ This is error
   width: 100%;
 }
 
-.el-button{
-  width: auto;
-  height: 40px;
-  margin: 5px;
-  text-align: center;
-  background: #020080;
-  color: white;
-}
-
+.el-button,
 .el-input,
 .el-select,
 .el-radio-button{
   width: auto;
   height: 40px;
-  margin: 5px;
+  margin: 3px;
   text-align: center;
 }
 
