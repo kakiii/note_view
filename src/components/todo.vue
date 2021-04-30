@@ -234,8 +234,9 @@ export default {
 }
 
 .bg-purple {
-  background: #020080;
-  color: white;
+  background: #93E0FF;
+  color: #253B6E;
+  font-size: small;
 }
 
 /* .bg-purple-dark {

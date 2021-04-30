@@ -2,7 +2,7 @@
 <template>
   <div>
     <el-container>
-      <el-header>This is discussion borad. 这是讨论版</el-header>
+      <el-header>This is discussion borad. </el-header>
 
       <el-main>
         <ul v-for="(item, index) in list" :key="index">
@@ -14,6 +14,7 @@
         @current-change="handleCurrentChange"
         :current-page="currentPage"
         :page-size="pagesize"
+        :page-sizes="[8, 10, 20, 40]"
         layout="total, prev, pager, next, jumper"
         :total="total"
       >
@@ -34,7 +35,7 @@
 
 <script>
 import axios from "axios";
-
+import store from "../store";
 export default {
   name: "Discussion",
   data() {
@@ -55,27 +56,43 @@ export default {
     },
 
     clickSending() {
-      if (this.textarea == "") {
-        alert("not null");
+      let url = "";
+      if (process.env.NODE_ENV === "development") {
+        url = "http://127.0.0.1:5000/content/discussion/";
       } else {
-        let data = {
-          author: "name", //need get author name api
-          content: this.textarea,
-        };
-        axios
-          .post(
-            "http://127.0.0.1:5000/content/discussion",
-            data
-            // , {header: {
-            //   "Content-Type": "application/json", //如果写成contentType会报错
-            // }}
-          )
-          .then((res) => {
-            console.log("res=>", res);
-          });
-        this.textarea = "";
+        url = "/content/discussion/";
       }
-      this.currentPage=1;
+
+      if (store.state.isLogin == true) {
+        if (this.textarea == "") {
+          alert("not null");
+        } else {
+          let data = {
+            author: this.$store.state.username,
+            content: this.textarea,
+          };
+          console.log(data);
+
+          axios
+            .post(url, {
+              author: this.$store.state.username,
+              content: this.textarea,
+            })
+            .then((res) => {
+              console.log("res=>", res);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+        this.textarea = "";
+        //this.total=this.total+1;
+
+          this.currentPage = 1;
+
+      } else {
+        alert("Must log in first");
+      }
     },
   },
 
@@ -88,34 +105,40 @@ export default {
         url = "/";
       }
 
-      this.list = [];
-      var axiosList = [];
+      axios.get(url + "content/discussion").then((res) => {
+        console.log("hello" + res.data["discussion_size"]);
+        this.total = res.data["discussion_size"];
+        // i = this.total;
+        console.log("total is" + this.total);
 
-      let currentPos = this.total - (this.currentPage-1) * 8;
-      if (currentPos > 8) {
-        for (let i = currentPos; i >= currentPos-7; i--) {
-          axiosList.push(axios.get(url + "content/discussion/" + i));
-        }
-      }else{
-        // currentPos=currentPos+8;
-        for (let i = currentPos; i >= 1; i--) {
-          axiosList.push(axios.get(url + "content/discussion/" + i));
-        }
-      }
+        this.list = [];
+        var axiosList = [];
 
-      axios
-        .all(axiosList)
-        .then((results) => {
-          let temp = results.map((r) => r.data);
-          for (let j = 0; j < temp.length; j++) {
-            this.list.push({
-              author: temp[j].author,
-              content: temp[j].content,
-              id: temp[j].id,
-            });
+        let currentPos = this.total - (this.currentPage - 1) * 8;
+        if (currentPos > 8) {
+          for (let i = currentPos; i >= currentPos - 7; i--) {
+            axiosList.push(axios.get(url + "content/discussion/" + i));
           }
-        })
-        .catch((err) => console.log(err));
+        } else {
+          for (let i = currentPos; i >= 1; i--) {
+            axiosList.push(axios.get(url + "content/discussion/" + i));
+          }
+        }
+
+        axios
+          .all(axiosList)
+          .then((results) => {
+            let temp = results.map((r) => r.data);
+            for (let j = 0; j < temp.length; j++) {
+              this.list.push({
+                author: temp[j].author,
+                content: temp[j].content,
+                id: temp[j].id,
+              });
+            }
+          })
+          .catch((err) => console.log(err));
+      });
     },
   },
 
@@ -175,7 +198,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .el-header {
   background-color: #161515;
   color: rgb(255, 0, 0);
@@ -197,3 +220,4 @@ export default {
   line-height: 60px;
 }
 </style>
+

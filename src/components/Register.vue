@@ -38,10 +38,10 @@
               type="primary"
               @click="exec_register"
               block
-          >Register</el-button>
+          >REGISTER</el-button>
         </el-form-item>
 
-        <a class="home" href="">Home</a>
+        <a class="home" href="">HOME</a>
       </el-form>
     </el-card>
   </div>
@@ -109,17 +109,22 @@ export default {
 .login-button {
   width: 100%;
   margin-top: 40px;
-  background: #020080;
+  background: #93E0FF;
+  color: white;
+  border-color: #C4E2D8;
+  font-size: medium;
 }
 .login-box {
   width: 290px;
 }
 .home {
   margin-top: 10px;
+  color: #253B6E;
+  font-size: smaller;
 }
 </style>
 <style lang="scss">
-$teal: rgb(2, 0, 128);
+$teal: rgb(147, 224, 255);
 .el-button--primary {
   background: $teal;
   border-color: $teal;

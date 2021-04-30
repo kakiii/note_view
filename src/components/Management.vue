@@ -182,7 +182,11 @@ export default {
 <style scoped>
 .get-button {
   margin-top: 40px;
-  background: #020080;
+  background: #93E0FF;
+  color: #253B6E;
+}
+.ban-button{
+  background: red;
   color: white;
 }
 .search,

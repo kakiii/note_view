@@ -33,15 +33,8 @@
       <el-button v-on:click="clear">Clear</el-button>
       <el-button>Save</el-button>
       <el-button v-on:click="upload" :disabled="content.length<=5||!this.$store.state.isLogin">Upload</el-button>
-      <el-button v-on:click="getTitle">Get Title</el-button>
+      <!-- <el-button v-on:click="getTitle">Get Title</el-button> -->
       <!--      <el-button v-on:click="refresh">Refresh</el-button>-->
-      <el-input
-        v-model="article_id"
-        placeholder="Choose an ID"
-        type="text"
-        style="width: 200px"
-        clearable
-      />
     </el-container>
     <el-container> </el-container>
 
@@ -148,8 +141,7 @@ export default {
       }
     },
     upload() {
-      
-
+      this.getTitle();
       let url = "";
       if (process.env.NODE_ENV === "development") {
         url = "http://localhost:5000/article";
@@ -424,11 +416,11 @@ This is error
 .el-button,
 .el-input,
 .el-select,
-.el-radio-button{
+.el-radio-button {
   width: auto;
   height: 40px;
-  margin: 3px;
   text-align: center;
+  border-color: white;
 }
 
 .el-menu-vertical-demo:not(.el-menu--collapse) {
