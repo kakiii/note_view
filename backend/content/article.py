@@ -10,9 +10,8 @@ article = Blueprint('article', __name__, url_prefix='/article')
 
 @article.route('/<int:article_id>', methods=['GET'])
 def return_article(article_id):
-    # print(article_id)
-    article_collection = database.articles
-    match_article = article_collection.find_one({'id': article_id})
+    article_table = database.articles
+    match_article = article_table.find_one({'id': article_id})
     if match_article:
         return jsonify({'ID': article_id, 'Content': match_article['content']})
     else:
@@ -21,19 +20,19 @@ def return_article(article_id):
 
 @article.route('', methods=['POST'])
 def add_article():
-    request_data = request.get_data()
-    data_json = json.loads(request_data)
-    new_article_ids = []
-    article_collection = database.articles
-    article_collection.insert_one({'id': data_json['id'], 'content': data_json['content'],'author':data_json["author"],'title':data_json["title"]})
-    user_collection = database.account
-    dedicated_user = user_collection.find_one({"username":data_json['author']})
-    original_article_ids = dedicated_user['my_article']
+    incoming_data = request.get_data()
+    jsonified_incoming_data = json.loads(incoming_data)
+    returning_article_ids_arr = []
+    article_table = database.articles
+    article_table.insert_one({'id': jsonified_incoming_data['id'], 'content': jsonified_incoming_data['content'],'author':jsonified_incoming_data["author"],'title':jsonified_incoming_data["title"]})
+    account_table = database.account
+    matched_user = account_table.find_one({"username":jsonified_incoming_data['author']})
+    original_article_ids = matched_user['my_article']
     print(original_article_ids)
-    new_article_ids = original_article_ids
-    new_article_ids.append(data_json['id'])
-    print(new_article_ids)
-    user_collection.update_one({"username":data_json['author']},{"$set":{"my_article":new_article_ids}})
+    returning_article_ids_arr = original_article_ids
+    returning_article_ids_arr.append(jsonified_incoming_data['id'])
+    print(returning_article_ids_arr)
+    account_table.update_one({"username":jsonified_incoming_data['author']},{"$set":{"my_article":returning_article_ids_arr}})
     return jsonify({"success":"yes"})
 
 
@@ -41,11 +40,11 @@ def add_article():
 # An example may be "/article/user/admin", then it will return admin's all article_id.
 @article.route('/user/<string:user_name>', methods=['GET'])
 def return_user_article_collection(user_name):
-    user_db = database.account
-    dedicated_user = user_db.find_one({'username': user_name})
-    if dedicated_user:
-        if dedicated_user['my_article']:
-            return jsonify({'article_collection': dedicated_user['my_article']})
+    account_table = database.account
+    matched_user = account_table.find_one({'username': user_name})
+    if matched_user:
+        if matched_user['my_article']:
+            return jsonify({'article_collection': matched_user['my_article']})
     else:
         # temporary patch only for backend.
         print("no such user")
@@ -53,7 +52,7 @@ def return_user_article_collection(user_name):
 
 @article.route("/check",methods=["GET"])
 def return_article_number():
-    articles = database.articles
-    article_number = articles.count()
-    print("articles_number" + str(article_number))
-    return jsonify({'article_number':article_number})
+    articles_table = database.articles
+    article_count = articles_table.count()
+    print("articles_number" + str(article_count))
+    return jsonify({'article_count':article_count})
