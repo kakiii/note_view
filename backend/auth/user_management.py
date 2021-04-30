@@ -22,13 +22,13 @@ def login():
         # 有用户
         if bcrypt.hashpw(data_json['password'].encode('utf-8'), login_user['password']) == login_user['password']:
             session['username'] = data_json['username']
-            print("Check complete")
+            # print("Check complete")
             # code 200 stands for user located & confirmed.
             return jsonify({'status': 200})
         else:
-            print(data_json['password'])
-            print("\n")
-            print(login_user['password'])
+            # print(data_json['password'])
+            # print("\n")
+            # print(login_user['password'])
             # code 201 stands for user located but not confirmed.
             return jsonify({'status': 201})
     else:
@@ -68,7 +68,7 @@ def return_all_username():
     cursor = users.find({})
     for doc in cursor:
         send_out_users.append(doc["username"])
-    print(send_out_users[0])
+    # print(send_out_users[0])
     jsonString = json.dumps(send_out_users)
     return jsonString
 
