@@ -121,7 +121,7 @@ export default {
         realTitle = this.content.match(/[\w]+\n?/)[0];
       }
       console.log(this.$store.state.username+" "+realTitle+"\n"+CryptoJS.MD5(this.$store.state.username+" "+realTitle).toString());
-      return realTitle;
+      this.currentTitle = realTitle;
     },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -156,10 +156,10 @@ export default {
       }
       axios
         .post(url, {
-          id: CryptoJS.MD5(this.$store.state.username+" "+this.getTitle()).toString(),
+          id: CryptoJS.MD5(this.$store.state.username+" "+this.currentTitle).toString(),
           author: this.$store.state.username,
           content: this.content,
-          title: this.getTitle(),
+          title: this.currentTitle,
         })
         .catch((err) => {
           console.log(err);
@@ -269,6 +269,7 @@ export default {
   },
   data() {
     return {
+      currentTitle:"",
       article_list: [],
       article_id: null,
       headerValue: "",
