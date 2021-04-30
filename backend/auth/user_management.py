@@ -85,3 +85,17 @@ def return_certain_user():
     return jsonify({
         "username":username_return
     })
+
+@auth.route('/banUser',methods=["PUT"])
+def ban_user():
+    users_collection = database.account
+    incoming_user_name = request.get_data()
+    incoming_json = json.loads(incoming_user_name)
+    real_user_name = incoming_json["username"]
+    if(users_collection.find_one({"username":real_user_name})):
+        dedicated_user = users_collection.find_one({"username":real_user_name})
+        users_collection.update_one({"username":real_user_name},{"$set":{"ban":100}})
+        print("Delete complete")
+        return jsonify({"delete":"done"})
+    else:
+        return jsonify({"delete":"undone"})
