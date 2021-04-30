@@ -143,3 +143,64 @@
     "content":"NOT FOUND"
 }
 ```
+
+## Article部分
+
+#### 通过文章的ID获取指定的Article
+
+使用接口`/article/<id>`，使用**GET**方法。
+
+如果ID对应的文章存在，则返回：
+```json
+{
+    "ID":...,//文章的ID
+    "Content":...//文章的内容
+}
+```
+
+如果ID对应的文章不存在，则返回：
+```json
+{
+    "ID":...,
+    "Content":"NOT FOUND"
+}
+```
+
+#### 获取当前全网站的文章总数
+
+使用接口`/article/check`，使用**GET**操作。返回：
+
+```json
+{
+    "article_number":...//文章总数
+}
+```
+
+#### 用户上传文章
+
+使用接口`/article`，使用**POST**操作。
+> 用户修改以前文章的API尚未实现
+
+发送的BODY包含：
+```json
+{
+    "id":...,
+    "content":...,
+    "author":...,
+    "title":...
+}
+```
+其中id和title由前端组件自动创建。
+
+> 如果插入失败或中途出现异常，抛回前端的返回值尚未实现。
+
+#### 获取某个用户所有文章的ID（不含标题）
+
+使用接口`/article/user/<user_id>`，使用**GET**获取。
+
+返回：
+```json
+{
+    "article_collection":...//用户的文章ID的数组
+}
+```
