@@ -121,7 +121,7 @@ export default {
       if (process.env.NODE_ENV === "development") {
         url = "http://localhost:5000/article/";
       } else {
-        url = "article/";
+        url = "/article/";
       }
       if (id !== undefined) {
         axios
