@@ -4,10 +4,14 @@
     <p>Discussions: {{ total_discussions }}</p>
     <p>Articles: {{ total_artilces }}</p>
     <p>Users: {{ total_users }}</p>
-    <el-button icon="el-icon-tickets" class="get-button" type="button" @click="getAllUser" value="GET All USERS" block
-      >Get All Users</el-button>
-    <br /><br />
-    <br /><br />
+    <el-button icon="el-icon-search" class="get-button" type="button" @click="getAllUser" value="GET All USERS" block
+      >Get All Users</el-button
+    >
+
+    <p>If you want to ban a user, just enter the user's name then hit <strong>BAN</strong> button</p>
+    <input type="text" v-model="ban_user_name" />
+    <input type="button" @click="banUser" value="BAN THE USER"/>
+    <br><br>
     <!-- <input type="button" @click="getAllUser" value="GET ALL USERS" /> -->
     <el-input
               class="search"
@@ -39,11 +43,33 @@ export default {
       total_users: null,
       total_discussions: null,
       registered_users: [],
-      search_user_name:"",
-      found_user_name:""
+      search_user_name: '',
+      found_user_name: '',
+      ban_user_name: '',
     };
   },
   methods: {
+    banUser() {
+      let ban_url = '';
+      if (process.env.NODE_ENV === 'development') {
+        ban_url = 'http://127.0.0.1:5000/';
+      } else {
+        ban_url = '/';
+      }
+      axios({
+        method:"put",
+        url:ban_url + "auth/banUser",
+        data:{
+          username:this.ban_user_name
+        }
+      }).then((res) => {
+        if(res.data.delete == "done"){
+          alert("User has been banned.");
+        }else{
+          alert("There's no such user.");
+        }
+      })
+    },
     getAllUser() {
       let url = '';
       if (process.env.NODE_ENV === 'development') {
@@ -64,15 +90,15 @@ export default {
         search_url = '/';
       }
       axios({
-        method:'post',
-        url:search_url + "auth/findUser",
-        data:{
-          username:this.search_user_name
-        }
-      }).then((res) => {
+        method: 'post',
+        url: search_url + 'auth/findUser',
+        data: {
+          username: this.search_user_name,
+        },
+      }).then(res => {
         console.log(res.data.username);
         this.found_user_name = res.data.username;
-      })
+      });
     },
   },
   mounted() {
