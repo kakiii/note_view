@@ -13,10 +13,18 @@
     <input type="button" @click="banUser" value="BAN THE USER"/>
     <br><br>
     <!-- <input type="button" @click="getAllUser" value="GET ALL USERS" /> -->
-    <input type="search" v-model="search_user_name" />
-    <input type="button" @click="searchUser" value="SEARCH FOR THAT USER" />
+    <el-input
+              class="search"
+              type="search"
+              v-model="search_user_name"
+              placeholder="Search for a user"
+              prefix-icon="el-icon-user-solid"
+    ></el-input>
+    <el-button icon="el-icon-search" class="search-button" type="button" @click="searchUser" value="SEARCH FOR THAT USER" block
+    ></el-button>
+    <!-- <input type="button" @click="searchUser" value="SEARCH FOR THAT USER" /> -->
     <br /><br />
-    <p>Found User name: {{ found_user_name }}</p>
+    <p>Found User: {{ found_user_name }}</p>
     <ul>
       <li v-for="item in registered_users" :key="item">
         {{ item }}
@@ -126,5 +134,8 @@ export default {
   margin-top: 40px;
   background: #020080;
   color: white;
+}
+.search {
+  width: 200px;
 }
 </style>
