@@ -1,5 +1,3 @@
-<!-- todolist试做,需要优化ui。checkbox问题解决，本地存储todolist-->
-
 <template>
   <div>
     <!-- 测试用
@@ -7,9 +5,6 @@
     <button @click="myGetFunction()">Get Local Storage Data</button><br /> -->
 
     <el-container>
-      <!-- <el-header height="20">
-        <h1>To Do List</h1>
-      </el-header> -->
       <el-main>
         <h1>To Do List</h1>
         <el-input
@@ -20,66 +15,10 @@
           style="width: 400px"
         ></el-input>
         <el-button icon="el-icon-plus" type="send" @click="add()"></el-button>
+        <br /><br />
 
-        <el-row gutter="20">
-          <el-col :span="12">
-            <div class="grid-content bg-purple">
-              <h3>To Do</h3>
-              <ul v-for="(item, index) in list" :key="'info-' + index">
-                <!-- 这里的info没什么意义就是防俩v-for并行报错 -->
-                <li v-if="item.done === false">
-                  <div style="float: left">
-                    <el-checkbox type="checkbox" @change="change(index, true)">
-                    </el-checkbox>
-                    <span>{{ item.text }}</span>
-                  </div>
-                  <div style="float: right; margin-right: 40px">
-                    <el-button
-                      icon="el-icon-delete"
-                      size="mini"
-                      circle
-                      @click="remove(index)"
-                    ></el-button>
-                  </div>
-                  <br />
-                </li>
-              </ul>
-            </div>
-          </el-col>
-
-          <el-col :span="12">
-            <div class="grid-content bg-purple">
-              <h3>Done</h3>
-              <div>
-                <ul v-for="(item, index) in list" :key="index">
-                  <li v-if="item.done === true">
-                    <div style="float: left">
-                      <el-checkbox
-                        type="checkbox"
-                        @change="change(index, false)"
-                        checked="checked"
-                      ></el-checkbox>
-                      <span>{{ item.text }}</span>
-                    </div>
-                    <div style="float: right; margin-right: 40px">
-                      <el-button
-                        icon="el-icon-delete"
-                        size="mini"
-                        circle
-                        @click="remove(index)"
-                      ></el-button>
-                    </div>
-                    <br />
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </el-col>
-        </el-row>
-
-        <!-- 折叠
         <el-row type="flex" justify="center">
-          <el-col :span="12">
+          <el-col :span="20">
             <el-collapse>
               <el-collapse-item title="Todo">
                 <ul v-for="(item, index) in list" :key="'info-' + index">
@@ -131,6 +70,62 @@
               </el-collapse-item>
             </el-collapse>
           </el-col>
+        </el-row>
+        
+        <!-- <el-row gutter="20">
+          <el-col :span="12">
+            <div class="grid-content bg-purple">
+              <h3>To Do</h3>
+              <ul v-for="(item, index) in list" :key="'info-' + index">
+                这里的info没什么意义就是防俩v-for并行报错
+                <li v-if="item.done === false">
+                  <div style="float: left">
+                    <el-checkbox type="checkbox" @change="change(index, true)">
+                    </el-checkbox>
+                    <span>{{ item.text }}</span>
+                  </div>
+                  <div style="float: right; margin-right: 40px">
+                    <el-button
+                      icon="el-icon-delete"
+                      size="mini"
+                      circle
+                      @click="remove(index)"
+                    ></el-button>
+                  </div>
+                  <br />
+                </li>
+              </ul>
+            </div>
+          </el-col>
+
+          <el-col :span="12">
+            <div class="grid-content bg-purple">
+              <h3>Done</h3>
+              <div>
+                <ul v-for="(item, index) in list" :key="index">
+                  <li v-if="item.done === true">
+                    <div style="float: left">
+                      <el-checkbox
+                        type="checkbox"
+                        @change="change(index, false)"
+                        checked="checked"
+                      ></el-checkbox>
+                      <span>{{ item.text }}</span>
+                    </div>
+                    <div style="float: right; margin-right: 40px">
+                      <el-button
+                        icon="el-icon-delete"
+                        size="mini"
+                        circle
+                        @click="remove(index)"
+                      ></el-button>
+                    </div>
+                    <br />
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </el-col>
         </el-row> -->
       </el-main>
     </el-container>
@@ -173,10 +168,11 @@ export default {
   },
   methods: {
     add() {
-      if (this.inputValue == null) {
-        alert("Can not be null!");
+      if (this.inputValue.match(/^[ ]*$/)) {
+        alert("Can not be empty!");
+      } else if (this.inputValue.length > 80) {
+        alert("Too long!");
       } else {
-        //this.list.push({ text: this.inputValue, done: false });
         this.list.push({ text: this.inputValue, done: false });
 
         this.inputValue = null;
@@ -233,18 +229,10 @@ export default {
   min-height: 36px;
 }
 
-.bg-purple {
-  background: #93E0FF;
-  color: #253B6E;
+/* .bg-purple {
+  background: #93e0ff;
+  color: #253b6e;
   font-size: small;
-}
-
-/* .bg-purple-dark {
-  background: #99a9bf;
-}
-
-.bg-purple-light {
-  background: #e5e9f2;
 } */
 
 ul {
@@ -255,17 +243,4 @@ ul {
   padding: 10px 0;
   background-color: #f9fafc;
 }
-
-/* .left {
-  position: absolute;
-  left: 0;
-  width: 100px;
-  padding: 10px;
-}
-.right {
-  position: absolute;
-  right: 0px;
-  width: 100px;
-  padding: 10px;
-} */
 </style>
