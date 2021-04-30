@@ -11,6 +11,7 @@
     "axios": "^0.21.1",
     "babel-plugin-component": "^1.1.1",
     "core-js": "^3.6.5",
+    "crypto-js": "^4.0.0",
     "element-ui": "^2.15.1",
     "js-md5": "^0.7.3",
     "markdown-it-vue": "^1.1.6",
