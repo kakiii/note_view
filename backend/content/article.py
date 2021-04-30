@@ -24,12 +24,13 @@ def return_article(article_id):
         return jsonify(({'ID': article_id, 'Content': 'NOT FOUND'}))
 
 
-@article.route('/', methods=['POST'])
+@article.route('', methods=['POST'])
 def add_article():
     request_data = request.get_data()
     data_json = json.loads(request_data)
     article_collection = database.articles
-    article_collection.insert({'id': data_json['id'], 'content': data_json['content']})
+    article_collection.insert_one({'id': data_json['id'], 'content': data_json['content'],'author':data_json["author"],'title':data_json["title"]})
+    return jsonify({"success":"yes"})
 
 
 # Whole path should be "/article/user/<user_name>"

@@ -72,9 +72,9 @@ export default {
         }
       }).then((res) => {
         if(res.data.delete == "done"){
-          alert("User has been banned.");
+          this.$alert("User has been banned.");
         }else{
-          alert("There's no such user.");
+          this.$alert("There's no such user.");
         }
       })
     },
