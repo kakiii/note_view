@@ -31,8 +31,10 @@
       <el-button v-on:click="markup('link')">Link</el-button>
       <el-button v-on:click="markup('indent')">Tab</el-button>
       <el-button v-on:click="clear">Clear</el-button>
-      <el-button>Save</el-button>
+      <!-- <el-button v-on:click="getTitle">getTitle</el-button> -->
       <el-button v-on:click="upload" :disabled="content.length<=5||!this.$store.state.isLogin">Upload</el-button>
+      <br>
+      <el-input v-model="currentTitle" placeholder="Please enter your title here"></el-input>
       <!-- <el-button v-on:click="getTitle">Get Title</el-button> -->
       <!--      <el-button v-on:click="refresh">Refresh</el-button>-->
     </el-container>
@@ -107,16 +109,12 @@ export default {
   },
   methods: {
     getTitle(){
-      const findTitle = /# [\w ]+/;
-      let possibleTitle = this.content.match(findTitle);
-      let realTitle;
-      if (possibleTitle!==null) {
-        realTitle = possibleTitle[0].substring(2);
-      }else{
-        realTitle = this.content.match(/[\w]+\n?/)[0];
+      if(this.currentTitle===""){
+        this.$alert("Please enter a title");
+      }else if(this.currentTitle.length<5){
+        this.$alert("Length of title is too short!");
       }
-      console.log(this.$store.state.username+" "+realTitle+"\n"+CryptoJS.MD5(this.$store.state.username+" "+realTitle).toString());
-      this.currentTitle = realTitle;
+      console.log(this.currentTitle);
     },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
