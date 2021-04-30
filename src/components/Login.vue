@@ -29,10 +29,10 @@
               type="primary"
               @click="exec_login"
               block
-          >Login</el-button>
+          >LOGIN</el-button>
         </el-form-item>
 
-        <a class="home" href="">Home</a>
+        <a class="home" href="">HOME</a>
       </el-form>
     </el-card>
   </div>
@@ -104,17 +104,22 @@ export default {
 .login-button {
   width: 100%;
   margin-top: 40px;
-  background: #020080;
+  background: #93E0FF;
+  color: white;
+  border-color: #C4E2D8;
+  font-size: medium;
 }
 .login-box {
   width: 290px;
 }
 .home {
+  color: #253B6E;
   margin-top: 10px;
+  font-size: small;
 }
 </style>
 <style lang="scss">
-$teal: rgb(2, 0, 128);
+$teal: rgb(147, 224, 255);
 .el-button--primary {
   background: $teal;
   border-color: $teal;
@@ -130,7 +135,7 @@ $teal: rgb(2, 0, 128);
   border-color: $teal;
 }
 .login .el-input__prefix {
-  background: rgb(238, 237, 234);
+  background: rgb(147, 224, 255);
   left: 0;
   height: calc(100% - 2px);
   left: 1px;

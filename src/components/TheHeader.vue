@@ -6,9 +6,9 @@
         mode="horizontal"
         router
         @select="handleSelect"
-        background-color="#020080"
-        text-color="#fff"
-        active-text-color="#ffd04b"
+        background-color="#93E0FF"
+        text-color="#253B6E"
+        active-text-color="#FFFFD2"
     >
       <el-menu-item index="/login">LOGIN</el-menu-item>
       <el-menu-item index="/register">REGISTER</el-menu-item>
