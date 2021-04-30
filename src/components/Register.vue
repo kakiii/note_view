@@ -157,9 +157,9 @@ $teal: rgb(2, 0, 128);
   padding-bottom: 30px;
 }
 h2 {
-  font-family: "Open Sans";
+  //font-family: "Open Sans";
   letter-spacing: 1px;
-  font-family: Roboto, sans-serif;
+  //font-family: Roboto, sans-serif;
   padding-bottom: 20px;
 }
 a {
