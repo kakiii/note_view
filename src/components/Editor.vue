@@ -156,10 +156,10 @@ export default {
       }
       axios
         .post(url, {
-          id: this.article_id,
+          id: CryptoJS.MD5(this.$store.state.username+" "+this.getTitle()).toString(),
           author: this.$store.state.username,
           content: this.content,
-          title: getTitle(),
+          title: this.getTitle(),
         })
         .catch((err) => {
           console.log(err);
