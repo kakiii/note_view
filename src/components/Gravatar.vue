@@ -1,5 +1,10 @@
 <template>
-  <p style="width: 4em" v-html="svgs" />
+  <div v-if="mode === 'header'">
+    <span v-html="svgs" />
+  </div>
+  <div v-else-if="mode === 'userpage'">
+    <p style="width: 4em; height: 4em;margin: auto" v-html="svgs" />
+  </div>
 </template>
 
 <script>
@@ -7,7 +12,7 @@ import multiavatar from "@multiavatar/multiavatar";
 
 export default {
   name: "Gravatar",
-  props: { gen_key: String },
+  props: { gen_key: String, mode: String },
   data() {
     return {
       svgs: multiavatar(this.gen_key),
