@@ -72,7 +72,7 @@ def return_all_username():
     jsonString = json.dumps(send_out_users)
     return jsonString
 
-@auth.route('/findUser',methods=["GET"])
+@auth.route('/findUser',methods=["POST"])
 def return_certain_user():
     name_raw = request.get_data()
     name_json = json.loads(name_raw)
