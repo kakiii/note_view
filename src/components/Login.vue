@@ -68,8 +68,8 @@ export default {
         }
         axios
             .post(url, {
-              username: this.username.trim,
-              password: this.password.trim,
+              username: this.username,
+              password: this.password,
             })
             .then((res) => {
               if (res.data.status === 200) {
