@@ -15,42 +15,26 @@
           {{ this.$store.state.username }}
         </p>
         <br />
+
         <el-button
-          v-if="this.$store.state.gravatar"
-          size="mini"
-          v-on:click="changeGravatar"
+            class="gravatarButton"
+            v-if="this.$store.state.gravatar"
+            v-on:click="changeGravatar"
+            size="mini"
         >
           Switch to Gravatar Style
         </el-button>
+
         <el-button
-          v-if="!this.$store.state.gravatar"
-          size="mini"
-          v-on:click="changeGravatar"
+            class="pixelButton"
+            v-if="!this.$store.state.gravatar"
+            size="mini"
+            v-on:click="changeGravatar"
         >
           Switch to Pixel Style
         </el-button>
-      </el-aside>
-      <el-main>
-        <input type="button" value="Get Article" v-on:click="get_my_article" />
-        <input
-          v-if="this.$store.state.gravatar"
-          type="button"
-          value="Switch to Gravatar Style"
-          v-on:click="changeGravatar"
-        />
-        <input
-          v-if="!this.$store.state.gravatar"
-          type="button"
-          value="Switch to Pixel Style"
-          v-on:click="changeGravatar"
-        />
-        <p>User's article collection in array form.</p>
-        <!--    之后其他人把这个东西改成v-for的形式-->
-        <!--    等待增加具体的美化-->
-        <!--    使用mounted，在user page加载的时候就能自动获取后端用户的数据-->
 
-        <p>{{ article_list }}</p>
-      </el-main>
+      </el-aside>
     </el-container>
   </div>
 </template>
@@ -111,3 +95,19 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.pixelButton,
+.gravatarButton，
+.pixelButton:focus,
+.gravatarButton:focus{
+  width: 200px;
+  margin-top: 0px;
+  background: #93E0FF;
+  color: white;
+  border-color: #C4E2D8;
+  font-size: small;
+}
+
+
+</style>

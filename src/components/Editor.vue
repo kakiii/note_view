@@ -5,6 +5,8 @@
       <el-radio-group
         v-model="isCollapse"
         style="margin-bottom: 20px; alignment: left"
+        fill="#93E0FF"
+        text-color="#253B6E"
       >
         <el-radio-button :label="true"> &lt; </el-radio-button>
         <el-radio-button :label="false"> &gt; </el-radio-button>
