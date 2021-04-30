@@ -12,7 +12,8 @@
     </p>
 
     <input type="button" value="Get Article" v-on:click="get_my_article" />
-    <input type="button" value="Change Gravatar Style" v-on:click="changeGravatar" />
+    <input v-if="this.$store.state.gravatar" type="button" value="Switch to Gravatar Style" v-on:click="changeGravatar" />
+    <input v-if="!this.$store.state.gravatar" type="button" value="Switch to Pixel Style" v-on:click="changeGravatar" />
     <p>User's article collection in array form.</p>
     <!--    之后其他人把这个东西改成v-for的形式-->
     <!--    等待增加具体的美化-->
