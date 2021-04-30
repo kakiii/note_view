@@ -416,11 +416,11 @@ This is error
 .el-button,
 .el-input,
 .el-select,
-.el-radio-button{
+.el-radio-button {
   width: auto;
   height: 40px;
-  margin: 3px;
   text-align: center;
+  border-color: white;
 }
 
 .el-menu-vertical-demo:not(.el-menu--collapse) {
