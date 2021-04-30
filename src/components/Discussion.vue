@@ -85,11 +85,25 @@ export default {
               console.log(err);
             });
         }
-        this.textarea = "";
+        
         //this.total=this.total+1;
 
-          this.currentPage = 1;
-
+        if (this.currentPage == 1) {
+          var temp = [];
+          temp.push({
+            author: this.$store.state.username,
+            content: this.textarea,
+            id: this.total + 1,
+          });
+          var listtemp = this.list;
+          for(let i in listtemp){
+            console.log(listtemp[i]);
+            temp.push(listtemp[i]);
+          }
+          temp.pop;
+          this.list=temp;
+        }
+        this.textarea = "";
       } else {
         alert("Must log in first");
       }
