@@ -4,19 +4,17 @@
       <h2>LOGIN</h2>
       <el-form
           class="login-box"
-          :model="model"
-          :rules="rules"
           ref="loginForm"
-          @submit.native.prevent="login"
+          @keyup.enter.native="exec_login"
       >
-        <el-form-item prop="username">
+        <el-form-item>
           <el-input v-model="username"
                     placeholder="Username"
                     prefix-icon="el-icon-user-solid"
           ></el-input>
         </el-form-item>
 
-        <el-form-item prop="password">
+        <el-form-item>
           <el-input
               v-model="password"
               placeholder="Password"
@@ -27,7 +25,6 @@
 
         <el-form-item>
           <el-button
-              :loading="loading"
               class="login-button"
               type="primary"
               @click="exec_login"
@@ -152,9 +149,9 @@ $teal: rgb(2, 0, 128);
   padding-bottom: 30px;
 }
 h2 {
-  //font-family: "Open Sans";
+  font-family: "Open Sans";
   letter-spacing: 1px;
-  //font-family: Roboto, sans-serif;
+  font-family: Roboto, sans-serif;
   padding-bottom: 20px;
 }
 a {
