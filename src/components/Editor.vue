@@ -104,9 +104,9 @@ export default {
           console.log(this.article_list);
         })
         .catch((err) => console.log(err));
-      if (this.article_list.length>0) {
+      /* if (this.article_list.length>0) {
         
-      }
+      } */
     }
   },
   methods: {
