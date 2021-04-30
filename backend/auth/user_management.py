@@ -99,3 +99,12 @@ def ban_user():
         return jsonify({"delete":"done"})
     else:
         return jsonify({"delete":"undone"})
+
+@auth.route('/banUserList',methods=["GET"])
+def return_all_ban_users():
+    arr = []
+    users_collection = database.account
+    for x in users_collection.find({"ban":100},{"username":1}):
+        arr.append(x['username'])
+    json_arr = json.dumps(arr)
+    return json_arr

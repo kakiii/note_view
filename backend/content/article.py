@@ -8,11 +8,6 @@ database = client.account
 article = Blueprint('article', __name__, url_prefix='/article')
 
 
-@article.route('/')
-def articles():
-    return "<h1>ARTICLE MAIN PAGE</h1>"
-
-
 @article.route('/<int:article_id>', methods=['GET'])
 def return_article(article_id):
     print(article_id)
