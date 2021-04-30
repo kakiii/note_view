@@ -1,12 +1,15 @@
 <template>
   <div>
+
+    <br /><br />
     <el-container>
       <el-radio-group
         v-model="isCollapse"
         style="margin-bottom: 20px; alignment: left"
       >
-        <el-radio-button :label="false">展开</el-radio-button>
-        <el-radio-button :label="true">收起</el-radio-button>
+        <el-radio-button :label="true">-</el-radio-button>
+        <el-radio-button :label="false">+</el-radio-button>
+
       </el-radio-group>
       <el-select
         v-model="headerValue"
@@ -401,10 +404,18 @@ This is error
   width: 100%;
 }
 
-.el-button,
+.el-button{
+  width: auto;
+  height: 40px;
+  margin: 5px;
+  text-align: center;
+  background: #020080;
+  color: white;
+}
+
 .el-input,
 .el-select,
-.el-radio-button {
+.el-radio-button{
   width: auto;
   height: 40px;
   margin: 5px;
