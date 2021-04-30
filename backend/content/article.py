@@ -10,7 +10,7 @@ article = Blueprint('article', __name__, url_prefix='/article')
 
 @article.route('/<int:article_id>', methods=['GET'])
 def return_article(article_id):
-    print(article_id)
+    # print(article_id)
     article_collection = database.articles
     match_article = article_collection.find_one({'id': article_id})
     if match_article:
