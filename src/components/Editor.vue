@@ -1,21 +1,23 @@
 <template>
   <div>
     <el-container>
-
-      <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;alignment: left">
+      <el-radio-group
+        v-model="isCollapse"
+        style="margin-bottom: 20px; alignment: left"
+      >
         <el-radio-button :label="false">展开</el-radio-button>
         <el-radio-button :label="true">收起</el-radio-button>
       </el-radio-group>
       <el-select
-          v-model="headerValue"
-          placeholder="Select header"
-          @change="insertHeader(headerValue)"
+        v-model="headerValue"
+        placeholder="Select header"
+        @change="insertHeader(headerValue)"
       >
         <el-option
-            v-for="header in headers"
-            :key="header.value"
-            :label="header.label"
-            :value="header.value"
+          v-for="header in headers"
+          :key="header.value"
+          :label="header.label"
+          :value="header.value"
         >
         </el-option>
       </el-select>
@@ -25,41 +27,55 @@
       <el-button v-on:click="markup('blockquotes')">Block Quotes</el-button>
       <el-button v-on:click="markup('image')">Image</el-button>
       <el-button v-on:click="markup('link')">Link</el-button>
+      <el-button v-on:click="markup('indent')">Tab</el-button>
       <el-button v-on:click="clear">Clear</el-button>
       <el-button>Save</el-button>
       <el-button v-on:click="upload">Upload</el-button>
       <!--      <el-button v-on:click="refresh">Refresh</el-button>-->
-      <el-input v-model="article_id" placeholder="choose a id" type="text" style="width:200px" clearable/>
+      <el-input
+        v-model="article_id"
+        placeholder="choose a id"
+        type="text"
+        style="width: 200px"
+        clearable
+      />
     </el-container>
-    <el-container>
-
-    </el-container>
+    <el-container> </el-container>
 
     <el-container>
-      <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
-               :collapse="isCollapse">
+      <el-menu
+        default-active="1"
+        class="el-menu-vertical-demo"
+        @open="handleOpen"
+        @close="handleClose"
+        :collapse="isCollapse"
+      >
         <el-submenu index="1">
           <template slot="title">
             <i class="el-icon-document"></i>
             <span slot="title">My Articles</span>
           </template>
           <el-menu-item-group title="Folder 1">
-            <el-menu-item v-for="id in article_list" :key="id" v-on:click="load(id)">Article {{ id }}</el-menu-item>
+            <el-menu-item
+              v-for="id in article_list"
+              :key="id"
+              v-on:click="load(id)"
+              >Article {{ id }}</el-menu-item
+            >
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
       <textarea
-          ref="textarea"
-          v-model="content"
-          :rows="100"
-          type="textarea"
+        ref="textarea"
+        v-model="content"
+        :rows="100"
+        type="textarea"
       ></textarea>
 
       <MarkdownItVue
-          v-model="htmloutput"
-          :content="content"
-          :options="options"
-          class="md-body"
+        :content="content"
+        :options="options"
+        class="md-body"
       />
     </el-container>
   </div>
@@ -71,7 +87,7 @@ import "markdown-it-vue/dist/markdown-it-vue.css";
 import axios from "axios";
 
 export default {
-  components: {MarkdownItVue},
+  components: { MarkdownItVue },
   name: "Editor",
   mounted() {
     if (this.$store.state.isLogin) {
@@ -81,14 +97,19 @@ export default {
       } else {
         url = "article/user/";
       }
-      axios.get(url + this.$store.state.username).then((res) => {
-        this.article_list = res.data["article_collection"]
-        console.log(this.article_list);
-      }).catch((err) => console.log(err));
+      axios
+        .get(url + this.$store.state.username)
+        .then((res) => {
+          this.article_list = res.data["article_collection"];
+          console.log(this.article_list);
+        })
+        .catch((err) => console.log(err));
+      /* if (this.article_list.length>0) {
+        
+      } */
     }
   },
   methods: {
-
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },
@@ -103,35 +124,29 @@ export default {
         url = "article/";
       }
       if (id !== undefined) {
-        axios.get(url + id).then((res) => {
-          this.content = res.data["Content"];
-        }).catch((err) => console.log(err));
+        axios
+          .get(url + id)
+          .then((res) => {
+            this.content = res.data["Content"];
+          })
+          .catch((err) => console.log(err));
       }
-
-
     },
     upload() {
+      let url = "";
       if (process.env.NODE_ENV === "development") {
-        console.log("DEVELOPMENT")
-        axios
-            .post("http://localhost:5000/article", {
-              id: this.article_id,
-              content: this.content,
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+        url = "http://localhost:5000/article";
       } else {
-        console.log(process.env)
-        axios
-            .post("/article", {
-              id: this.article_id,
-              content: this.content,
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+        url = "/article";
       }
+      axios
+        .post(url, {
+          id: this.article_id,
+          content: this.content,
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     markup(val) {
       let textArea = this.$refs.textarea;
@@ -142,53 +157,53 @@ export default {
       switch (val) {
         case "h1":
           this.content =
-              tmpStr.substring(0, startPos) + "# \n" + tmpStr.substring(startPos);
+            tmpStr.substring(0, startPos) + "# \n" + tmpStr.substring(startPos);
           break;
         case "h2":
           this.content =
-              tmpStr.substring(0, startPos) +
-              "## \n" +
-              tmpStr.substring(startPos);
+            tmpStr.substring(0, startPos) +
+            "## \n" +
+            tmpStr.substring(startPos);
           break;
         case "h3":
           this.content =
-              tmpStr.substring(0, startPos) +
-              "### \n" +
-              tmpStr.substring(startPos);
+            tmpStr.substring(0, startPos) +
+            "### \n" +
+            tmpStr.substring(startPos);
           break;
         case "h4":
           this.content =
-              tmpStr.substring(0, startPos) +
-              "#### " +
-              tmpStr.substring(startPos);
+            tmpStr.substring(0, startPos) +
+            "#### " +
+            tmpStr.substring(startPos);
           break;
         case "h5":
           this.content =
-              tmpStr.substring(0, startPos) +
-              "##### \n" +
-              tmpStr.substring(startPos);
+            tmpStr.substring(0, startPos) +
+            "##### \n" +
+            tmpStr.substring(startPos);
           break;
         case "h6":
           this.content =
-              tmpStr.substring(0, startPos) +
-              "###### \n" +
-              tmpStr.substring(startPos);
+            tmpStr.substring(0, startPos) +
+            "###### \n" +
+            tmpStr.substring(startPos);
           break;
         case "bold":
           this.content =
-              tmpStr.substring(0, startPos) +
-              "**" +
-              tmpStr.substring(startPos, endPos) +
-              "**" +
-              tmpStr.substring(endPos);
+            tmpStr.substring(0, startPos) +
+            "**" +
+            tmpStr.substring(startPos, endPos) +
+            "**" +
+            tmpStr.substring(endPos);
           break;
         case "italic":
           this.content =
-              tmpStr.substring(0, startPos) +
-              "*" +
-              tmpStr.substring(startPos, endPos) +
-              "*" +
-              tmpStr.substring(endPos);
+            tmpStr.substring(0, startPos) +
+            "*" +
+            tmpStr.substring(startPos, endPos) +
+            "*" +
+            tmpStr.substring(endPos);
           break;
         case "blockquotes": {
           let temp = tmpStr.substring(startPos, endPos).split("\n");
@@ -197,28 +212,33 @@ export default {
             res += "> " + temp[i] + "\n";
           }
           this.content =
-              tmpStr.substring(0, startPos) + res + tmpStr.substring(endPos);
+            tmpStr.substring(0, startPos) + res + tmpStr.substring(endPos);
           break;
         }
         case "code":
           this.content =
-              tmpStr.substring(0, startPos) +
-              "```\n" +
-              tmpStr.substring(startPos, endPos) +
-              "\n```\n" +
-              tmpStr.substring(endPos);
+            tmpStr.substring(0, startPos) +
+            "```\n" +
+            tmpStr.substring(startPos, endPos) +
+            "\n```\n" +
+            tmpStr.substring(endPos);
           break;
         case "image":
           this.content =
-              tmpStr.substring(0, startPos) +
-              "![]()\n" +
-              tmpStr.substring(startPos);
+            tmpStr.substring(0, startPos) +
+            "![]()\n" +
+            tmpStr.substring(startPos);
           break;
         case "link":
           this.content =
-              tmpStr.substring(0, startPos) +
-              "[]()\n" +
-              tmpStr.substring(startPos);
+            tmpStr.substring(0, startPos) +
+            "[]()\n" +
+            tmpStr.substring(startPos);
+          break;
+        case "indent":
+          this.content =
+            tmpStr.substring(0, startPos) + "   " + tmpStr.substring(startPos);
+          break;
       }
     },
     clear() {
@@ -262,7 +282,6 @@ export default {
           label: "Header 6",
         },
       ],
-      htmloutput: "",
       output: {
         json: `json content`,
         html: `html content`,
@@ -382,7 +401,10 @@ This is error
   width: 100%;
 }
 
-.el-button, .el-input, .el-select, .el-radio-button {
+.el-button,
+.el-input,
+.el-select,
+.el-radio-button {
   width: auto;
   height: 40px;
   margin: 5px;
