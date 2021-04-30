@@ -79,8 +79,10 @@ export default {
                 this.$router.push("/about");
               } else if (res.data.status === 201) {
                 this.$alert("WRONG PASSWORD");
-              } else {
-                this.$alert("NO USER");
+              } else if (res.data.status === 203) {
+                this.$alert("YOU'VE BEEN BANNED");
+              }else{
+this.$alert("NO USER");
               }
             })
             .catch((err) => console.log(err));

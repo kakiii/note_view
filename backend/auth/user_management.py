@@ -22,9 +22,13 @@ def login():
         # 有用户
         if bcrypt.hashpw(data_json['password'].encode('utf-8'), login_user['password']) == login_user['password']:
             session['username'] = data_json['username']
+            if login_user["ban"] == 100:
+                return jsonify({"status": 203})
+            else:
+                return jsonify({'status': 200})
             # print("Check complete")
             # code 200 stands for user located & confirmed.
-            return jsonify({'status': 200})
+            
         else:
             # print(data_json['password'])
             # print("\n")
@@ -47,7 +51,7 @@ def register():
 
         if existing_user is None:
             hashes = bcrypt.hashpw(data_json['password'].encode('utf-8'), bcrypt.gensalt())
-            users.insert_one({'username': data_json['username'], 'password': hashes,'my_article':[]})
+            users.insert_one({'username': data_json['username'], 'password': hashes,'my_article':[],'ban':0})
             # code 200 stands for user registration success.
             return jsonify({"status": 200})
         else:

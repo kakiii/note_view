@@ -95,7 +95,7 @@ export default {
       if (process.env.NODE_ENV === "development") {
         url = "http://localhost:5000/article/user/";
       } else {
-        url = "article/user/";
+        url = "/article/user/";
       }
       axios
         .get(url + this.$store.state.username)
