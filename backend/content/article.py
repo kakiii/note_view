@@ -68,4 +68,4 @@ def return_random_article_ids():
     for doc in rand_article:
             print(doc["id"])
             random_ids.append(doc["id"])
-    return jsonify({"author":random_ids})
+    return jsonify({"id":random_ids})
