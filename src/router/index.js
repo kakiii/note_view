@@ -13,7 +13,8 @@ import CodeEditor from "../components/CodeEditor.vue";
 import todo from "../components/todo.vue";
 import UserPage from "../components/UserPage.vue";
 import page_404 from "../components/404.vue";
-import management from "../components/Management.vue"
+import management from "../components/Management.vue";
+import Preview from "../components/Preview.vue";
 
 Vue.use(VueRouter);
 
@@ -81,6 +82,10 @@ const routes = [
     path:'*',
     name:"not found",
     component:page_404
+  },{
+    path:"/article/:id",
+    name: "article",
+    component: Preview,
   }
 ];
 const router = new VueRouter({
