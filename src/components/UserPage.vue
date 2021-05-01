@@ -35,7 +35,17 @@
         </el-button>
 
       </el-aside>
+
     </el-container>
+    <el-container style="margin-left: 117px; margin-top: 10px">
+      <el-button
+          class="logoutButton"
+          size="mini"
+          v-on:click="logout"
+          value="LOGOUT"
+      >Log out</el-button>
+    </el-container>
+
   </div>
 </template>
 
@@ -76,24 +86,41 @@ export default {
       }
       console.log("change gravatar");
     },
+
+
+    mounted() {
+      let url = "";
+      if (process.env.NODE_ENV === "development") {
+        url = "http://localhost:5000/article/user/";
+      } else {
+        url = "article/user/";
+      }
+      axios
+          .get(url + this.$store.state.username)
+          .then((res) => {
+            let arr = res.data["article_collection"];
+            console.log(arr);
+            this.article_list = arr;
+          })
+          .catch((err) => console.log(err));
+    },
+
+    logout() {
+      this.$store.state.isLogin = false;
+      this.$store.state.username = "";
+      this.$alert("You have logged out!");
+      setTimeout(function () {
+        this.$router.push("/");
+      }, 2000);
+    },
+
   },
-  mounted() {
-    let url = "";
-    if (process.env.NODE_ENV === "development") {
-      url = "http://localhost:5000/article/user/";
-    } else {
-      url = "article/user/";
-    }
-    axios
-      .get(url + this.$store.state.username)
-      .then((res) => {
-        let arr = res.data["article_collection"];
-        console.log(arr);
-        this.article_list = arr;
-      })
-      .catch((err) => console.log(err));
-  },
+
+
+
+
 };
+
 </script>
 
 <style scoped>
@@ -103,6 +130,16 @@ export default {
 .gravatarButton:focus{
   width: 200px;
   margin-top: 0px;
+  background: #93E0FF;
+  color: #253B6E;
+  border-color: #C4E2D8;
+  font-size: small;
+}
+
+.logoutButton{
+  width: 200px;
+  margin-top: 0px;
+  text-align: center;
   background: #93E0FF;
   color: #253B6E;
   border-color: #C4E2D8;
