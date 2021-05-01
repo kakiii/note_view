@@ -7,7 +7,7 @@
       <ul v-for="(item, index) in list" :key="index">
         <el-main>
           <span class="dis">{{
-            item.time + " : " + item.author + ": " + item.content
+            item.time + "   " + item.author + ": " + item.content
           }}</span></el-main
         >
       </ul>
@@ -98,17 +98,21 @@ export default {
 
         if (this.currentPage == 1) {
           var temp = [];
+          var d = new Date();
+          let time = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+"."+d.getMilliseconds()+"000";
           temp.push({
             author: this.$store.state.username,
             content: this.textarea,
-            id: this.total + 1,
+            time: time,
           });
           var listtemp = this.list;
           for (let i in listtemp) {
             //console.log(listtemp[i]);
             temp.push(listtemp[i]);
           }
-          temp.pop();
+          if (this.total > 8) {
+            temp.pop();
+          }
           this.list = temp;
         }
         this.textarea = "";
@@ -155,8 +159,8 @@ export default {
               this.list.push({
                 author: temp[j].author,
                 content: temp[j].content,
-                id: temp[j].id,
-                time:temp[j].time
+
+                time: temp[j].time,
               });
             }
           })
@@ -209,8 +213,8 @@ export default {
                 this.list.push({
                   author: temp[j].author,
                   content: temp[j].content,
-                  id: temp[j].id,
-                  time:temp[j].time
+
+                  time: temp[j].time,
                 });
               }
             })
