@@ -37,14 +37,19 @@
         v-on:click="upload"
         :disabled="content.length <= 5 || !this.$store.state.isLogin"
         >Upload
-        </el-button>
-
+      </el-button>
 
       <!-- <el-button v-on:click="getTitle">Get Title</el-button> -->
       <!--      <el-button v-on:click="refresh">Refresh</el-button>-->
     </el-container>
-
-    <el-container> <el-input class="titleInput" v-model="currentTitle" placeholder="Please enter your title"></el-input>  </el-container>
+    <el-input
+        clearable
+        size="large"
+        class="titleInput"
+        v-model="currentTitle"
+        placeholder="Please enter your title"
+        style="width: 46%; float:left"
+      ></el-input>
 
     <el-container>
       <el-menu
@@ -64,11 +69,13 @@
               v-for="title_obj in title_id"
               :key="title_obj.id"
               v-on:click="load(title_obj.id)"
-              > {{title_obj.title}}
+            >
+              {{ title_obj.title }}
             </el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
+      
       <textarea
         ref="textarea"
         v-model="content"
@@ -102,16 +109,15 @@ export default {
         .then((res) => {
           let article_list = res.data["article_collection"];
           let article_titles_list = res.data["article_titles_collection"];
-          
+
           for (let i = 0; i < article_list.length; i++) {
             let article = {
-              id : article_list[i],
+              id: article_list[i],
               title: article_titles_list[i],
-            }
-            this.title_id[i]=article;
+            };
+            this.title_id[i] = article;
           }
           console.log(this.title_id);
-          
         })
         .catch((err) => console.log(err));
       /* if (this.article_list.length>0) {
@@ -280,13 +286,13 @@ export default {
   },
   data() {
     return {
-      test:{
-        id1:"title1",
-        id2:"title2",
-        id3:"title3"
+      test: {
+        id1: "title1",
+        id2: "title2",
+        id3: "title3",
       },
       currentTitle: "",
-      title_id:[],
+      title_id: [],
       headerValue: "",
       isCollapse: true,
       headers: [
@@ -434,8 +440,8 @@ This is error
   width: 100%;
 }
 
-.titleInput{
-  width: 100%;
+.titleInput {
+  width: auto;
   margin: auto;
   text-align: left;
 }
