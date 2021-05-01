@@ -100,7 +100,7 @@ export default {
       axios
         .get(url + this.$store.state.username)
         .then((res) => {
-          this.article_list = res.data["article_collection"];
+          this.article_list = res.data["my_article"];
           console.log(this.article_list);
         })
         .catch((err) => console.log(err));
@@ -116,7 +116,8 @@ export default {
       }else if(this.currentTitle.length<5){
         this.$alert("Length of title is too short!");
       }
-      console.log(this.currentTitle);
+      console.log(this.$store.state.username+" "+this.currentTitle);
+      console.log(CryptoJS.MD5(this.$store.state.username+" "+this.currentTitle).toString());
     },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
