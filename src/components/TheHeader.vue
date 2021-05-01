@@ -30,7 +30,7 @@
         <div v-if="!this.$store.state.gravatar">
           <Gravatar :gen_key="this.$store.state.username" mode="header" />
         </div>
-        <div v-else>
+        <div v-if="this.$store.state.gravatar">
           <GravatarsSVG :gen_key="this.$store.state.username" mode="header" />
         </div>
       </el-menu-item>

@@ -181,6 +181,7 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+        this.$alert("You have successfully uploaded this article!");
     },
     markup(val) {
       let textArea = this.$refs.textarea;
