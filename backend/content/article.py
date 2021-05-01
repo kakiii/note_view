@@ -8,7 +8,7 @@ database = client.account
 article = Blueprint('article', __name__, url_prefix='/article')
 
 
-@article.route('/<int:article_id>', methods=['GET'])
+@article.route('/<string:article_id>', methods=['GET'])
 def return_article(article_id):
     article_table = database.articles
     match_article = article_table.find_one({'id': article_id})
