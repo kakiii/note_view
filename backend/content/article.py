@@ -28,11 +28,14 @@ def add_article():
     account_table = database.account
     matched_user = account_table.find_one({"username":jsonified_incoming_data['author']})
     original_article_ids = matched_user['my_article']
+    original_article_titles = matched_user['article_titles']
     print(original_article_ids)
+    returning_article_titles_arr = original_article_titles
+    returning_article_titles_arr.append(jsonified_incoming_data['title'])
     returning_article_ids_arr = original_article_ids
     returning_article_ids_arr.append(jsonified_incoming_data['id'])
     print(returning_article_ids_arr)
-    account_table.update_one({"username":jsonified_incoming_data['author']},{"$set":{"my_article":returning_article_ids_arr}})
+    account_table.update_one({"username":jsonified_incoming_data['author']},{"$set":{"my_article":returning_article_ids_arr,"article_titles":returning_article_titles_arr}})
     return jsonify({"success":"yes"})
 
 
@@ -44,7 +47,7 @@ def return_user_article_collection(user_name):
     matched_user = account_table.find_one({'username': user_name})
     if matched_user:
         if matched_user['my_article']:
-            return jsonify({'article_collection': matched_user['my_article']})
+            return jsonify({'article_collection': matched_user['my_article'],'article_titles_collection':matched_user['article_titles']})
     else:
         # temporary patch only for backend.
         print("no such user")
