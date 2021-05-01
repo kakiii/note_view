@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h1 style="text-align:left">Title: {{title}}</h1>
+  <h1 style="text-align:left">Author: <i>{{author}}</i></h1>
   <MarkdownItVue :content="content" :options="options" class="md-body" />
 </div>
 </template>
@@ -26,7 +26,8 @@ export default {
         .then((res) => {
           this.content = res.data["Content"];
           this.title = res.data["Title"];
-          console.log(this.title);
+          this.author = res.data['author'];
+
         })
         .catch((err) => console.log(err));
     }else{
@@ -39,6 +40,7 @@ export default {
       id: "",
       title:"",
       content: "",
+      author:"",
     };
   },
 };
