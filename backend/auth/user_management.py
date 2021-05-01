@@ -51,7 +51,7 @@ def register():
 
         if existing_user is None:
             hashes = bcrypt.hashpw(data_json['password'].encode('utf-8'), bcrypt.gensalt())
-            users.insert_one({'username': data_json['username'], 'password': hashes,'my_article':[],'ban':0})
+            users.insert_one({'username': data_json['username'], 'password': hashes,'my_article':[],'ban':0,'article_titles':[]})
             # code 200 stands for user registration success.
             return jsonify({"status": 200})
         else:
