@@ -63,7 +63,8 @@
             <el-menu-item
               v-for="title_obj in title_id"
               :key="title_obj.id"
-              > {{title_obj.id}}: {{title_obj.title}}
+              v-on:click="load(title_obj.id)"
+              > {{title_obj.title}}
             </el-menu-item>
           </el-menu-item-group>
         </el-submenu>
