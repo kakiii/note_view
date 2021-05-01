@@ -35,7 +35,7 @@
             size="mini"
             v-on:click="changeGravatar"
         >
-          Switch to Gravatar Style(suggests on firefox)
+          Switch to Gravatar Style<br/>(suggests on firefox)
         </el-button>
 
       </el-aside>
