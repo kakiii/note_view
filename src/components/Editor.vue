@@ -36,8 +36,8 @@
       <el-button
         v-on:click="upload"
         :disabled="content.length <= 5 || !this.$store.state.isLogin"
-        >Upload</el-button
-      >
+        >Upload
+        </el-button>
 
 
       <!-- <el-button v-on:click="getTitle">Get Title</el-button> -->
@@ -61,10 +61,9 @@
           </template>
           <el-menu-item-group title="Folder 1">
             <el-menu-item
-              v-for="(title,id) in title_id"
-              :key="title"
-              v-on:click="load(id)"
-              >{{ title }}
+              v-for="(title,id) in test"
+              :key="id"
+              > {{id}}: {{title}}
             </el-menu-item>
           </el-menu-item-group>
         </el-submenu>
@@ -102,8 +101,8 @@ export default {
         .then((res) => {
           this.article_list = res.data["article_collection"];
           this.article_titles_list = res.data["article_titles_collection"];
-          for (let i = 0; i < res.data["article_collection"].length; i++) {
-            this.title_id[res.data["article_collection"][i]]=res.data["article_titles_collection"][i];
+          for (let i = 0; i < this.article_list.length; i++) {
+            this.title_id[this.article_list[i]]=this.article_titles_list[i];
             
           }
           console.log(this.title_id);
@@ -277,9 +276,9 @@ export default {
   data() {
     return {
       test:{
-        hello:1,
-        test:2,
-        apple:3
+        id1:"title1",
+        id2:"title2",
+        id3:"title3"
       },
       currentTitle: "",
       article_list: [],
