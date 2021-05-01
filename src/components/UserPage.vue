@@ -3,6 +3,12 @@
     <!-- <p>Hello, {{ this.$store.state.username }}!</p> -->
 
     <!-- <Gravatar :gen_key="this.$store.state.username" style="margin: auto" /> -->
+    <el-container>
+      <p style="float: left ; font-size: 30px">
+        {{ "username: " + this.$store.state.username }}
+      </p>
+    </el-container>
+
     <el-container style="margin-left: 40px; margin-top: 20px">
       <el-aside width="300px">
         <p v-if="!this.$store.state.gravatar">
@@ -11,9 +17,7 @@
         <p v-else>
           <GravatarsSVG :gen_key="this.$store.state.username" mode="userpage" />
         </p>
-        <p style="float: left; font-size: 20px">
-          {{ this.$store.state.username }}
-        </p>
+
         <br />
 
         <el-button
@@ -37,7 +41,7 @@
       </el-aside>
 
     </el-container>
-    <el-container style="margin-left: 117px; margin-top: 10px">
+    <el-container style="margin-left: 90px; margin-top: 10px">
       <el-button
           class="logoutButton"
           size="mini"

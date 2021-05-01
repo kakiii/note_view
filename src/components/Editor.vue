@@ -433,7 +433,7 @@ This is error
 }
 
 .titleInput{
-  width: auto;
+  width: 100%;
   margin: auto;
   text-align: left;
 }
