@@ -7,7 +7,7 @@
       <ul v-for="(item, index) in list" :key="index">
         <el-main>
           <span class="dis">{{
-            item.author + ": " + item.content
+            item.time + " : " + item.author + ": " + item.content
           }}</span></el-main
         >
       </ul>
@@ -156,6 +156,7 @@ export default {
                 author: temp[j].author,
                 content: temp[j].content,
                 id: temp[j].id,
+                time:temp[j].time
               });
             }
           })
@@ -209,6 +210,7 @@ export default {
                   author: temp[j].author,
                   content: temp[j].content,
                   id: temp[j].id,
+                  time:temp[j].time
                 });
               }
             })
