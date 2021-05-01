@@ -10,6 +10,7 @@
     <input placeholder="INPUT USER NAME" v-model="inputs" />
     <!--这里放一个Log Out的功能，能够去除Login的状态。-->
     <input type="button" v-on:click="logout" value="LOGOUT" />
+  
   </div>
 </template>
 
