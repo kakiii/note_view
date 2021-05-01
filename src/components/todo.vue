@@ -78,6 +78,7 @@
 
 <script>
 import store from "../store";
+import ringtone from "../assets/ringtone.mp3";
 
 function set(key, val) {
   localStorage.setItem(key, JSON.stringify(val));
@@ -124,6 +125,8 @@ export default {
     },
     change(index, done) {
       if (done) {
+        var audio = new Audio(ringtone);
+        audio.play();
         this.list[index].done = true;
       } else {
         this.list[index].done = false;
