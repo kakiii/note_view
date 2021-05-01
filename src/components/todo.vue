@@ -71,62 +71,6 @@
             </el-collapse>
           </el-col>
         </el-row>
-        
-        <!-- <el-row gutter="20">
-          <el-col :span="12">
-            <div class="grid-content bg-purple">
-              <h3>To Do</h3>
-              <ul v-for="(item, index) in list" :key="'info-' + index">
-                这里的info没什么意义就是防俩v-for并行报错
-                <li v-if="item.done === false">
-                  <div style="float: left">
-                    <el-checkbox type="checkbox" @change="change(index, true)">
-                    </el-checkbox>
-                    <span>{{ item.text }}</span>
-                  </div>
-                  <div style="float: right; margin-right: 40px">
-                    <el-button
-                      icon="el-icon-delete"
-                      size="mini"
-                      circle
-                      @click="remove(index)"
-                    ></el-button>
-                  </div>
-                  <br />
-                </li>
-              </ul>
-            </div>
-          </el-col>
-
-          <el-col :span="12">
-            <div class="grid-content bg-purple">
-              <h3>Done</h3>
-              <div>
-                <ul v-for="(item, index) in list" :key="index">
-                  <li v-if="item.done === true">
-                    <div style="float: left">
-                      <el-checkbox
-                        type="checkbox"
-                        @change="change(index, false)"
-                        checked="checked"
-                      ></el-checkbox>
-                      <span>{{ item.text }}</span>
-                    </div>
-                    <div style="float: right; margin-right: 40px">
-                      <el-button
-                        icon="el-icon-delete"
-                        size="mini"
-                        circle
-                        @click="remove(index)"
-                      ></el-button>
-                    </div>
-                    <br />
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </el-col>
-        </el-row> -->
       </el-main>
     </el-container>
   </div>
