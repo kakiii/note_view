@@ -76,7 +76,7 @@ export default {
                 console.log(res.data.status);
                 this.$store.state.isLogin = true;
                 this.$store.state.username = this.username;
-                this.$router.push("/about");
+                this.$router.push("/editor");
               } else if (res.data.status === 201) {
                 this.$alert("WRONG PASSWORD");
               } else if (res.data.status === 203) {
