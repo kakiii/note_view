@@ -32,6 +32,7 @@
       <el-button v-on:click="markup('link')">Link</el-button>
       <el-button v-on:click="markup('indent')">Tab</el-button>
       <el-button v-on:click="clear">Clear</el-button>
+      <el-button v-on:click="getURL">share article</el-button>
       <!-- <el-button v-on:click="getTitle">getTitle</el-button> -->
       <el-button
         v-on:click="upload"
@@ -126,7 +127,17 @@ export default {
     }
   },
   methods: {
-    getTitle() {
+    getURL(){
+      this.getTitle();
+      let url = "https://note-view.herokuapp.com/#/article/";
+      let link= url+CryptoJS.MD5(
+          this.$store.state.username + " " + this.currentTitle
+        ).toString();
+      this.$alert(link,"You can share this article with this link: \n",);
+
+
+    }
+    ,getTitle() {
       if (this.currentTitle === "") {
         this.$alert("Please enter a title");
       } else if (this.currentTitle.length < 3) {
