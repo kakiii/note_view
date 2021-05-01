@@ -8,6 +8,7 @@
         placeholder="Search for an article"
         prefix-icon="el-icon-tickets"
     ></el-input>
+
     <el-button
         icon="el-icon-search"
         class="search-button"
@@ -77,5 +78,7 @@ export default {
 </script>
 
 <style scoped>
-
+.search{
+  width: 200px;
+}
 </style>
