@@ -44,13 +44,13 @@
       <!--      <el-button v-on:click="refresh">Refresh</el-button>-->
     </el-container>
     <el-input
-        clearable
-        size="large"
-        class="titleInput"
-        v-model="currentTitle"
-        placeholder="Please enter your title"
-        style="width: 46%; float:left"
-      ></el-input>
+      clearable
+      size="large"
+      class="titleInput"
+      v-model="currentTitle"
+      placeholder="Please enter your title"
+      style="width: 46%; float: left"
+    ></el-input>
 
     <el-container>
       <el-menu
@@ -76,7 +76,7 @@
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
-      
+
       <textarea
         ref="textarea"
         v-model="content"
@@ -127,28 +127,32 @@ export default {
     }
   },
   methods: {
-    getURL(){
+    getURL() {
       this.getTitle();
       let url = "https://note-view.herokuapp.com/#/article/";
-      let link= url+CryptoJS.MD5(
-          this.$store.state.username + " " + this.currentTitle
-        ).toString();
-      this.$alert(link,"You can share this article with this link: \n",);
-
-
-    }
-    ,getTitle() {
-      if (this.currentTitle === "") {
-        this.$alert("Please enter a title");
-      } else if (this.currentTitle.length < 3) {
-        this.$alert("Length of title is too short!");
-      }
-      console.log(this.$store.state.username + " " + this.currentTitle);
-      console.log(
+      let link =
+        url +
         CryptoJS.MD5(
           this.$store.state.username + " " + this.currentTitle
-        ).toString()
-      );
+        ).toString();
+      this.$alert(link, "You can share this article with this link: \n");
+    },
+    getTitle() {
+      if (this.currentTitle === "") {
+        this.$alert("Please enter a title");
+        return false;
+      } else if (this.currentTitle.length < 3) {
+        this.$alert("Length of title is less than 3!");
+        return false;
+      } else {
+        console.log(this.$store.state.username + " " + this.currentTitle);
+        console.log(
+          CryptoJS.MD5(
+            this.$store.state.username + " " + this.currentTitle
+          ).toString()
+        );
+        return true;
+      }
     },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -173,26 +177,27 @@ export default {
       }
     },
     upload() {
-      this.getTitle();
-      let url = "";
-      if (process.env.NODE_ENV === "development") {
-        url = "http://localhost:5000/article";
-      } else {
-        url = "/article";
-      }
-      axios
-        .post(url, {
-          id: CryptoJS.MD5(
-            this.$store.state.username + " " + this.currentTitle
-          ).toString(),
-          author: this.$store.state.username,
-          content: this.content,
-          title: this.currentTitle,
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if (this.getTitle()) {
+        let url = "";
+        if (process.env.NODE_ENV === "development") {
+          url = "http://localhost:5000/article";
+        } else {
+          url = "/article";
+        }
+        axios
+          .post(url, {
+            id: CryptoJS.MD5(
+              this.$store.state.username + " " + this.currentTitle
+            ).toString(),
+            author: this.$store.state.username,
+            content: this.content,
+            title: this.currentTitle,
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         this.$alert("You have successfully uploaded this article!");
+      }
     },
     markup(val) {
       let textArea = this.$refs.textarea;
