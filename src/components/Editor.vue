@@ -61,9 +61,9 @@
           </template>
           <el-menu-item-group title="Folder 1">
             <el-menu-item
-              v-for="(id,title) in title_id"
-              :key="id"
-              > {{id}}: {{title}}
+              v-for="title_obj in title_id"
+              :key="title_obj.id"
+              > {{title_obj.id}}: {{title_obj.title}}
             </el-menu-item>
           </el-menu-item-group>
         </el-submenu>
