@@ -26,7 +26,7 @@
             v-on:click="changeGravatar"
             size="mini"
         >
-          Switch to Gravatar Style
+          Switch to Pixel Style
         </el-button>
 
         <el-button
@@ -35,7 +35,7 @@
             size="mini"
             v-on:click="changeGravatar"
         >
-          Switch to Pixel Style
+          Switch to Gravatar Style(suggests on firefox)
         </el-button>
 
       </el-aside>
