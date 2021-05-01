@@ -32,7 +32,7 @@
       <el-button v-on:click="markup('link')">Link</el-button>
       <el-button v-on:click="markup('indent')">Tab</el-button>
       <el-button v-on:click="clear">Clear</el-button>
-      <el-button v-on:click="getURL">share article</el-button>
+      <el-button v-on:click="getURL()">share article</el-button>
       <!-- <el-button v-on:click="getTitle">getTitle</el-button> -->
       <el-button
         v-on:click="upload"
@@ -135,6 +135,7 @@ export default {
         CryptoJS.MD5(
           this.$store.state.username + " " + this.currentTitle
         ).toString();
+        //console.log(link);
       this.$alert(link, "You can share this article with this link: \n");
     },
     getTitle() {
@@ -172,6 +173,7 @@ export default {
           .get(url + id)
           .then((res) => {
             this.content = res.data["Content"];
+            this.currentTitle = res.data["Title"];
           })
           .catch((err) => console.log(err));
       }
