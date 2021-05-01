@@ -1,6 +1,6 @@
 <template>
   <div v-if="mode === 'header'">
-    <span v-html="svgs" />
+    <span style="width:16em;height:16em;" v-html="svgs" />
   </div>
   <div v-else-if="mode === 'userpage'">
     <p style="width: 16em; height: 16em;" v-html="svgs" />

@@ -12,10 +12,10 @@
     <el-container style="margin-left: 40px; margin-top: 20px">
       <el-aside width="300px">
         <p v-if="!this.$store.state.gravatar">
-          <Gravatar :gen_key="this.$store.state.username" mode="userpage" />
+          <GravatarsSVG :gen_key="this.$store.state.username" mode="userpage" />
         </p>
         <p v-else>
-          <GravatarsSVG :gen_key="this.$store.state.username" mode="userpage" />
+          <Gravatar :gen_key="this.$store.state.username" mode="userpage" />
         </p>
 
         <br />
