@@ -39,7 +39,7 @@ def return_discussion(discussion_id):
     match_discussion = discussions.find_one({'seq': discussion_id})
     if match_discussion:
         return jsonify(
-            {'id': discussion_id, 'content': match_discussion['content'], 'author': match_discussion['author'],'time':match_discussion['timestamp']})
+            {'id': discussion_id, 'content': match_discussion['content'], 'author': match_discussion['author'],'time':str(match_discussion['timestamp'])})
     else:
         return jsonify({
             'id': discussion_id, 'content': 'NOT FOUND'
