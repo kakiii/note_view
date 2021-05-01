@@ -113,9 +113,10 @@ export default {
       this.$store.state.isLogin = false;
       this.$store.state.username = "";
       this.$alert("You have logged out!");
-      setTimeout(function () {
-        this.$router.push("/discussion");
-      }, 2000);
+      this.$router.push("/discussion");
+      // setTimeout(function () {
+      //   this.$router.push("/discussion");
+      // }, 2000);
     },
 
   },
