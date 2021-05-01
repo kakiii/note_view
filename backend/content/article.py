@@ -1,5 +1,6 @@
 import pymongo
 from flask import Blueprint, jsonify, request, json
+import re
 
 client = pymongo.MongoClient(
     "mongodb+srv://zhongyiyu:Zhongyiyu123!@note-view.cfr3m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
@@ -69,3 +70,17 @@ def return_random_article_ids():
             print(doc["id"])
             random_ids.append(doc["id"])
     return jsonify({"id":random_ids})
+
+@article.route("/find",methods=["POST"])
+def get_article_by_title():
+    article_table = database.articles
+    title_raw = request.get_data()
+    title_json = json.loads(title_raw)
+    title_extract = title_json["title"]
+    real_title = title_extract + "*"
+    regex = re.compile(real_title,re.IGNORECASE)
+    cursor = article_table.find_one({"title":regex})
+    title_return = cursor["title"]
+    return jsonify({
+        "title":title_return
+    })

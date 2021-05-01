@@ -65,13 +65,20 @@ export default {
       else{
         url = "/"
       } 
-              axios
-            .get(url + "article/" + this.id)
-            .then((res) => {
-              console.log(res.data["Content"]);
-              this.content = res.data["Content"];
-            })
-            .catch(() => (this.content = "NO CONTENT"));
+
+      axios.post(url+"article/find",{
+        title:this.id
+      }).then((res) => {
+        console.log(res.data["title"]);
+        this.content = res.data["title"];
+      })
+            //   axios
+            // .get(url + "article/find/" + this.id)
+            // .then((res) => {
+            //   console.log(res.data["Content"]);
+            //   this.content = res.data["Content"];
+            // })
+            // .catch(() => (this.content = "NO CONTENT"));
     },
   },
 };
