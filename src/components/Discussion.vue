@@ -100,7 +100,7 @@ export default {
             console.log(listtemp[i]);
             temp.push(listtemp[i]);
           }
-          temp.pop;
+          temp.pop();
           this.list=temp;
         }
         this.textarea = "";
