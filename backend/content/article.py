@@ -59,3 +59,13 @@ def return_article_number():
     article_count = articles_table.count()
     print("articles_number" + str(article_count))
     return jsonify({'article_count':article_count})
+
+@article.route("/random",methods=["GET"])
+def return_random_article_ids():
+    article_table = database.articles
+    rand_article = article_table.aggregate([{ "$sample": {"size":4}}])
+    random_ids = []
+    for doc in rand_article:
+            print(doc["id"])
+            random_ids.append(doc["id"])
+    return jsonify({"author":random_ids})
