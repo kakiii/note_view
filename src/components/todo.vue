@@ -6,7 +6,7 @@
 
     <el-container>
       <el-main>
-        <h1>To Do List</h1>
+        <h1>TO DO LIST</h1>
         <el-input
           type="text"
           v-model="inputValue"
@@ -20,7 +20,7 @@
         <el-row type="flex" justify="center">
           <el-col :span="20">
             <el-collapse>
-              <el-collapse-item title="Todo">
+              <el-collapse-item title="TO DO">
                 <ul v-for="(item, index) in list" :key="'info-' + index">
                   <li v-if="item.done === false">
                     <div style="float: left">
@@ -43,7 +43,7 @@
                   </li>
                 </ul>
               </el-collapse-item>
-              <el-collapse-item title="Done">
+              <el-collapse-item title="DONE">
                 <div>
                   <ul v-for="(item, index) in list" :key="index">
                     <li v-if="item.done === true">
@@ -214,8 +214,7 @@ export default {
 
 <style scoped>
 .el-main {
-  background-color: #e9eef3;
-  color: #333;
+  color: black;
   text-align: center;
   line-height: 30px;
 }
@@ -223,6 +222,7 @@ export default {
 .el-col {
   border-radius: 4px;
 }
+
 
 .grid-content {
   border-radius: 5px;

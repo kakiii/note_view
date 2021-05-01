@@ -36,11 +36,12 @@
       <!-- <el-button v-on:click="getTitle">getTitle</el-button> -->
       <el-button v-on:click="upload" :disabled="content.length<=5||!this.$store.state.isLogin">Upload</el-button>
       <br>
-      <el-input v-model="currentTitle" placeholder="Please enter your title here"></el-input>
+
       <!-- <el-button v-on:click="getTitle">Get Title</el-button> -->
       <!--      <el-button v-on:click="refresh">Refresh</el-button>-->
     </el-container>
-    <el-container> </el-container>
+
+    <el-container> <el-input class="titleInput" v-model="currentTitle" placeholder="Please enter your title"></el-input>  </el-container>
 
     <el-container>
       <el-menu
@@ -412,6 +413,12 @@ This is error
 .el-container {
   height: 100%;
   width: 100%;
+}
+
+.titleInput{
+  width: auto;
+  margin: auto;
+  text-align: left;
 }
 
 .el-button,

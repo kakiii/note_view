@@ -2,7 +2,7 @@
 <template>
   <div>
     <el-container>
-      <el-header>This is discussion borad. </el-header>
+      <el-header>DISCUSSION</el-header>
 
       <el-main>
         <ul v-for="(item, index) in list" :key="index">
@@ -23,12 +23,12 @@
       <el-input
         type="textarea"
         :autosize="{ minRows: 2, maxRows: 4 }"
-        placeholder="请输入内容"
+        placeholder="Please post here"
         v-model="textarea"
       >
       </el-input>
 
-      <el-button type="send" @click="clickSending()">发送</el-button>
+      <el-button class="sendButton" type="send" @click="clickSending()" icon="el-icon-check">Send</el-button>
     </el-container>
   </div>
 </template>
@@ -212,26 +212,28 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .el-header {
-  background-color: #161515;
-  color: rgb(255, 0, 0);
+  background-color: white;
+  color: black;
   text-align: center;
   line-height: 60px;
+  font-size: xx-large;
+  font-weight: bolder;
 }
 
 .el-main {
-  background-color: #e9eef3;
-  color: #333;
-  text-align: center;
-  line-height: 160px;
+  background-color: white;
+  color: #253B6E;
+  text-align: left;
+  line-height: 35px;
 }
 
-.el-footer {
-  background-color: #92be1a;
-  color: rgb(194, 233, 87);
+.sendButton {
+  background-color: #93E0FF;
+  color: #253B6E;
   text-align: center;
-  line-height: 60px;
+  line-height: 15px;
 }
 </style>
 
