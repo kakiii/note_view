@@ -1,7 +1,21 @@
 <template>
   <div>
-    <input v-model="id"/>
-    <button v-on:click="get_article()">HIT TO GET VALUE</button>
+    <h1>SEARCH</h1>
+    <el-input
+        class="search"
+        type="search"
+        v-model="id"
+        placeholder="Search for an article"
+        prefix-icon="el-icon-tickets"
+    ></el-input>
+    <el-button
+        icon="el-icon-search"
+        class="search-button"
+        type="button"
+        @click="get_article()"
+        block
+    ></el-button
+    >
     <table>
       <thead>
       <tr>
@@ -62,4 +76,6 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

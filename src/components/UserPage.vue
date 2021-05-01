@@ -104,7 +104,7 @@ export default {
   width: 200px;
   margin-top: 0px;
   background: #93E0FF;
-  color: white;
+  color: #253B6E;
   border-color: #C4E2D8;
   font-size: small;
 }
