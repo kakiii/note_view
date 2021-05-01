@@ -87,7 +87,7 @@ export default {
               content: this.textarea,
             })
             .then((res) => {
-              //console.log("res=>", res);
+              console.log("res=>", res);
             })
             .catch((err) => {
               console.log(err);
