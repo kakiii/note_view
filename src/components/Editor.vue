@@ -10,7 +10,6 @@
       >
         <el-radio-button :label="true"> &lt; </el-radio-button>
         <el-radio-button :label="false"> &gt; </el-radio-button>
-
       </el-radio-group>
       <el-select
         v-model="headerValue"
@@ -34,8 +33,12 @@
       <el-button v-on:click="markup('indent')">Tab</el-button>
       <el-button v-on:click="clear">Clear</el-button>
       <!-- <el-button v-on:click="getTitle">getTitle</el-button> -->
-      <el-button v-on:click="upload" :disabled="content.length<=5||!this.$store.state.isLogin">Upload</el-button>
-      <br>
+      <el-button
+        v-on:click="upload"
+        :disabled="content.length <= 5 || !this.$store.state.isLogin"
+        >Upload</el-button
+      >
+
 
       <!-- <el-button v-on:click="getTitle">Get Title</el-button> -->
       <!--      <el-button v-on:click="refresh">Refresh</el-button>-->
@@ -58,11 +61,11 @@
           </template>
           <el-menu-item-group title="Folder 1">
             <el-menu-item
-              v-for="id in article_list"
-              :key="id"
+              v-for="(title,id) in title_id"
+              :key="title"
               v-on:click="load(id)"
-              >Article {{ id }}</el-menu-item
-            >
+              >{{ title }}
+            </el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
@@ -73,11 +76,7 @@
         type="textarea"
       ></textarea>
 
-      <MarkdownItVue
-        :content="content"
-        :options="options"
-        class="md-body"
-      />
+      <MarkdownItVue :content="content" :options="options" class="md-body" />
     </el-container>
   </div>
 </template>
@@ -101,8 +100,14 @@ export default {
       axios
         .get(url + this.$store.state.username)
         .then((res) => {
-          this.article_list = res.data["my_article"];
-          console.log(this.article_list);
+          this.article_list = res.data["article_collection"];
+          this.article_titles_list = res.data["article_titles_collection"];
+          for (let i = 0; i < res.data["article_collection"].length; i++) {
+            this.title_id[res.data["article_collection"][i]]=res.data["article_titles_collection"][i];
+            
+          }
+          console.log(this.title_id);
+          
         })
         .catch((err) => console.log(err));
       /* if (this.article_list.length>0) {
@@ -111,14 +116,18 @@ export default {
     }
   },
   methods: {
-    getTitle(){
-      if(this.currentTitle===""){
+    getTitle() {
+      if (this.currentTitle === "") {
         this.$alert("Please enter a title");
-      }else if(this.currentTitle.length<5){
+      } else if (this.currentTitle.length < 3) {
         this.$alert("Length of title is too short!");
       }
-      console.log(this.$store.state.username+" "+this.currentTitle);
-      console.log(CryptoJS.MD5(this.$store.state.username+" "+this.currentTitle).toString());
+      console.log(this.$store.state.username + " " + this.currentTitle);
+      console.log(
+        CryptoJS.MD5(
+          this.$store.state.username + " " + this.currentTitle
+        ).toString()
+      );
     },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -152,7 +161,9 @@ export default {
       }
       axios
         .post(url, {
-          id: CryptoJS.MD5(this.$store.state.username+" "+this.currentTitle).toString(),
+          id: CryptoJS.MD5(
+            this.$store.state.username + " " + this.currentTitle
+          ).toString(),
           author: this.$store.state.username,
           content: this.content,
           title: this.currentTitle,
@@ -265,8 +276,15 @@ export default {
   },
   data() {
     return {
-      currentTitle:"",
+      test:{
+        hello:1,
+        test:2,
+        apple:3
+      },
+      currentTitle: "",
       article_list: [],
+      article_titles_list:[],
+      title_id:{},
       article_id: null,
       headerValue: "",
       isCollapse: true,
