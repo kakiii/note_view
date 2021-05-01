@@ -6,7 +6,7 @@
 
       <el-main>
         <ul v-for="(item, index) in list" :key="index">
-          <span>{{ item.id + " ::" + item.author + " " + item.content }}</span>
+          <span>{{item.author + ": " + item.content }}</span>
         </ul>
       </el-main>
 
@@ -224,7 +224,7 @@ export default {
 
 .el-main {
   background-color: white;
-  color: #253B6E;
+  color: black;
   text-align: left;
   line-height: 35px;
 }
