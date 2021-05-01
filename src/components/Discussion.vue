@@ -4,11 +4,13 @@
     <el-container>
       <el-header>DISCUSSION</el-header>
 
-      <el-main>
-        <ul v-for="(item, index) in list" :key="index">
-          <span>{{item.author + ": " + item.content }}</span>
-        </ul>
-      </el-main>
+      <ul v-for="(item, index) in list" :key="index">
+        <el-main>
+          <span class="dis">{{
+            item.author + ": " + item.content
+          }}</span></el-main
+        >
+      </ul>
 
       <el-pagination
         @current-change="handleCurrentChange"
@@ -28,7 +30,13 @@
       >
       </el-input>
 
-      <el-button class="sendButton" type="send" @click="clickSending()" icon="el-icon-check">Send</el-button>
+      <el-button
+        class="sendButton"
+        type="send"
+        @click="clickSending()"
+        icon="el-icon-check"
+        >Send</el-button
+      >
     </el-container>
   </div>
 </template>
@@ -52,7 +60,7 @@ export default {
   methods: {
     handleCurrentChange(currentPage) {
       this.currentPage = currentPage;
-      console.log(this.currentPage);
+      //console.log(this.currentPage);
     },
 
     clickSending() {
@@ -79,13 +87,13 @@ export default {
               content: this.textarea,
             })
             .then((res) => {
-              console.log("res=>", res);
+              //console.log("res=>", res);
             })
             .catch((err) => {
               console.log(err);
             });
         }
-        
+
         //this.total=this.total+1;
 
         if (this.currentPage == 1) {
@@ -96,12 +104,12 @@ export default {
             id: this.total + 1,
           });
           var listtemp = this.list;
-          for(let i in listtemp){
-            console.log(listtemp[i]);
+          for (let i in listtemp) {
+            //console.log(listtemp[i]);
             temp.push(listtemp[i]);
           }
           temp.pop();
-          this.list=temp;
+          this.list = temp;
         }
         this.textarea = "";
       } else {
@@ -120,10 +128,10 @@ export default {
       }
 
       axios.get(url + "content/discussion").then((res) => {
-        console.log("hello" + res.data["discussion_size"]);
+        //console.log("hello" + res.data["discussion_size"]);
         this.total = res.data["discussion_size"];
         // i = this.total;
-        console.log("total is" + this.total);
+        //console.log("total is" + this.total);
 
         this.list = [];
         var axiosList = [];
@@ -167,10 +175,10 @@ export default {
     axios
       .get(url + "content/discussion")
       .then((res) => {
-        console.log("hello" + res.data["discussion_size"]);
+        //console.log("hello" + res.data["discussion_size"]);
         this.total = res.data["discussion_size"];
         // i = this.total;
-        console.log("total is" + this.total);
+        //console.log("total is" + this.total);
 
         if (this.total !== 0) {
           let i = 0;
@@ -194,7 +202,7 @@ export default {
             .then()
             .then((results) => {
               let temp = results.map((r) => r.data);
-              console.log("hello" + temp[1]);
+              //console.log("hello" + temp[1]);
               // console.log(temp[0].author);
               for (let j = 0; j < temp.length; j++) {
                 this.list.push({
@@ -227,11 +235,12 @@ export default {
   color: black;
   text-align: left;
   line-height: 35px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
 .sendButton {
-  background-color: #93E0FF;
-  color: #253B6E;
+  background-color: #93e0ff;
+  color: #253b6e;
   text-align: center;
   line-height: 15px;
 }
