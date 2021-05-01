@@ -37,7 +37,7 @@
       </el-aside>
 
     </el-container>
-    <el-container style="margin-left: 115px; margin-top: 10px">
+    <el-container style="margin-left: 117px; margin-top: 10px">
       <el-button
           class="logoutButton"
           size="mini"
