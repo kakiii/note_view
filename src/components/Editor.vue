@@ -61,7 +61,7 @@
           </template>
           <el-menu-item-group title="Folder 1">
             <el-menu-item
-              v-for="(title,id) in test"
+              v-for="(id,title) in title_id"
               :key="id"
               > {{id}}: {{title}}
             </el-menu-item>
@@ -88,7 +88,7 @@ import CryptoJS from "crypto-js";
 export default {
   components: { MarkdownItVue },
   name: "Editor",
-  mounted() {
+  beforeMount() {
     if (this.$store.state.isLogin) {
       let url = "";
       if (process.env.NODE_ENV === "development") {
@@ -99,11 +99,15 @@ export default {
       axios
         .get(url + this.$store.state.username)
         .then((res) => {
-          this.article_list = res.data["article_collection"];
-          this.article_titles_list = res.data["article_titles_collection"];
-          for (let i = 0; i < this.article_list.length; i++) {
-            this.title_id[this.article_list[i]]=this.article_titles_list[i];
-            
+          let article_list = res.data["article_collection"];
+          let article_titles_list = res.data["article_titles_collection"];
+          
+          for (let i = 0; i < article_list.length; i++) {
+            let article = {
+              id : article_list[i],
+              title: article_titles_list[i],
+            }
+            this.title_id[i]=article;
           }
           console.log(this.title_id);
           
@@ -281,10 +285,7 @@ export default {
         id3:"title3"
       },
       currentTitle: "",
-      article_list: [],
-      article_titles_list:[],
-      title_id:{},
-      article_id: null,
+      title_id:[],
       headerValue: "",
       isCollapse: true,
       headers: [
