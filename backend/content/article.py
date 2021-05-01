@@ -13,7 +13,7 @@ def return_article(article_id):
     article_table = database.articles
     match_article = article_table.find_one({'id': article_id})
     if match_article:
-        return jsonify({'ID': article_id, 'Content': match_article['content'],'Title':match_article['title']})
+        return jsonify({'ID': article_id, 'Content': match_article['content'],'Title':match_article['title'],"author":match_article['author']})
     else:
         return jsonify(({'ID': article_id, 'Content': 'NOT FOUND'}))
 
