@@ -1,5 +1,6 @@
 <template>
 <div>
+  <el-button v-on:click="print">Print</el-button>
   <h1 style="text-align:left">Author: <i>{{author}}</i></h1>
   <MarkdownItVue :content="content" :options="options" class="md-body" />
 </div>
@@ -43,5 +44,10 @@ export default {
       author:"",
     };
   },
+  methods:{
+    print(){
+      window.print();
+    }
+  }
 };
 </script>
