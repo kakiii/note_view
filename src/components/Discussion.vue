@@ -35,6 +35,7 @@
         type="send"
         @click="clickSending()"
         icon="el-icon-check"
+        :disabled="textarea===''"
         >Send</el-button
       >
     </el-container>
