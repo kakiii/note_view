@@ -126,6 +126,7 @@ export default {
     change(index, done) {
       if (done) {
         var audio = new Audio(ringtone);
+        audio.volume = 0.3;
         audio.play();
         this.list[index].done = true;
       } else {
