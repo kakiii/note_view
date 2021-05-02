@@ -19,8 +19,8 @@
 
         <el-row type="flex" justify="center">
           <el-col :span="20">
-            <el-collapse>
-              <el-collapse-item title="TO DO">
+            <el-collapse v-model="activeNames">
+              <el-collapse-item title="TO DO" name="Todo">
                 <ul v-for="(item, index) in list" :key="'info-' + index">
                   <li v-if="item.done === false">
                     <div style="float: left">
@@ -43,7 +43,7 @@
                   </li>
                 </ul>
               </el-collapse-item>
-              <el-collapse-item title="DONE">
+              <el-collapse-item title="DONE" name="Done">
                 <div>
                   <ul v-for="(item, index) in list" :key="index">
                     <li v-if="item.done === true">
@@ -107,7 +107,7 @@ export default {
       inputValue: "",
       list: [],
       st: "",
-
+      activeNames: "Todo",
       //mylist: localStorage.getItem("myitem"),
     };
   },
