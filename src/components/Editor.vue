@@ -400,7 +400,7 @@ graph TD;
     C-->D;
 \`\`\`
 
-For more information, click here: [Flowchart Syntax](http://knsv.github.io/mermaid/#flowcharts-basic-syntax)
+For more information, click here: [Flowchart Syntax](https://mermaid-js.github.io/mermaid/#/flowchart)
 
 ## Image
 
