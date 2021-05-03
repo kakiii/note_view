@@ -81,6 +81,8 @@ def get_article_by_title():
     regex = re.compile(real_title,re.IGNORECASE)
     cursor = article_table.find_one({"title":regex})
     title_return = cursor["title"]
+    content_return = cursor["content"]
     return jsonify({
-        "title":title_return
+        "title":title_return,
+        "content":content_return
     })

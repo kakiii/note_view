@@ -17,20 +17,6 @@
         block
     ></el-button
     >
-    <table>
-      <thead>
-      <tr>
-        <th>ID</th>
-        <th>Content</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>{{ this.id }}</td>
-<!--        <td>{{ content }}</td>-->
-      </tr>
-      </tbody>
-    </table>
     <MarkdownItVue :content="content"/>
   </div>
 </template>
@@ -54,6 +40,7 @@ export default {
     return {
       id: "",
       content: "",
+      title:""
     };
   },
   methods: {
@@ -70,15 +57,9 @@ export default {
         title:this.id
       }).then((res) => {
         console.log(res.data["title"]);
-        this.content = res.data["title"];
+        this.title = res.data["title"];
+        this.content = res.data["content"];
       })
-            //   axios
-            // .get(url + "article/find/" + this.id)
-            // .then((res) => {
-            //   console.log(res.data["Content"]);
-            //   this.content = res.data["Content"];
-            // })
-            // .catch(() => (this.content = "NO CONTENT"));
     },
   },
 };
