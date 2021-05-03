@@ -1,16 +1,23 @@
 <template>
   <div>
     <h1>HOME PAGE</h1>
-    <ul>
+    <!-- <ul>
       <li v-for="article in articles" :key="article">{{article.Title}}</li>
-    </ul>
+    </ul> -->
+    <el-container>
+    <MarkdownItVue style="width:25%"
+    v-for="article in articles" :key="article"
+    :content="article.Content" :options="options" class="md-body" />
+    </el-container>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import MarkdownItVue from "markdown-it-vue";
 export default {
   name: "Home",
+  components: { MarkdownItVue },
   mounted() {
     let url = "";
     if (process.env.NODE_ENV === "development") {
