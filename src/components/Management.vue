@@ -173,7 +173,8 @@ export default {
       .catch((err) => console.log(err));
 
     axios.get(url + "article/check").then((res) => {
-      this.total_artilces = res.data.article_number;
+      this.total_artilces = res.data.article_count;
+      console.log("TOTAL " + this.total_artilces);
     });
   },
 };
