@@ -185,10 +185,12 @@ export default {
   margin-top: 40px;
   background: #93E0FF;
   color: #253B6E;
+  width: auto;
 }
 .ban-button{
   background: red;
   color: white;
+  width: auto;
 }
 .search,
 .ban {

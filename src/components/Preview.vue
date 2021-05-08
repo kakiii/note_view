@@ -51,3 +51,15 @@ export default {
   }
 };
 </script>
+
+<style scopde>
+.el-button {
+  width: 80px;
+  height: 40px;
+  margin-top: 10px;
+  background: #93E0FF;
+  color: white;
+  border-color: #C4E2D8;
+  font-size: medium;
+}
+</style>

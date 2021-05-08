@@ -30,7 +30,7 @@
             id: '08dd897aa2bff1d2cb4f3d8e5c00567c',
           },
         }"
-        >Sample Page</el-menu-item>
+        >PREVIEW</el-menu-item>
       <el-menu-item
         :disabled="!this.$store.state.isLogin"
         style="float: right"

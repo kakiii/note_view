@@ -250,6 +250,7 @@ export default {
   color: #253b6e;
   text-align: center;
   line-height: 15px;
+  width: 100%;
 }
 </style>
 
