@@ -69,8 +69,9 @@ export default {
       }
       if(validateUsername(this.username)){
 
-
-      if (this.password !== this.password_again) {
+      if(this.password.length < 5){
+        this.$alert("Password should have at least 5 characters, please try again.")
+      }else if(this.password !== this.password_again) {
         this.$alert("Password not match, please try again.")
       } else {
         axios
