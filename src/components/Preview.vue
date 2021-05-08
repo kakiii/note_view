@@ -52,7 +52,7 @@ export default {
 };
 </script>
 
-<style scopde>
+<style scoped>
 .el-button {
   width: 80px;
   height: 40px;
